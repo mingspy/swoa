@@ -1,0 +1,57 @@
+﻿@{
+	string FlowID = Request.QueryString["flowid"];
+	string StepID = Request.QueryString["stepid"];
+	string GroupID = Request.QueryString["groupid"];
+	string TaskID = Request.QueryString["taskid"];
+	string InstanceID = Request.QueryString["instanceid"];
+	string DisplayModel = Request.QueryString["display"] ?? "0";
+	string DBConnID = "06075250-30dc-4d32-bf97-e922cb30fac8";
+	string DBTable = "OaOfficialSeal";
+	string DBTablePK = "ID";
+	string DBTableTitle = "";
+	if(InstanceID.IsNullOrEmpty()){InstanceID = Request.QueryString["instanceid1"];}
+	YJ.Platform.Dictionary BDictionary = new YJ.Platform.Dictionary();
+	YJ.Platform.WorkFlow BWorkFlow = new YJ.Platform.WorkFlow();
+	YJ.Platform.WorkFlowTask BWorkFlowTask = new YJ.Platform.WorkFlowTask();
+	string fieldStatus = BWorkFlow.GetFieldStatus(FlowID, StepID);
+	LitJson.JsonData initData = BWorkFlow.GetFormData(DBConnID, DBTable, DBTablePK, InstanceID, fieldStatus, "{\"oaofficialseal.lenddate\":\"yyyy年MM月dd日   HH时mm分\",\"oaofficialseal.returndate\":\"yyyy年MM月dd日  HH时mm分\"}");
+	string TaskTitle = BWorkFlow.GetFromFieldData(initData, DBTable, DBTableTitle);
+}
+<link href="~/Scripts/FlowRun/Forms/flowform.css" rel="stylesheet" type="text/css" />
+<script src="~/Scripts/FlowRun/Forms/common.js" type="text/javascript" ></script>
+<input type="hidden" id="Form_ValidateAlertType" name="Form_ValidateAlertType" value="1" />
+<input type="hidden" id="OaOfficialSeal." name="OaOfficialSeal." value="@(TaskTitle.IsNullOrEmpty() ? BWorkFlow.GetAutoTaskTitle(FlowID, StepID, Request.QueryString["groupid"]) : TaskTitle)" />
+<input type="hidden" id="Form_TitleField" name="Form_TitleField" value="OaOfficialSeal." />
+<input type="hidden" id="Form_DBConnID" name="Form_DBConnID" value="06075250-30dc-4d32-bf97-e922cb30fac8" />
+<input type="hidden" id="Form_DBTable" name="Form_DBTable" value="OaOfficialSeal" />
+<input type="hidden" id="Form_DBTablePk" name="Form_DBTablePk" value="ID" />
+<input type="hidden" id="Form_DBTableTitle" name="Form_DBTableTitle" value="" />
+<input type="hidden" id="Form_AutoSaveData" name="Form_AutoSaveData" value="1" />
+<textarea id="Form_DBTableTitleExpression" name="Form_DBTableTitleExpression" style="display:none;width:0;height:0;"></textarea>
+<script type="text/javascript">
+	var initData = @Html.Raw(BWorkFlow.GetFormDataJsonString(initData));
+	var fieldStatus = "1"=="@Request.QueryString["isreadonly"]" ? {} : @Html.Raw(fieldStatus);
+	var displayModel = '@DisplayModel';
+	$(window).load(function (){
+		formrun.initData(initData, "OaOfficialSeal", fieldStatus, displayModel);
+	});
+</script>
+<script type="text/javascript">
+	function typeHide() {
+		var yzType = document.getElementsByTagName("OaOfficialSeal.Things");
+		if(yzType.length == 0) {
+			$("label").each(function() {
+				var labelval = $(this).html().trim();
+				if(labelval == '营业执照' || labelval == '资质') {
+					document.getElementById("yz").style.display = "none";
+				}
+			});
+		}
+	}</script><p><br/></p><p><br/></p><table align="center" class="flowformtable tableF table table-bordered" cellspacing="0" cellpadding="0" data-sort="sortDisabled"><tbody><tr class="firstRow"><th align="center" class="title" valign="middle" style="-ms-word-break: break-all;" rowspan="1" colspan="2">公章使用（借用）申请单</th></tr><tr><th align="center" class="titleT" valign="middle" rowspan="1" colspan="2"><br/></th></tr><tr class="topTr"><td align="left" class="top" valign="middle" style="-ms-word-break: break-all;" rowspan="1" colspan="1"><p class="txt">申请人</p><input name="OaOfficialSeal.Applicant" title="" class="mymember" id="OaOfficialSeal.Applicant" style="width: 55%;" type="text" value="u_@YJ.Platform.Users.CurrentUserID.ToString()" type1="flow_org" more="0" isflow="1" dept="0" station="0" user="1" workgroup="0" unit="0" rootid=""/></td><td align="left" class="top" valign="middle" style="-ms-word-break: break-all;" rowspan="1" colspan="1"><p class="txt">申请部门</p><input name="OaOfficialSeal.Department" title="" class="mymember" id="OaOfficialSeal.Department" style="width: 55%;" type="text" value="@(YJ.Platform.Users.CurrentDeptID)" type1="flow_org" more="0" isflow="1" dept="1" station="1" user="0" workgroup="0" unit="0" rootid=""/></td></tr><tr><td align="left" valign="middle" style="-ms-word-break: break-all;" rowspan="1" colspan="1"><p class="txt"> 申请时间</p><input name="OaOfficialSeal.LendDate" title="" class="mycalendar" id="OaOfficialSeal.LendDate" type="text" value="@(YJ.Utility.DateTimeNew.LongDateTime)" defaultvalue="%40(YJ.Utility.DateTimeNew.LongDateTime)" type1="flow_datetime" format="yyyy年MM月dd日   HH时mm分" istime="1" daybefor="0" dayafter="0" currentmonth="0" isflow="1"/></td><td align="left" valign="middle" style="-ms-word-break: break-all;" rowspan="1" colspan="1"><p class="txt">归还时间</p><input name="OaOfficialSeal.ReturnDate" title="" class="mycalendar" id="OaOfficialSeal.ReturnDate" type="text" value="" defaultvalue="" type1="flow_datetime" format="yyyy年MM月dd日  HH时mm分" istime="1" daybefor="0" dayafter="0" currentmonth="0" isflow="1"/></td></tr><tr><td align="left" valign="middle" style="-ms-word-break: break-all;" rowspan="1" colspan="1"><p class="txt">所属单位</p><select name="OaOfficialSeal.Company" class="myselect" id="OaOfficialSeal.Company" type1="flow_select" isflow="1"><option value="0">湖南省食品质量监督检验研究院</option></select></td><td align="left" class="Tradio" valign="middle" style="-ms-word-break: break-all;" rowspan="1" colspan="1"><p class="txt">申请类型</p><input name="OaOfficialSeal.Things" id="OaOfficialSeal.Things_0" style="vertical-align: middle;" onclick="onclick_ac142f5e961bb378936a20e4f80edbab(this);" type="radio" value="0" type1="flow_radio" isflow="1"/><label style="margin-right: 3px; vertical-align: middle;" for="OaOfficialSeal.Things_0">法人证书盖章</label><input name="OaOfficialSeal.Things" id="OaOfficialSeal.Things_1" style="vertical-align: middle;" onclick="onclick_ac142f5e961bb378936a20e4f80edbab(this);" type="radio" value="2" type1="flow_radio" isflow="1"/><label style="margin-right: 3px; vertical-align: middle;" for="OaOfficialSeal.Things_1">资质材料盖章</label><input name="OaOfficialSeal.Things" id="OaOfficialSeal.Things_2" style="vertical-align: middle;" onclick="onclick_ac142f5e961bb378936a20e4f80edbab(this);" type="radio" value="1" type1="flow_radio" isflow="1"/><label style="margin-right: 3px; vertical-align: middle;" for="OaOfficialSeal.Things_2">印章借用外出</label><input name="OaOfficialSeal.Things" id="OaOfficialSeal.Things_3" style="vertical-align: middle;" onclick="onclick_ac142f5e961bb378936a20e4f80edbab(this);" type="radio" value="3" type1="flow_radio" isflow="1"/><label style="margin-right: 3px; vertical-align: middle;" for="OaOfficialSeal.Things_3">其他材料盖章</label><script type="text/javascript">function onclick_ac142f5e961bb378936a20e4f80edbab(srcObj){var y=$('input[name="OaOfficialSeal.Things"]:checked').val();
+         if (y==1) {   ;            
+         }else if(y==2){
+                  ;
+         }else {
+                ;
+     }
+                    }</script></td></tr><tr><td align="left" valign="middle" style="-ms-word-break: break-all;" rowspan="1" colspan="1"><p class="txt">印章种类</p><select name="OaOfficialSeal.Type" class="myselect" id="OaOfficialSeal.Type" type1="flow_select" isflow="1"><option value=""></option><option value="行政公章">行政公章</option><option value="党委章">党委章</option><option value="业务专用章">业务专用章</option><option value="工会章">工会章</option><option value="纪委章">纪委章</option></select></td><td align="left" valign="middle" style="-ms-word-break: break-all;" rowspan="1" colspan="1"><p class="txt">印章使用类型</p><select name="OaOfficialSeal.Purpose" class="myselect" id="OaOfficialSeal.Purpose" type1="flow_select" isflow="1"><option value="使用">仅盖章</option><option value="外出">印章借用外出</option></select></td></tr><tr><td align="left" valign="middle" style="-ms-word-break: break-all;" rowspan="1" colspan="2"><p class="txt">使用（借用）事由</p><textarea name="OaOfficialSeal.Reason" class="mytext" id="OaOfficialSeal.Reason" type1="flow_textarea" isflow="1"></textarea></td></tr><tr class="bottomTr"><td align="left" class="bottom" valign="middle" style="-ms-word-break: break-all;" rowspan="1" colspan="2"><p class="txt">附件</p><input name="OaOfficialSeal.Annex" title="" class="myfile" id="OaOfficialSeal.Annex" style="width: 55%;" type="text" value="" type1="flow_files" isflow="1" filetype=""/></td></tr></tbody></table><p><br/></p>

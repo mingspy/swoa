@@ -1,0 +1,48 @@
+﻿@{
+	string FlowID = Request.QueryString["flowid"];
+	string StepID = Request.QueryString["stepid"];
+	string GroupID = Request.QueryString["groupid"];
+	string TaskID = Request.QueryString["taskid"];
+	string InstanceID = Request.QueryString["instanceid"];
+	string DisplayModel = Request.QueryString["display"] ?? "0";
+	string DBConnID = "06075250-30dc-4d32-bf97-e922cb30fac8";
+	string DBTable = "TempTest_News";
+	string DBTablePK = "ID";
+	string DBTableTitle = "";
+	if(InstanceID.IsNullOrEmpty()){InstanceID = Request.QueryString["instanceid1"];}
+	YJ.Platform.Dictionary BDictionary = new YJ.Platform.Dictionary();
+	YJ.Platform.WorkFlow BWorkFlow = new YJ.Platform.WorkFlow();
+	YJ.Platform.WorkFlowTask BWorkFlowTask = new YJ.Platform.WorkFlowTask();
+	string fieldStatus = BWorkFlow.GetFieldStatus(FlowID, StepID);
+	LitJson.JsonData initData = BWorkFlow.GetFormData(DBConnID, DBTable, DBTablePK, InstanceID, fieldStatus, "{}");
+	string TaskTitle = BWorkFlow.GetFromFieldData(initData, DBTable, DBTableTitle);
+}
+<link href="~/Scripts/FlowRun/Forms/flowform.css" rel="stylesheet" type="text/css" />
+<script src="~/Scripts/FlowRun/Forms/common.js" type="text/javascript" ></script>
+<script src="~/Scripts/Ueditor/ueditor.config.js" type="text/javascript" ></script>
+<script src="~/Scripts/Ueditor/ueditor.all.min.js" type="text/javascript" ></script>
+<script src="~/Scripts/Ueditor/lang/zh-cn/zh-cn.js" type="text/javascript" ></script>
+<input type="hidden" id="Form_HasUEditor" name="Form_HasUEditor" value="1" />
+<input type="hidden" id="Form_ValidateAlertType" name="Form_ValidateAlertType" value="1" />
+<input type="hidden" id="TempTest_News." name="TempTest_News." value="@(TaskTitle.IsNullOrEmpty() ? BWorkFlow.GetAutoTaskTitle(FlowID, StepID, Request.QueryString["groupid"]) : TaskTitle)" />
+<input type="hidden" id="Form_TitleField" name="Form_TitleField" value="TempTest_News." />
+<input type="hidden" id="Form_DBConnID" name="Form_DBConnID" value="06075250-30dc-4d32-bf97-e922cb30fac8" />
+<input type="hidden" id="Form_DBTable" name="Form_DBTable" value="TempTest_News" />
+<input type="hidden" id="Form_DBTablePk" name="Form_DBTablePk" value="ID" />
+<input type="hidden" id="Form_DBTableTitle" name="Form_DBTableTitle" value="" />
+<input type="hidden" id="Form_AutoSaveData" name="Form_AutoSaveData" value="1" />
+<textarea id="Form_DBTableTitleExpression" name="Form_DBTableTitleExpression" style="display:none;width:0;height:0;"></textarea>
+<script type="text/javascript">
+	var initData = @Html.Raw(BWorkFlow.GetFormDataJsonString(initData));
+	var fieldStatus = "1"=="@Request.QueryString["isreadonly"]" ? {} : @Html.Raw(fieldStatus);
+	var displayModel = '@DisplayModel';
+	$(window).load(function (){
+		formrun.initData(initData, "TempTest_News", fieldStatus, displayModel);
+	});
+</script>
+<p style="text-align: center;"> </p><p style="text-align: center;"> </p><style>.html,.html p{
+    white-space: inherit;
+    word-wrap: break-word;
+    word-break: normal;
+    display: inline-grid;
+  }</style><table class="flowformtable tableF table table-bordered" data-sort="sortDisabled" cellspacing="0" cellpadding="0" align="center"><tbody><tr class="firstRow"><th rowspan="1" colspan="2" valign="middle" align="center"><span class="title">信 息 发 布</span></th></tr><tr><th class="titleT" rowspan="1" colspan="2" valign="middle" align="left"><p class="titleO">基本信息</p></th></tr><tr class="topTr"><td class="top" rowspan="1" colspan="2" valign="middle" align="left"><p class="txt">标题</p><input type="text" id="TempTest_News.Title" type1="flow_text" name="TempTest_News.Title" value="" maxlength="500" valuetype="0" isflow="1" class="mytext" title=""/></td></tr><tr><td rowspan="1" colspan="2" valign="middle" align="left"><p class="txt">副标题</p><textarea isflow="1" type1="flow_textarea" id="TempTest_News.Title1" name="TempTest_News.Title1" class="mytext" style="height: 70px;" maxlength="1000"></textarea></td></tr><tr class=""><td class="" rowspan="1" colspan="1" valign="middle" align="left"><p class="txt">分类</p><select class="myselect" id="TempTest_News.Type" name="TempTest_News.Type" isflow="1" type1="flow_select">@Html.Raw(BDictionary.GetOptionsByID("a8b9101f-4f8b-4830-9de1-c86ad89405c3".ToGuid(), YJ.Platform.Dictionary.OptionValueField.ID, "", false))</select></td><td rowspan="1" colspan="1" valign="middle" align="left"><p class="txt">是否原创</p><select class="myselect" id="TempTest_News.Original" name="TempTest_News.Original" isflow="1" type1="flow_select">@Html.Raw(BDictionary.GetOptionsByID("4e9b14c7-46e8-4b0f-a0ba-60a5eb862a27".ToGuid(), YJ.Platform.Dictionary.OptionValueField.ID, "", false))</select></td></tr><tr class=""><td rowspan="1" colspan="2" valign="middle" align="left"><p class="txt">信息来源</p><input type="text" id="TempTest_News.Source" type1="flow_text" name="TempTest_News.Source" value="" align="left" valuetype="0" isflow="1" class="mytext" title=""/></td></tr><tr class="bottomTr"><td class="bottom" rowspan="1" colspan="2" valign="middle" align="left" style="word-break: break-all;"><p class="txt">附件</p><input type="text" type1="flow_files" id="TempTest_News.Files" name="TempTest_News.Files" value="" style="width:55%" filetype="" isflow="1" class="myfile" title=""/></td></tr><tr><th class="titleT" rowspan="1" colspan="2" valign="middle" align="left"><p class="titleO">内容</p></th></tr><tr class="topTr bottomTr"><td class="bottom top html" rowspan="1" colspan="2" valign="middle" align="left"><textarea isflow="1" model="html" type1="flow_textarea" id="TempTest_News.Contents" name="TempTest_News.Contents" class="mytextarea" style=" height:300px;">@Html.Raw(BWorkFlow.GetFromFieldData(initData, "TempTest_News","Contents"))</textarea></td></tr></tbody></table><p> </p>

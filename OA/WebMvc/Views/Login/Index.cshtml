@@ -1,0 +1,259 @@
+﻿@{
+    ViewBag.Title = "OA办公系统";
+    Page.BodyStyle = "style='background:#FFFFFF; overflow:hidden;'";
+}
+<style>
+    .loginbgdiv {
+        background:#FFFFFF;
+    }
+    .loginbgdiv .top{
+        width:100%;
+        height: 180px;
+        position:relative;
+        text-align:center;
+    }
+    .loginbgdiv .top img {
+        height: 70px;
+        position: relative;
+        margin-top: 60px;
+        padding-right: 50px;
+    }
+    .loginbgdiv .center {
+        width: 100%;
+        height: 58%;
+    }
+    .loginbgdiv .center img {
+        height: 100%;
+        width:100%;
+    }
+    .loginbgdiv .bottom {
+        width: 100%;
+        height: 10%;
+        text-align:center;
+    }
+
+    html, body, form {
+        width: 100%;
+        height: 100%;
+    }
+
+    .window_maindiv {
+        border-radius: 10px;
+        position: absolute;
+        background: #ffffff;
+        overflow: hidden;
+        border: 0;
+        box-shadow: 0;
+        -moz-box-shadow: 0;
+        -webkit-box-shadow: 0;
+        background-color: #ffffff;
+        background-image: url(../../../../Images/login/loginicon2.png);
+        background-repeat: no-repeat;
+        background-size: 65px;
+        background-position: bottom right;
+    }
+
+    .window_title {
+        border-radius: 2px;
+        text-align: center;
+        height: 26px;
+        padding-left: 5px;
+        color: #313c65;
+        padding-right: 0px;
+        background: #FFF;
+        display: none;
+    }
+
+    .mytext:hover, .mytext:hover,
+    .text1, .text2 {
+        border-radius: 4px;
+        background: #eef6fd;
+        border: 0;
+        -webkit-appearance: none;
+        line-height: 18px;
+        vertical-align: middle;
+        height: 18px;
+        padding-left: 2px;
+        margin: 0;
+        -moz-box-shadow: -1px 1px 3px #c0c0c0 inset; /* For Firefox3.6+ */
+        -webkit-box-shadow: -1px 1px 3px #c0c0c0 inset; /* For Chrome5+, Safari5+ */
+        box-shadow: -1px 1px 3px #c0c0c0 inset; /* For Latest Opera */
+    }
+
+    .button1, .button2, .mybutton, .mybutton:hover {
+        border-radius: 4px;
+        background: #1788de;
+        border: 0;
+        color: #ffffff;
+        vertical-align: middle;
+        height: 25px;
+        box-shadow: none;
+        cursor:pointer;
+    }
+
+</style>
+
+<form id="form1" method="post">
+    @Html.AntiForgeryToken()
+    <div id="bgdiv" class="loginbgdiv">
+        <div class="top">
+            <img src="~/Images/login/logintop.png" />
+        </div>
+        <div class="center">
+            <img src="~/Images/login/loginbg.jpg" />
+        </div>
+        <div class="bottom">
+            <p>版权所有：湖南省食品质量监督检验研究院</p>
+        </div>
+    </div>
+    <div id="logindiv" style="display:none; margin-top:0px;height:calc(100% + 22px);padding-top:0px;height: calc(100% + 26px);">
+        <img src="../Images/Login/loginimg.png" style="height: 70%;left: 45px;position: absolute;bottom: 15px;" />
+        <input type="hidden" id="Force" name="Force" value="0" />
+        <table cellpadding="0" cellspacing="1" border="0" style="width:100%; margin:0 auto;padding-top:0px;height: 35px;">
+            <tr>
+                <td colspan="2" align="center" style="padding: 5px;border-bottom:1px solid #cccccc;font-size: 18px;color: #333333;font-weight: bold;line-height: 28px;">OA办公系统</td>
+            </tr>
+        </table>
+        <table cellpadding="0" cellspacing="1" border="0" style="width:100%; margin:0 auto;">
+            <tr>
+                <td colspan="2" style="text-align:center;padding: 10px 0 0 18px;">
+                    <img src="~/Images/login/loginicon.png" style="height:18px;vertical-align:middle;" />
+                    <i style="font-size:14px; font-style:normal">&nbsp;&nbsp;用户登录</i>
+                </td>
+            </tr>
+            <tr>
+                <td class="td" style="width:310px; height:34px; text-align:right;padding-top: 10px;">用户名</td>
+                <td class="td" style="padding-left:18px;padding-top: 10px;"><input type="text" class="mytext text1" id="Account" name="Account" value="" maxlength="50" style="width: 200px;height: 28px;" /></td>
+            </tr>
+            <tr>
+                <td class="td" style="height:40px; text-align:right;padding-top: 10px;">密码</td>
+                <td class="td" style="padding-left:18px;padding-top: 10px;"><input type="password" class="mytext text1" id="Password" name="Password" maxlength="50" style="width: 200px;height: 28px;" /></td>
+            </tr>
+            <tr id="novcode" style="display:none;">
+                <td style="text-align:right;padding-top: 2px;">验证码</td>
+                <td style="padding-left:18px;padding-top: 2px;">
+                    <input type="text" class="mytext text2" id="VCode" name="VCode" maxlength="4" style="width:128px;height: 28px;" />
+                    <img alt="" src="@Url.Content("~/Login/VCode?"+DateTime.Now.Ticks)" onclick="cngimg();" style="vertical-align:middle;border-radius: 2px;" id="VcodeImg" />
+                </td>
+            </tr>
+            <tr>
+                <td>&nbsp;</td>
+                <td style="padding-left:18px; padding-top: 10px;" valign="top">
+                    <input type="button" id="loginbutton" value=" 登 录 " class="mybutton" style="width: 206px;height: 32px;" onclick="return checkForm(this);" />
+                </td>
+            </tr>
+        </table>
+    </div>
+</form>
+<script type="text/javascript">
+    var win = new RoadUI.Window();
+    var isVCode = "1" == "@Session["IsValidateCode"]";
+
+    $(function ()
+    {
+        $(document.body).bind("keydown", KeyDown);
+        var left = $(window).width() / 2 - 300;
+        var top = $(window).height() / 2 - 130;
+        win.open({ elementid: "logindiv", width: 600, height: isVCode ? 252 : 230, top: top, left: left, showico: false, title: "", resize: false, ismodal: false, showclose: false });
+        if (isVCode)
+        {
+            showVCode();
+        }
+    });
+
+    function KeyDown()
+    {
+        var e = document.all ? window.event : arguments[0] ? arguments[0] : event;
+        if (e && e.keyCode == 13)
+        {
+            e.returnValue = false;
+            e.cancel = true;
+            $("#loginbutton").click();
+        }
+    }
+
+    function cngimg()
+    {
+        $('#VcodeImg').attr('src', '@Url.Content("~/Login/VCode?")' + new Date().toString());
+    }
+    function showVCode()
+    {
+        //win.resize(300, 250);
+        $("#novcode").show();
+        $(".td").css("padding-top", "2px");
+    }
+
+    ////禁止后退键 作用于Firefox、Opera  
+    //document.onkeypress = keydown;
+    ////禁止后退键  作用于IE、Chrome  
+    //document.onkeydown = keydown;
+    //function keydown(e)
+    //{
+    //    var ev = e || window.event;//获取event对象
+    //    if (ev && ev.keyCode && ev.keyCode == 13)
+    //    {
+    //        checkForm();
+    //    }
+    //}
+
+    function checkForm()
+    {
+        var form1 = document.forms[0];
+        if ($.trim(form1.Account.value).length == 0)
+        {
+            alert("帐号不能为空!");
+            form1.Account.focus();
+            return false;
+        }
+        if ($.trim(form1.Password.value).length == 0)
+        {
+            alert("密码不能为空!");
+            form1.Password.focus();
+            return false;
+        }
+        if (isVCode && form1.VCode && $.trim(form1.VCode.value).length == 0)
+        {
+            alert("验证码不能为空!");
+            form1.VCode.focus();
+            return false;
+        }
+        var $but = $("#loginbutton");
+        $but.val("登录中...").prop("disabled", true);
+        var token = $('input[name="__RequestVerificationToken"]', form1).val();
+        $.ajax({
+            url: "@Url.Content("~/Login/CheckLogin")",
+            type: "POST",
+            dataType: "json",
+            async: true,
+            data: { __RequestVerificationToken: token, Account: form1.Account.value, Password: form1.Password.value, VCode: form1.VCode.value, Force: form1.Force.value },
+            success: function (json)
+            {
+                switch (json.status)
+                {
+                    case 0:
+                        alert(json.msg);
+                        win.resize(600, 250);
+                        showVCode();
+                        isVCode = true;
+                        cngimg();
+                        $but.val("登录").prop("disabled", false);
+                        break;
+                    case 1:
+                        window.location = "@Url.Content("~/Home/Index")";
+                        break;
+                    case 2:
+                        if (confirm(json.msg))
+                        {
+                            $('#Force').val("1");
+                            checkForm();
+                        }
+                        else
+                        {
+                            $but.val("登录").prop("disabled", false);
+                        }
+                        break;
+                }
+            }
+        });
+    }
+</script>

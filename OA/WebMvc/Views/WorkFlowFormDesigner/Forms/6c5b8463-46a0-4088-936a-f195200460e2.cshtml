@@ -1,0 +1,39 @@
+﻿@{
+	string FlowID = Request.QueryString["flowid"];
+	string StepID = Request.QueryString["stepid"];
+	string GroupID = Request.QueryString["groupid"];
+	string TaskID = Request.QueryString["taskid"];
+	string InstanceID = Request.QueryString["instanceid"];
+	string DisplayModel = Request.QueryString["display"] ?? "0";
+	string DBConnID = "06075250-30dc-4d32-bf97-e922cb30fac8";
+	string DBTable = "OaCar";
+	string DBTablePK = "ID";
+	string DBTableTitle = "";
+	if(InstanceID.IsNullOrEmpty()){InstanceID = Request.QueryString["instanceid1"];}
+	YJ.Platform.Dictionary BDictionary = new YJ.Platform.Dictionary();
+	YJ.Platform.WorkFlow BWorkFlow = new YJ.Platform.WorkFlow();
+	YJ.Platform.WorkFlowTask BWorkFlowTask = new YJ.Platform.WorkFlowTask();
+	string fieldStatus = BWorkFlow.GetFieldStatus(FlowID, StepID);
+	LitJson.JsonData initData = BWorkFlow.GetFormData(DBConnID, DBTable, DBTablePK, InstanceID, fieldStatus, "{\"oacar.caryear\":\"yyyy-MM-dd\",\"oacar.carinsurance\":\"yyyy-MM-dd\"}");
+	string TaskTitle = BWorkFlow.GetFromFieldData(initData, DBTable, DBTableTitle);
+}
+<link href="~/Scripts/FlowRun/Forms/flowform.css" rel="stylesheet" type="text/css" />
+<script src="~/Scripts/FlowRun/Forms/common.js" type="text/javascript" ></script>
+<input type="hidden" id="Form_ValidateAlertType" name="Form_ValidateAlertType" value="1" />
+<input type="hidden" id="OaCar." name="OaCar." value="@(TaskTitle.IsNullOrEmpty() ? BWorkFlow.GetAutoTaskTitle(FlowID, StepID, Request.QueryString["groupid"]) : TaskTitle)" />
+<input type="hidden" id="Form_TitleField" name="Form_TitleField" value="OaCar." />
+<input type="hidden" id="Form_DBConnID" name="Form_DBConnID" value="06075250-30dc-4d32-bf97-e922cb30fac8" />
+<input type="hidden" id="Form_DBTable" name="Form_DBTable" value="OaCar" />
+<input type="hidden" id="Form_DBTablePk" name="Form_DBTablePk" value="ID" />
+<input type="hidden" id="Form_DBTableTitle" name="Form_DBTableTitle" value="" />
+<input type="hidden" id="Form_AutoSaveData" name="Form_AutoSaveData" value="1" />
+<textarea id="Form_DBTableTitleExpression" name="Form_DBTableTitleExpression" style="display:none;width:0;height:0;"></textarea>
+<script type="text/javascript">
+	var initData = @Html.Raw(BWorkFlow.GetFormDataJsonString(initData));
+	var fieldStatus = "1"=="@Request.QueryString["isreadonly"]" ? {} : @Html.Raw(fieldStatus);
+	var displayModel = '@DisplayModel';
+	$(window).load(function (){
+		formrun.initData(initData, "OaCar", fieldStatus, displayModel);
+	});
+</script>
+<p><br/></p><p><br/></p><table class="flowformtable tableF table table-bordered" data-sort="sortDisabled" cellspacing="0" cellpadding="0" align="center"><tbody><tr class="firstRow"><th rowspan="1" colspan="2" style="word-break: break-all;" valign="middle" align="center"><span class="title">车 辆 信 息 管 理<br/></span></th></tr><tr><th class="titleT" rowspan="1" colspan="2" valign="middle" align="left"><p class="titleO">基本信息</p></th></tr><tr class="topTr"><td class="top" rowspan="1" colspan="1" style="word-break: break-all;" valign="middle" align="left"><p class="txt">车辆名称</p><input type="text" id="OaCar.CarName" type1="flow_text" name="OaCar.CarName" value="" valuetype="0" isflow="1" class="mytext" title="" align="left"/></td><td rowspan="1" colspan="1" style="word-break: break-all;" valign="middle" align="left"><p class="txt">车牌号</p><input type="text" id="OaCar.CarNumber" type1="flow_text" name="OaCar.CarNumber" value="" valuetype="0" isflow="1" class="mytext" title="" align="left"/></td></tr><tr class=""><td rowspan="1" colspan="1" style="word-break: break-all;" valign="middle" align="left"><p class="txt">车辆类型</p><select class="myselect" id="OaCar.CarType" name="OaCar.CarType" isflow="1" type1="flow_select">@Html.Raw(BDictionary.GetOptionsByID("45f1c78c-6c92-4bcc-a498-b196e2a6958a".ToGuid(), YJ.Platform.Dictionary.OptionValueField.Value, "", true))</select></td><td rowspan="1" colspan="1" style="word-break: break-all;" valign="middle" align="left"><p class="txt">车牌购置日期</p><input type="text" type1="flow_datetime" id="OaCar.CarYear" name="OaCar.CarYear" value="" format="yyyy-MM-dd" defaultvalue="" istime="0" daybefor="0" dayafter="0" currentmonth="0" isflow="1" class="mycalendar" title=""/></td></tr><tr><td class="bottom" rowspan="1" colspan="1" style="word-break: break-all;" valign="middle" align="left"><p class="txt">车辆管理者</p><input type="text" type1="flow_org" id="OaCar.CarController" name="OaCar.CarController" value="u_@YJ.Platform.Users.CurrentUserID.ToString()" style="width:55%" more="0" isflow="1" class="mymember" title="" dept="0" station="0" user="1" workgroup="0" unit="0" rootid="04f12beb-d99d-43df-ac9a-3042957d6bda"/></td><td class="bottom" rowspan="1" colspan="1" style="word-break: break-all;" valign="middle" align="left"><p class="txt">车牌保险日期</p><input type="text" type1="flow_datetime" id="OaCar.Carinsurance" name="OaCar.Carinsurance" value="" format="yyyy-MM-dd" defaultvalue="" istime="0" daybefor="0" dayafter="0" currentmonth="0" isflow="1" class="mycalendar" title=""/></td></tr><tr><th class="titleT" rowspan="1" colspan="2" valign="middle" align="left"><p class="titleO">保养、年审日期</p></th></tr><tr class="bottomTr topTr"><td class="bottom top" rowspan="1" colspan="2"><table class="flowformsubtable" data-showindex="0" data-sortstring="" style="width:99%;margin:0 auto;" issubflowtable="1" id="subtable_OaCarMaintain_ID_ID_CarID" cellspacing="1" cellpadding="0"><thead><tr><th style="text-align:left;padding-right:3px;">年检日期<input type="hidden" name="flowsubtable_id" value="OaCarMaintain_ID_ID_CarID"/><input type="hidden" name="flowsubtable_OaCarMaintain_ID_ID_CarID_secondtable" value="OaCarMaintain"/><input type="hidden" name="flowsubtable_OaCarMaintain_ID_ID_CarID_primarytablefiled" value="ID"/><input type="hidden" name="flowsubtable_OaCarMaintain_ID_ID_CarID_secondtableprimarykey" value="ID"/><input type="hidden" name="flowsubtable_OaCarMaintain_ID_ID_CarID_secondtablerelationfield" value="CarID"/></th><th style="text-align:left;padding-right:3px;">保养日期</th><th></th></tr></thead><tbody><tr type1="listtr"><td colname="OaCarMaintain_CarYearCheck" iscount="0" style="text-align:left;padding-right:3px;"><input type="hidden" name="hidden_guid_OaCarMaintain_ID_ID_CarID" value="2383c037c95c69b8215628cc8c77bc29"/><input type="hidden" name="flowsubid" value="OaCarMaintain_ID_ID_CarID"/><input type="text" class="mycalendar" name="OaCarMaintain_ID_ID_CarID_2383c037c95c69b8215628cc8c77bc29_OaCarMaintain_CarYearCheck" id="OaCarMaintain_ID_ID_CarID_2383c037c95c69b8215628cc8c77bc29_OaCarMaintain_CarYearCheck" issubflow="1" type1="subflow_datetime" value="" colname="OaCarMaintain_CarYearCheck" format="yyyy-MM-dd"/><script type="text/javascript"></script></td><td colname="OaCarMaintain_CarMaintain" iscount="0" style="text-align:left;padding-right:3px;"><input type="text" class="mycalendar" name="OaCarMaintain_ID_ID_CarID_2383c037c95c69b8215628cc8c77bc29_OaCarMaintain_CarMaintain" id="OaCarMaintain_ID_ID_CarID_2383c037c95c69b8215628cc8c77bc29_OaCarMaintain_CarMaintain" issubflow="1" type1="subflow_datetime" value="" colname="OaCarMaintain_CarMaintain" format="yyyy-MM-dd"/><script type="text/javascript"></script></td><td><input type="button" class="mybutton" style="margin-right:4px;" value="增加" onclick="formrun.subtableNewRow(this);"/><input type="button" class="mybutton" value="删除" onclick="formrun.subtableDeleteRow(this);"/></td></tr></tbody></table></td></tr></tbody></table>

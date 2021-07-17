@@ -1,0 +1,26 @@
+﻿@{
+    ViewBag.Title = "待办事项";
+    Layout = "~/Views/Shared/_Layout_App1.cshtml";
+    string username = YJ.Platform.Users.CurrentUserName;
+}
+<style>
+    .singinBox {
+        margin: 30% 5%;
+        text-align:center;
+    }
+    .singinBox img{
+        width: auto;  
+        height: auto;  
+        max-width: 100%;  
+        max-height: 100%; 
+    }
+</style>
+<div class="singinBox">
+    <img style="display:none" src="~/Areas/WeiXin/Images/signin.png" />
+    <div style="display:none">
+        <img src="~/Areas/WeiXin/Images/signin2.png" />
+        <p>
+            @username，请勿重复签到！
+        </p>
+    </div>
+</div>

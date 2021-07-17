@@ -1,0 +1,87 @@
+﻿@charset "utf-8";
+/* CSS Document */
+/*table{
+	width:80%;
+	margin: 0px auto; 
+	font-family: Georgia,&quot;
+	Times New Roman&quot:,Times,serif; 
+	text-decoration: none;
+	cellspacing:0;
+	cellpadding:0;
+}*/
+td{
+	padding-left:5px !important;
+    padding-right:5px !important;
+}
+td.number{
+	height:30px;
+	text-align:center;
+	border: 1px solid #b1d7ff; 
+}
+td.widd1{
+	border: 1px solid #b1d7ff !important; 
+	border-image: none; 
+	-ms-word-break: break-all; 
+	background-color:#ebf5ff !important;
+    color:#0c164e;
+}
+td.widd1 p span{
+    color:#0c164e;
+}
+td.widd1 span{
+    color:#0c164e;
+}
+td.widd2{
+	border: 1px solid #b1d7ff;
+	border-image: none;
+}
+td.widd3{
+	width:200px;
+	border: 1px solid #b1d7ff;
+	border-image: none;
+}
+td.widd4{
+	width:150px;
+	border: 1px solid #b1d7ff;
+	border-image: none;
+}
+input.klong{
+	border:none;
+	width: 98%; 
+	height: 20px;
+}
+input.kpull{
+	border:#e5e5e5 1px solid;
+	color:#515151;
+	width: 100px; 
+	height: 20px;
+}
+input.kshort{
+	border:none;
+	width: 95%; 
+	height: 20px;
+}
+input.ktext{
+	border:none;
+	width: 98%; 
+	height: 120px;
+}
+input.kname{
+	border:#e5e5e5 1px solid;
+	color:#515151;
+	width: 100px; 
+	height: 20px;
+}
+input.ktime{
+	border:#e5e5e5 1px solid;
+	color:#515151;
+	width: 100px; 
+	height: 20px;
+}
+input.number{
+	width:90%;
+	text-align:center;
+	color:#515151;
+	border:none;
+}
+

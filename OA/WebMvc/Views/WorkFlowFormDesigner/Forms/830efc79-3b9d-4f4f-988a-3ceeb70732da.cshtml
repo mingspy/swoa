@@ -1,0 +1,39 @@
+﻿@{
+	string FlowID = Request.QueryString["flowid"];
+	string StepID = Request.QueryString["stepid"];
+	string GroupID = Request.QueryString["groupid"];
+	string TaskID = Request.QueryString["taskid"];
+	string InstanceID = Request.QueryString["instanceid"];
+	string DisplayModel = Request.QueryString["display"] ?? "0";
+	string DBConnID = "06075250-30dc-4d32-bf97-e922cb30fac8";
+	string DBTable = "OaOffSupBuy";
+	string DBTablePK = "ID";
+	string DBTableTitle = "";
+	if(InstanceID.IsNullOrEmpty()){InstanceID = Request.QueryString["instanceid1"];}
+	YJ.Platform.Dictionary BDictionary = new YJ.Platform.Dictionary();
+	YJ.Platform.WorkFlow BWorkFlow = new YJ.Platform.WorkFlow();
+	YJ.Platform.WorkFlowTask BWorkFlowTask = new YJ.Platform.WorkFlowTask();
+	string fieldStatus = BWorkFlow.GetFieldStatus(FlowID, StepID);
+	LitJson.JsonData initData = BWorkFlow.GetFormData(DBConnID, DBTable, DBTablePK, InstanceID, fieldStatus, "{\"oaoffsupbuy.time\":\"yyyy年MM月dd日\"}");
+	string TaskTitle = BWorkFlow.GetFromFieldData(initData, DBTable, DBTableTitle);
+}
+<link href="~/Scripts/FlowRun/Forms/flowform.css" rel="stylesheet" type="text/css" />
+<script src="~/Scripts/FlowRun/Forms/common.js" type="text/javascript" ></script>
+<input type="hidden" id="Form_ValidateAlertType" name="Form_ValidateAlertType" value="1" />
+<input type="hidden" id="OaOffSupBuy." name="OaOffSupBuy." value="@(TaskTitle.IsNullOrEmpty() ? BWorkFlow.GetAutoTaskTitle(FlowID, StepID, Request.QueryString["groupid"]) : TaskTitle)" />
+<input type="hidden" id="Form_TitleField" name="Form_TitleField" value="OaOffSupBuy." />
+<input type="hidden" id="Form_DBConnID" name="Form_DBConnID" value="06075250-30dc-4d32-bf97-e922cb30fac8" />
+<input type="hidden" id="Form_DBTable" name="Form_DBTable" value="OaOffSupBuy" />
+<input type="hidden" id="Form_DBTablePk" name="Form_DBTablePk" value="ID" />
+<input type="hidden" id="Form_DBTableTitle" name="Form_DBTableTitle" value="" />
+<input type="hidden" id="Form_AutoSaveData" name="Form_AutoSaveData" value="1" />
+<textarea id="Form_DBTableTitleExpression" name="Form_DBTableTitleExpression" style="display:none;width:0;height:0;"></textarea>
+<script type="text/javascript">
+	var initData = @Html.Raw(BWorkFlow.GetFormDataJsonString(initData));
+	var fieldStatus = "1"=="@Request.QueryString["isreadonly"]" ? {} : @Html.Raw(fieldStatus);
+	var displayModel = '@DisplayModel';
+	$(window).load(function (){
+		formrun.initData(initData, "OaOffSupBuy", fieldStatus, displayModel);
+	});
+</script>
+<p> </p><p><br/></p><link href="~/Content/Theme/tablenew.css" rel="stylesheet"/><table width="NaN" align="center" class="flowformtable tableF table table-bordered" cellspacing="0" cellpadding="0" data-sort="sortDisabled"><tbody><tr class="firstRow"><th align="center" valign="middle" rowspan="1" colspan="2"><span class="title">办 公 （用品）设 备 申 购 单</span></th></tr><tr><th align="center" class="titleT" valign="middle" rowspan="1" colspan="2"><input type="button" class="mybutton" type1="flow_button" isflow="1" value="打印表单" id="name=" onclick="onclick_9758e84e6c4f1dfe54a49a6a5c3478fc (this);"/><script type="text/javascript">function onclick_9758e84e6c4f1dfe54a49a6a5c3478fc(srcObj){formPrint();}</script></th></tr><tr class="topTr"><td class="top" rowspan="1" colspan="1"><p class="txt">申请人</p><input type="text" type1="flow_org" id="OaOffSupBuy.UserID" name="OaOffSupBuy.UserID" value="u_@YJ.Platform.Users.CurrentUserID.ToString()" style="width:360px" more="0" isflow="1" class="mymember" title="" dept="0" station="0" user="1" workgroup="0" unit="0" rootid="04f12beb-d99d-43df-ac9a-3042957d6bda"/></td><td class="top" rowspan="1" colspan="1"><p class="txt">申报部门</p><input type="text" type1="flow_org" id="OaOffSupBuy.department" name="OaOffSupBuy.department" value="@(YJ.Platform.Users.CurrentDeptID)" style="width:360px" more="0" isflow="1" class="mymember" title="" dept="1" station="0" user="0" workgroup="0" unit="1" rootid="04f12beb-d99d-43df-ac9a-3042957d6bda"/></td></tr><tr><td rowspan="1" colspan="1"><p class="txt">申请时间</p><input type="text" type1="flow_datetime" id="OaOffSupBuy.Time" name="OaOffSupBuy.Time" value="@(YJ.Utility.DateTimeNew.ShortDateTime)" style="width:360px" format="yyyy年MM月dd日" defaultvalue="%40(YJ.Utility.DateTimeNew.ShortDateTime)" istime="1" daybefor="0" dayafter="1" currentmonth="0" isflow="1" class="mycalendar" title=""/></td><td rowspan="1" colspan="1"><p class="txt">用途</p><p class="txt"><input type="text" id="OaOffSupBuy.yongtu" type1="flow_text" name="OaOffSupBuy.yongtu" value="" align="left" valuetype="0" style="width: 360px; padding-right: 3px;" isflow="1" class="mytext" title=""/></p></td></tr><tr><td rowspan="1" colspan="1"><p>办公（用品）设备名称</p><p><input type="text" id="OaOffSupBuy.OfficEequipment" type1="flow_text" name="OaOffSupBuy.OfficEequipment" value="" align="left" style="width:360px;text-align:left;padding-right:3px;" valuetype="0" isflow="1" class="mytext" title=""/></p></td><td rowspan="1" colspan="1"><p>型号（规格）配置</p><p><input type="text" id="OaOffSupBuy.specifications" type1="flow_text" name="OaOffSupBuy.specifications" value="" align="left" style="width:360px;text-align:left;padding-right:3px;" valuetype="0" isflow="1" class="mytext" title=""/></p></td></tr><tr><td rowspan="1" colspan="1"><p>数量</p><p><input type="text" id="OaOffSupBuy.number" type1="flow_text" name="OaOffSupBuy.number" value="" align="left" style="width:360px;text-align:left;padding-right:3px;" valuetype="3" isflow="1" class="mytext" title=""/></p></td><td rowspan="1" colspan="1"><p>金额</p><p><input type="text" id="OaOffSupBuy.total" type1="flow_text" name="OaOffSupBuy.total" value="" align="left" style="width:360px;text-align:left;padding-right:3px;" valuetype="3" isflow="1" class="mytext" title=""/></p></td></tr><tr><td rowspan="1" colspan="1">是否是固定资产   <select class="myselect" id="OaOffSupBuy.type" name="OaOffSupBuy.type" style="width:55%" isflow="1" type1="flow_select"><option value="1">是</option><option value="2" selected="selected">否</option></select></td><td rowspan="1" colspan="1"><p class="txt">附件</p><p class="txt"><input type="text" type1="flow_files" id="OaOffSupBuy.fujian" name="OaOffSupBuy.fujian" value="" style="width:55%" filetype="" isflow="1" class="myfile" title=""/></p></td></tr></tbody></table><p><br/></p>

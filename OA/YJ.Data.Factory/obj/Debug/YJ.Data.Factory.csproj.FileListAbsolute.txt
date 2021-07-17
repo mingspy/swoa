@@ -1,0 +1,379 @@
+D:\题榜之路\私人项目\1.OA20181103\RoadFlow2.7.6 (1)\RoadFlow.Data.Factory\bin\Debug\RoadFlow.Data.Factory.dll
+D:\题榜之路\私人项目\1.OA20181103\RoadFlow2.7.6 (1)\RoadFlow.Data.Factory\bin\Debug\RoadFlow.Data.Factory.pdb
+D:\题榜之路\私人项目\1.OA20181103\RoadFlow2.7.6 (1)\RoadFlow.Data.Factory\bin\Debug\RoadFlow.Cache.Factory.dll
+D:\题榜之路\私人项目\1.OA20181103\RoadFlow2.7.6 (1)\RoadFlow.Data.Factory\bin\Debug\RoadFlow.Cache.InProc.dll
+D:\题榜之路\私人项目\1.OA20181103\RoadFlow2.7.6 (1)\RoadFlow.Data.Factory\bin\Debug\RoadFlow.Cache.Interface.dll
+D:\题榜之路\私人项目\1.OA20181103\RoadFlow2.7.6 (1)\RoadFlow.Data.Factory\bin\Debug\RoadFlow.Cache.IO.dll
+D:\题榜之路\私人项目\1.OA20181103\RoadFlow2.7.6 (1)\RoadFlow.Data.Factory\bin\Debug\RoadFlow.Data.Interface.dll
+D:\题榜之路\私人项目\1.OA20181103\RoadFlow2.7.6 (1)\RoadFlow.Data.Factory\bin\Debug\RoadFlow.Data.MSSQL.dll
+D:\题榜之路\私人项目\1.OA20181103\RoadFlow2.7.6 (1)\RoadFlow.Data.Factory\bin\Debug\RoadFlow.Data.MySql.dll
+D:\题榜之路\私人项目\1.OA20181103\RoadFlow2.7.6 (1)\RoadFlow.Data.Factory\bin\Debug\RoadFlow.Data.ORACLE.dll
+D:\题榜之路\私人项目\1.OA20181103\RoadFlow2.7.6 (1)\RoadFlow.Data.Factory\bin\Debug\RoadFlow.Utility.dll
+D:\题榜之路\私人项目\1.OA20181103\RoadFlow2.7.6 (1)\RoadFlow.Data.Factory\bin\Debug\RoadFlow.Data.Model.dll
+D:\题榜之路\私人项目\1.OA20181103\RoadFlow2.7.6 (1)\RoadFlow.Data.Factory\bin\Debug\MySql.Data.dll
+D:\题榜之路\私人项目\1.OA20181103\RoadFlow2.7.6 (1)\RoadFlow.Data.Factory\bin\Debug\Oracle.ManagedDataAccess.dll
+D:\题榜之路\私人项目\1.OA20181103\RoadFlow2.7.6 (1)\RoadFlow.Data.Factory\bin\Debug\LitJSON.dll
+D:\题榜之路\私人项目\1.OA20181103\RoadFlow2.7.6 (1)\RoadFlow.Data.Factory\bin\Debug\ICSharpCode.SharpZipLib.dll
+D:\题榜之路\私人项目\1.OA20181103\RoadFlow2.7.6 (1)\RoadFlow.Data.Factory\bin\Debug\NPOI.dll
+D:\题榜之路\私人项目\1.OA20181103\RoadFlow2.7.6 (1)\RoadFlow.Data.Factory\bin\Debug\NPOI.OOXML.dll
+D:\题榜之路\私人项目\1.OA20181103\RoadFlow2.7.6 (1)\RoadFlow.Data.Factory\bin\Debug\NPOI.OpenXmlFormats.dll
+D:\题榜之路\私人项目\1.OA20181103\RoadFlow2.7.6 (1)\RoadFlow.Data.Factory\bin\Debug\NPOI.OpenXml4Net.dll
+D:\题榜之路\私人项目\1.OA20181103\RoadFlow2.7.6 (1)\RoadFlow.Data.Factory\bin\Debug\RoadFlow.Data.Interface.pdb
+D:\题榜之路\私人项目\1.OA20181103\RoadFlow2.7.6 (1)\RoadFlow.Data.Factory\bin\Debug\RoadFlow.Data.MSSQL.pdb
+D:\题榜之路\私人项目\1.OA20181103\RoadFlow2.7.6 (1)\RoadFlow.Data.Factory\bin\Debug\RoadFlow.Data.MySql.pdb
+D:\题榜之路\私人项目\1.OA20181103\RoadFlow2.7.6 (1)\RoadFlow.Data.Factory\bin\Debug\RoadFlow.Data.ORACLE.pdb
+D:\题榜之路\私人项目\1.OA20181103\RoadFlow2.7.6 (1)\RoadFlow.Data.Factory\bin\Debug\RoadFlow.Cache.Factory.pdb
+D:\题榜之路\私人项目\1.OA20181103\RoadFlow2.7.6 (1)\RoadFlow.Data.Factory\bin\Debug\RoadFlow.Cache.InProc.pdb
+D:\题榜之路\私人项目\1.OA20181103\RoadFlow2.7.6 (1)\RoadFlow.Data.Factory\bin\Debug\RoadFlow.Cache.Interface.pdb
+D:\题榜之路\私人项目\1.OA20181103\RoadFlow2.7.6 (1)\RoadFlow.Data.Factory\bin\Debug\RoadFlow.Cache.IO.pdb
+D:\题榜之路\私人项目\1.OA20181103\RoadFlow2.7.6 (1)\RoadFlow.Data.Factory\bin\Debug\RoadFlow.Utility.pdb
+D:\题榜之路\私人项目\1.OA20181103\RoadFlow2.7.6 (1)\RoadFlow.Data.Factory\bin\Debug\RoadFlow.Data.Model.pdb
+D:\题榜之路\私人项目\1.OA20181103\RoadFlow2.7.6 (1)\RoadFlow.Data.Factory\bin\Debug\LitJSON.pdb
+D:\题榜之路\私人项目\1.OA20181103\RoadFlow2.7.6 (1)\RoadFlow.Data.Factory\obj\Debug\YJ.Data.Factory.csprojAssemblyReference.cache
+D:\题榜之路\私人项目\1.OA20181103\RoadFlow2.7.6 (1)\RoadFlow.Data.Factory\obj\Debug\YJ.Data.Factory.csproj.CoreCompileInputs.cache
+D:\题榜之路\私人项目\1.OA20181103\RoadFlow2.7.6 (1)\RoadFlow.Data.Factory\obj\Debug\YJ.Data.Factory.csproj.CopyComplete
+D:\题榜之路\私人项目\1.OA20181103\RoadFlow2.7.6 (1)\RoadFlow.Data.Factory\obj\Debug\RoadFlow.Data.Factory.dll
+D:\题榜之路\私人项目\1.OA20181103\RoadFlow2.7.6 (1)\RoadFlow.Data.Factory\obj\Debug\RoadFlow.Data.Factory.pdb
+D:\题榜之路\私人项目\1.OA20181103\RoadFlow2.7.6 (1)\YJ.Data.Factory\bin\Debug\YJ.Data.Factory.dll
+D:\题榜之路\私人项目\1.OA20181103\RoadFlow2.7.6 (1)\YJ.Data.Factory\bin\Debug\YJ.Data.Factory.pdb
+D:\题榜之路\私人项目\1.OA20181103\RoadFlow2.7.6 (1)\YJ.Data.Factory\bin\Debug\YJ.Cache.Factory.dll
+D:\题榜之路\私人项目\1.OA20181103\RoadFlow2.7.6 (1)\YJ.Data.Factory\bin\Debug\YJ.Cache.InProc.dll
+D:\题榜之路\私人项目\1.OA20181103\RoadFlow2.7.6 (1)\YJ.Data.Factory\bin\Debug\YJ.Cache.Interface.dll
+D:\题榜之路\私人项目\1.OA20181103\RoadFlow2.7.6 (1)\YJ.Data.Factory\bin\Debug\YJ.Cache.IO.dll
+D:\题榜之路\私人项目\1.OA20181103\RoadFlow2.7.6 (1)\YJ.Data.Factory\bin\Debug\YJ.Data.Interface.dll
+D:\题榜之路\私人项目\1.OA20181103\RoadFlow2.7.6 (1)\YJ.Data.Factory\bin\Debug\YJ.Data.MSSQL.dll
+D:\题榜之路\私人项目\1.OA20181103\RoadFlow2.7.6 (1)\YJ.Data.Factory\bin\Debug\YJ.Data.MySql.dll
+D:\题榜之路\私人项目\1.OA20181103\RoadFlow2.7.6 (1)\YJ.Data.Factory\bin\Debug\YJ.Data.ORACLE.dll
+D:\题榜之路\私人项目\1.OA20181103\RoadFlow2.7.6 (1)\YJ.Data.Factory\bin\Debug\YJ.Utility.dll
+D:\题榜之路\私人项目\1.OA20181103\RoadFlow2.7.6 (1)\YJ.Data.Factory\bin\Debug\YJ.Data.Model.dll
+D:\题榜之路\私人项目\1.OA20181103\RoadFlow2.7.6 (1)\YJ.Data.Factory\bin\Debug\MySql.Data.dll
+D:\题榜之路\私人项目\1.OA20181103\RoadFlow2.7.6 (1)\YJ.Data.Factory\bin\Debug\Oracle.ManagedDataAccess.dll
+D:\题榜之路\私人项目\1.OA20181103\RoadFlow2.7.6 (1)\YJ.Data.Factory\bin\Debug\LitJSON.dll
+D:\题榜之路\私人项目\1.OA20181103\RoadFlow2.7.6 (1)\YJ.Data.Factory\bin\Debug\ICSharpCode.SharpZipLib.dll
+D:\题榜之路\私人项目\1.OA20181103\RoadFlow2.7.6 (1)\YJ.Data.Factory\bin\Debug\NPOI.dll
+D:\题榜之路\私人项目\1.OA20181103\RoadFlow2.7.6 (1)\YJ.Data.Factory\bin\Debug\NPOI.OOXML.dll
+D:\题榜之路\私人项目\1.OA20181103\RoadFlow2.7.6 (1)\YJ.Data.Factory\bin\Debug\NPOI.OpenXmlFormats.dll
+D:\题榜之路\私人项目\1.OA20181103\RoadFlow2.7.6 (1)\YJ.Data.Factory\bin\Debug\NPOI.OpenXml4Net.dll
+D:\题榜之路\私人项目\1.OA20181103\RoadFlow2.7.6 (1)\YJ.Data.Factory\bin\Debug\YJ.Cache.Factory.pdb
+D:\题榜之路\私人项目\1.OA20181103\RoadFlow2.7.6 (1)\YJ.Data.Factory\bin\Debug\YJ.Cache.InProc.pdb
+D:\题榜之路\私人项目\1.OA20181103\RoadFlow2.7.6 (1)\YJ.Data.Factory\bin\Debug\YJ.Cache.Interface.pdb
+D:\题榜之路\私人项目\1.OA20181103\RoadFlow2.7.6 (1)\YJ.Data.Factory\bin\Debug\YJ.Cache.IO.pdb
+D:\题榜之路\私人项目\1.OA20181103\RoadFlow2.7.6 (1)\YJ.Data.Factory\bin\Debug\YJ.Data.Interface.pdb
+D:\题榜之路\私人项目\1.OA20181103\RoadFlow2.7.6 (1)\YJ.Data.Factory\bin\Debug\YJ.Data.MSSQL.pdb
+D:\题榜之路\私人项目\1.OA20181103\RoadFlow2.7.6 (1)\YJ.Data.Factory\bin\Debug\YJ.Data.MySql.pdb
+D:\题榜之路\私人项目\1.OA20181103\RoadFlow2.7.6 (1)\YJ.Data.Factory\bin\Debug\YJ.Data.ORACLE.pdb
+D:\题榜之路\私人项目\1.OA20181103\RoadFlow2.7.6 (1)\YJ.Data.Factory\bin\Debug\YJ.Utility.pdb
+D:\题榜之路\私人项目\1.OA20181103\RoadFlow2.7.6 (1)\YJ.Data.Factory\bin\Debug\YJ.Data.Model.pdb
+D:\题榜之路\私人项目\1.OA20181103\RoadFlow2.7.6 (1)\YJ.Data.Factory\bin\Debug\MySql.Data.xml
+D:\题榜之路\私人项目\1.OA20181103\RoadFlow2.7.6 (1)\YJ.Data.Factory\bin\Debug\LitJSON.pdb
+D:\题榜之路\私人项目\1.OA20181103\RoadFlow2.7.6 (1)\YJ.Data.Factory\obj\Debug\YJ.Data.Factory.csprojAssemblyReference.cache
+D:\题榜之路\私人项目\1.OA20181103\RoadFlow2.7.6 (1)\YJ.Data.Factory\obj\Debug\YJ.Data.Factory.csproj.CoreCompileInputs.cache
+D:\题榜之路\私人项目\1.OA20181103\RoadFlow2.7.6 (1)\YJ.Data.Factory\obj\Debug\YJ.Data.Factory.csproj.CopyComplete
+D:\题榜之路\私人项目\1.OA20181103\RoadFlow2.7.6 (1)\YJ.Data.Factory\obj\Debug\YJ.Data.Factory.dll
+D:\题榜之路\私人项目\1.OA20181103\RoadFlow2.7.6 (1)\YJ.Data.Factory\obj\Debug\YJ.Data.Factory.pdb
+D:\题榜之路\私人项目\1.OA20181103\src\YJ.Data.Factory\obj\Debug\YJ.Data.Factory.csprojAssemblyReference.cache
+D:\题榜之路\私人项目\1.OA20181103\src\YJ.Data.Factory\obj\Debug\YJ.Data.Factory.csproj.CoreCompileInputs.cache
+D:\题榜之路\私人项目\1.OA20181103\src\YJ.Data.Factory\bin\Debug\YJ.Data.Factory.dll
+D:\题榜之路\私人项目\1.OA20181103\src\YJ.Data.Factory\bin\Debug\YJ.Data.Factory.pdb
+D:\题榜之路\私人项目\1.OA20181103\src\YJ.Data.Factory\bin\Debug\YJ.Cache.Factory.dll
+D:\题榜之路\私人项目\1.OA20181103\src\YJ.Data.Factory\bin\Debug\YJ.Cache.InProc.dll
+D:\题榜之路\私人项目\1.OA20181103\src\YJ.Data.Factory\bin\Debug\YJ.Cache.Interface.dll
+D:\题榜之路\私人项目\1.OA20181103\src\YJ.Data.Factory\bin\Debug\YJ.Cache.IO.dll
+D:\题榜之路\私人项目\1.OA20181103\src\YJ.Data.Factory\bin\Debug\YJ.Data.Interface.dll
+D:\题榜之路\私人项目\1.OA20181103\src\YJ.Data.Factory\bin\Debug\YJ.Data.MSSQL.dll
+D:\题榜之路\私人项目\1.OA20181103\src\YJ.Data.Factory\bin\Debug\YJ.Data.MySql.dll
+D:\题榜之路\私人项目\1.OA20181103\src\YJ.Data.Factory\bin\Debug\YJ.Data.ORACLE.dll
+D:\题榜之路\私人项目\1.OA20181103\src\YJ.Data.Factory\bin\Debug\YJ.Utility.dll
+D:\题榜之路\私人项目\1.OA20181103\src\YJ.Data.Factory\bin\Debug\YJ.Data.Model.dll
+D:\题榜之路\私人项目\1.OA20181103\src\YJ.Data.Factory\bin\Debug\MySql.Data.dll
+D:\题榜之路\私人项目\1.OA20181103\src\YJ.Data.Factory\bin\Debug\Oracle.ManagedDataAccess.dll
+D:\题榜之路\私人项目\1.OA20181103\src\YJ.Data.Factory\bin\Debug\LitJSON.dll
+D:\题榜之路\私人项目\1.OA20181103\src\YJ.Data.Factory\bin\Debug\YJ.Cache.Factory.pdb
+D:\题榜之路\私人项目\1.OA20181103\src\YJ.Data.Factory\bin\Debug\YJ.Cache.InProc.pdb
+D:\题榜之路\私人项目\1.OA20181103\src\YJ.Data.Factory\bin\Debug\YJ.Cache.Interface.pdb
+D:\题榜之路\私人项目\1.OA20181103\src\YJ.Data.Factory\bin\Debug\YJ.Cache.IO.pdb
+D:\题榜之路\私人项目\1.OA20181103\src\YJ.Data.Factory\bin\Debug\YJ.Data.Interface.pdb
+D:\题榜之路\私人项目\1.OA20181103\src\YJ.Data.Factory\bin\Debug\YJ.Data.MSSQL.pdb
+D:\题榜之路\私人项目\1.OA20181103\src\YJ.Data.Factory\bin\Debug\YJ.Data.MySql.pdb
+D:\题榜之路\私人项目\1.OA20181103\src\YJ.Data.Factory\bin\Debug\YJ.Data.ORACLE.pdb
+D:\题榜之路\私人项目\1.OA20181103\src\YJ.Data.Factory\bin\Debug\YJ.Data.Model.pdb
+D:\题榜之路\私人项目\1.OA20181103\src\YJ.Data.Factory\obj\Debug\YJ.Data.Factory.csproj.CopyComplete
+D:\题榜之路\私人项目\1.OA20181103\src\YJ.Data.Factory\obj\Debug\YJ.Data.Factory.dll
+D:\题榜之路\私人项目\1.OA20181103\src\YJ.Data.Factory\obj\Debug\YJ.Data.Factory.pdb
+D:\题榜之路\私人项目\1.OA20181103\src\YJ.Data.Factory\bin\Debug\ICSharpCode.SharpZipLib.dll
+D:\题榜之路\私人项目\1.OA20181103\src\YJ.Data.Factory\bin\Debug\NPOI.dll
+D:\题榜之路\私人项目\1.OA20181103\src\YJ.Data.Factory\bin\Debug\NPOI.OOXML.dll
+D:\题榜之路\私人项目\1.OA20181103\src\YJ.Data.Factory\bin\Debug\NPOI.OpenXmlFormats.dll
+D:\题榜之路\私人项目\1.OA20181103\src\YJ.Data.Factory\bin\Debug\NPOI.OpenXml4Net.dll
+D:\题榜之路\私人项目\1.OA20181103\src\YJ.Data.Factory\bin\Debug\YJ.Utility.pdb
+D:\题榜之路\私人项目\1.OA20181103\src\YJ.Data.Factory\bin\Debug\LitJSON.pdb
+D:\题榜之路\私人项目\1.株洲食品研究院OA-20181103\src\YJ.Data.Factory\bin\Debug\YJ.Data.Factory.dll
+D:\题榜之路\私人项目\1.株洲食品研究院OA-20181103\src\YJ.Data.Factory\bin\Debug\YJ.Data.Factory.pdb
+D:\题榜之路\私人项目\1.株洲食品研究院OA-20181103\src\YJ.Data.Factory\bin\Debug\YJ.Cache.Factory.dll
+D:\题榜之路\私人项目\1.株洲食品研究院OA-20181103\src\YJ.Data.Factory\bin\Debug\YJ.Cache.InProc.dll
+D:\题榜之路\私人项目\1.株洲食品研究院OA-20181103\src\YJ.Data.Factory\bin\Debug\YJ.Cache.Interface.dll
+D:\题榜之路\私人项目\1.株洲食品研究院OA-20181103\src\YJ.Data.Factory\bin\Debug\YJ.Cache.IO.dll
+D:\题榜之路\私人项目\1.株洲食品研究院OA-20181103\src\YJ.Data.Factory\bin\Debug\YJ.Data.Interface.dll
+D:\题榜之路\私人项目\1.株洲食品研究院OA-20181103\src\YJ.Data.Factory\bin\Debug\YJ.Data.MSSQL.dll
+D:\题榜之路\私人项目\1.株洲食品研究院OA-20181103\src\YJ.Data.Factory\bin\Debug\YJ.Data.MySql.dll
+D:\题榜之路\私人项目\1.株洲食品研究院OA-20181103\src\YJ.Data.Factory\bin\Debug\YJ.Data.ORACLE.dll
+D:\题榜之路\私人项目\1.株洲食品研究院OA-20181103\src\YJ.Data.Factory\bin\Debug\YJ.Utility.dll
+D:\题榜之路\私人项目\1.株洲食品研究院OA-20181103\src\YJ.Data.Factory\bin\Debug\YJ.Data.Model.dll
+D:\题榜之路\私人项目\1.株洲食品研究院OA-20181103\src\YJ.Data.Factory\bin\Debug\MySql.Data.dll
+D:\题榜之路\私人项目\1.株洲食品研究院OA-20181103\src\YJ.Data.Factory\bin\Debug\Oracle.ManagedDataAccess.dll
+D:\题榜之路\私人项目\1.株洲食品研究院OA-20181103\src\YJ.Data.Factory\bin\Debug\LitJSON.dll
+D:\题榜之路\私人项目\1.株洲食品研究院OA-20181103\src\YJ.Data.Factory\bin\Debug\ICSharpCode.SharpZipLib.dll
+D:\题榜之路\私人项目\1.株洲食品研究院OA-20181103\src\YJ.Data.Factory\bin\Debug\NPOI.dll
+D:\题榜之路\私人项目\1.株洲食品研究院OA-20181103\src\YJ.Data.Factory\bin\Debug\NPOI.OOXML.dll
+D:\题榜之路\私人项目\1.株洲食品研究院OA-20181103\src\YJ.Data.Factory\bin\Debug\NPOI.OpenXmlFormats.dll
+D:\题榜之路\私人项目\1.株洲食品研究院OA-20181103\src\YJ.Data.Factory\bin\Debug\NPOI.OpenXml4Net.dll
+D:\题榜之路\私人项目\1.株洲食品研究院OA-20181103\src\YJ.Data.Factory\bin\Debug\YJ.Cache.Factory.pdb
+D:\题榜之路\私人项目\1.株洲食品研究院OA-20181103\src\YJ.Data.Factory\bin\Debug\YJ.Cache.InProc.pdb
+D:\题榜之路\私人项目\1.株洲食品研究院OA-20181103\src\YJ.Data.Factory\bin\Debug\YJ.Cache.Interface.pdb
+D:\题榜之路\私人项目\1.株洲食品研究院OA-20181103\src\YJ.Data.Factory\bin\Debug\YJ.Cache.IO.pdb
+D:\题榜之路\私人项目\1.株洲食品研究院OA-20181103\src\YJ.Data.Factory\bin\Debug\YJ.Data.Interface.pdb
+D:\题榜之路\私人项目\1.株洲食品研究院OA-20181103\src\YJ.Data.Factory\bin\Debug\YJ.Data.MSSQL.pdb
+D:\题榜之路\私人项目\1.株洲食品研究院OA-20181103\src\YJ.Data.Factory\bin\Debug\YJ.Data.MySql.pdb
+D:\题榜之路\私人项目\1.株洲食品研究院OA-20181103\src\YJ.Data.Factory\bin\Debug\YJ.Data.ORACLE.pdb
+D:\题榜之路\私人项目\1.株洲食品研究院OA-20181103\src\YJ.Data.Factory\bin\Debug\YJ.Utility.pdb
+D:\题榜之路\私人项目\1.株洲食品研究院OA-20181103\src\YJ.Data.Factory\bin\Debug\YJ.Data.Model.pdb
+D:\题榜之路\私人项目\1.株洲食品研究院OA-20181103\src\YJ.Data.Factory\bin\Debug\LitJSON.pdb
+D:\题榜之路\私人项目\1.株洲食品研究院OA-20181103\src\YJ.Data.Factory\obj\Debug\YJ.Data.Factory.csprojAssemblyReference.cache
+D:\题榜之路\私人项目\1.株洲食品研究院OA-20181103\src\YJ.Data.Factory\obj\Debug\YJ.Data.Factory.csproj.CoreCompileInputs.cache
+D:\题榜之路\私人项目\1.株洲食品研究院OA-20181103\src\YJ.Data.Factory\obj\Debug\YJ.Data.Factory.csproj.CopyComplete
+D:\题榜之路\私人项目\1.株洲食品研究院OA-20181103\src\YJ.Data.Factory\obj\Debug\YJ.Data.Factory.dll
+D:\题榜之路\私人项目\1.株洲食品研究院OA-20181103\src\YJ.Data.Factory\obj\Debug\YJ.Data.Factory.pdb
+D:\题榜之路\私人项目\1.株洲食品研究院OA-李学华-外包-(20181103-20190201)\src\YJ.Data.Factory\bin\Debug\YJ.Data.Factory.dll
+D:\题榜之路\私人项目\1.株洲食品研究院OA-李学华-外包-(20181103-20190201)\src\YJ.Data.Factory\bin\Debug\YJ.Data.Factory.pdb
+D:\题榜之路\私人项目\1.株洲食品研究院OA-李学华-外包-(20181103-20190201)\src\YJ.Data.Factory\bin\Debug\YJ.Cache.Factory.dll
+D:\题榜之路\私人项目\1.株洲食品研究院OA-李学华-外包-(20181103-20190201)\src\YJ.Data.Factory\bin\Debug\YJ.Cache.InProc.dll
+D:\题榜之路\私人项目\1.株洲食品研究院OA-李学华-外包-(20181103-20190201)\src\YJ.Data.Factory\bin\Debug\YJ.Cache.Interface.dll
+D:\题榜之路\私人项目\1.株洲食品研究院OA-李学华-外包-(20181103-20190201)\src\YJ.Data.Factory\bin\Debug\YJ.Cache.IO.dll
+D:\题榜之路\私人项目\1.株洲食品研究院OA-李学华-外包-(20181103-20190201)\src\YJ.Data.Factory\bin\Debug\YJ.Data.Interface.dll
+D:\题榜之路\私人项目\1.株洲食品研究院OA-李学华-外包-(20181103-20190201)\src\YJ.Data.Factory\bin\Debug\YJ.Data.MSSQL.dll
+D:\题榜之路\私人项目\1.株洲食品研究院OA-李学华-外包-(20181103-20190201)\src\YJ.Data.Factory\bin\Debug\YJ.Data.MySql.dll
+D:\题榜之路\私人项目\1.株洲食品研究院OA-李学华-外包-(20181103-20190201)\src\YJ.Data.Factory\bin\Debug\YJ.Data.ORACLE.dll
+D:\题榜之路\私人项目\1.株洲食品研究院OA-李学华-外包-(20181103-20190201)\src\YJ.Data.Factory\bin\Debug\YJ.Data.Model.dll
+D:\题榜之路\私人项目\1.株洲食品研究院OA-李学华-外包-(20181103-20190201)\src\YJ.Data.Factory\bin\Debug\MySql.Data.dll
+D:\题榜之路\私人项目\1.株洲食品研究院OA-李学华-外包-(20181103-20190201)\src\YJ.Data.Factory\bin\Debug\Oracle.ManagedDataAccess.dll
+D:\题榜之路\私人项目\1.株洲食品研究院OA-李学华-外包-(20181103-20190201)\src\YJ.Data.Factory\bin\Debug\LitJSON.dll
+D:\题榜之路\私人项目\1.株洲食品研究院OA-李学华-外包-(20181103-20190201)\src\YJ.Data.Factory\bin\Debug\ICSharpCode.SharpZipLib.dll
+D:\题榜之路\私人项目\1.株洲食品研究院OA-李学华-外包-(20181103-20190201)\src\YJ.Data.Factory\bin\Debug\NPOI.dll
+D:\题榜之路\私人项目\1.株洲食品研究院OA-李学华-外包-(20181103-20190201)\src\YJ.Data.Factory\bin\Debug\NPOI.OOXML.dll
+D:\题榜之路\私人项目\1.株洲食品研究院OA-李学华-外包-(20181103-20190201)\src\YJ.Data.Factory\bin\Debug\NPOI.OpenXmlFormats.dll
+D:\题榜之路\私人项目\1.株洲食品研究院OA-李学华-外包-(20181103-20190201)\src\YJ.Data.Factory\bin\Debug\NPOI.OpenXml4Net.dll
+D:\题榜之路\私人项目\1.株洲食品研究院OA-李学华-外包-(20181103-20190201)\src\YJ.Data.Factory\bin\Debug\YJ.Cache.Factory.pdb
+D:\题榜之路\私人项目\1.株洲食品研究院OA-李学华-外包-(20181103-20190201)\src\YJ.Data.Factory\bin\Debug\YJ.Cache.InProc.pdb
+D:\题榜之路\私人项目\1.株洲食品研究院OA-李学华-外包-(20181103-20190201)\src\YJ.Data.Factory\bin\Debug\YJ.Cache.Interface.pdb
+D:\题榜之路\私人项目\1.株洲食品研究院OA-李学华-外包-(20181103-20190201)\src\YJ.Data.Factory\bin\Debug\YJ.Cache.IO.pdb
+D:\题榜之路\私人项目\1.株洲食品研究院OA-李学华-外包-(20181103-20190201)\src\YJ.Data.Factory\bin\Debug\YJ.Data.Interface.pdb
+D:\题榜之路\私人项目\1.株洲食品研究院OA-李学华-外包-(20181103-20190201)\src\YJ.Data.Factory\bin\Debug\YJ.Data.MSSQL.pdb
+D:\题榜之路\私人项目\1.株洲食品研究院OA-李学华-外包-(20181103-20190201)\src\YJ.Data.Factory\bin\Debug\YJ.Data.MySql.pdb
+D:\题榜之路\私人项目\1.株洲食品研究院OA-李学华-外包-(20181103-20190201)\src\YJ.Data.Factory\bin\Debug\YJ.Data.ORACLE.pdb
+D:\题榜之路\私人项目\1.株洲食品研究院OA-李学华-外包-(20181103-20190201)\src\YJ.Data.Factory\bin\Debug\YJ.Data.Model.pdb
+D:\题榜之路\私人项目\1.株洲食品研究院OA-李学华-外包-(20181103-20190201)\src\YJ.Data.Factory\bin\Debug\LitJSON.pdb
+D:\题榜之路\私人项目\1.株洲食品研究院OA-李学华-外包-(20181103-20190201)\src\YJ.Data.Factory\obj\Debug\YJ.Data.Factory.csprojAssemblyReference.cache
+D:\题榜之路\私人项目\1.株洲食品研究院OA-李学华-外包-(20181103-20190201)\src\YJ.Data.Factory\obj\Debug\YJ.Data.Factory.csproj.CoreCompileInputs.cache
+D:\题榜之路\私人项目\1.株洲食品研究院OA-李学华-外包-(20181103-20190201)\src\YJ.Data.Factory\obj\Debug\YJ.Data.Factory.csproj.CopyComplete
+D:\题榜之路\私人项目\1.株洲食品研究院OA-李学华-外包-(20181103-20190201)\src\YJ.Data.Factory\obj\Debug\YJ.Data.Factory.dll
+D:\题榜之路\私人项目\1.株洲食品研究院OA-李学华-外包-(20181103-20190201)\src\YJ.Data.Factory\obj\Debug\YJ.Data.Factory.pdb
+D:\题榜之路\私人项目\1.株洲食品研究院OA-李学华-外包-(20181103-20190201)\src\YJ.Data.Factory\bin\Debug\YJ.Utility.dll
+D:\题榜之路\私人项目\1.株洲食品研究院OA-李学华-外包-(20181103-20190201)\src\YJ.Data.Factory\bin\Debug\YJ.Utility.pdb
+E:\PrivateProjects\1.株洲食品研究院OA-李学华-外包-(20181103-20190201)\src\YJ.Data.Factory\bin\Debug\YJ.Data.Factory.dll
+E:\PrivateProjects\1.株洲食品研究院OA-李学华-外包-(20181103-20190201)\src\YJ.Data.Factory\bin\Debug\YJ.Data.Factory.pdb
+E:\PrivateProjects\1.株洲食品研究院OA-李学华-外包-(20181103-20190201)\src\YJ.Data.Factory\bin\Debug\YJ.Cache.Factory.dll
+E:\PrivateProjects\1.株洲食品研究院OA-李学华-外包-(20181103-20190201)\src\YJ.Data.Factory\bin\Debug\YJ.Cache.InProc.dll
+E:\PrivateProjects\1.株洲食品研究院OA-李学华-外包-(20181103-20190201)\src\YJ.Data.Factory\bin\Debug\YJ.Cache.Interface.dll
+E:\PrivateProjects\1.株洲食品研究院OA-李学华-外包-(20181103-20190201)\src\YJ.Data.Factory\bin\Debug\YJ.Cache.IO.dll
+E:\PrivateProjects\1.株洲食品研究院OA-李学华-外包-(20181103-20190201)\src\YJ.Data.Factory\bin\Debug\YJ.Data.Interface.dll
+E:\PrivateProjects\1.株洲食品研究院OA-李学华-外包-(20181103-20190201)\src\YJ.Data.Factory\bin\Debug\YJ.Data.MSSQL.dll
+E:\PrivateProjects\1.株洲食品研究院OA-李学华-外包-(20181103-20190201)\src\YJ.Data.Factory\bin\Debug\YJ.Data.MySql.dll
+E:\PrivateProjects\1.株洲食品研究院OA-李学华-外包-(20181103-20190201)\src\YJ.Data.Factory\bin\Debug\YJ.Data.ORACLE.dll
+E:\PrivateProjects\1.株洲食品研究院OA-李学华-外包-(20181103-20190201)\src\YJ.Data.Factory\bin\Debug\YJ.Utility.dll
+E:\PrivateProjects\1.株洲食品研究院OA-李学华-外包-(20181103-20190201)\src\YJ.Data.Factory\bin\Debug\YJ.Data.Model.dll
+E:\PrivateProjects\1.株洲食品研究院OA-李学华-外包-(20181103-20190201)\src\YJ.Data.Factory\bin\Debug\MySql.Data.dll
+E:\PrivateProjects\1.株洲食品研究院OA-李学华-外包-(20181103-20190201)\src\YJ.Data.Factory\bin\Debug\Oracle.ManagedDataAccess.dll
+E:\PrivateProjects\1.株洲食品研究院OA-李学华-外包-(20181103-20190201)\src\YJ.Data.Factory\bin\Debug\LitJSON.dll
+E:\PrivateProjects\1.株洲食品研究院OA-李学华-外包-(20181103-20190201)\src\YJ.Data.Factory\bin\Debug\ICSharpCode.SharpZipLib.dll
+E:\PrivateProjects\1.株洲食品研究院OA-李学华-外包-(20181103-20190201)\src\YJ.Data.Factory\bin\Debug\NPOI.dll
+E:\PrivateProjects\1.株洲食品研究院OA-李学华-外包-(20181103-20190201)\src\YJ.Data.Factory\bin\Debug\NPOI.OOXML.dll
+E:\PrivateProjects\1.株洲食品研究院OA-李学华-外包-(20181103-20190201)\src\YJ.Data.Factory\bin\Debug\NPOI.OpenXmlFormats.dll
+E:\PrivateProjects\1.株洲食品研究院OA-李学华-外包-(20181103-20190201)\src\YJ.Data.Factory\bin\Debug\NPOI.OpenXml4Net.dll
+E:\PrivateProjects\1.株洲食品研究院OA-李学华-外包-(20181103-20190201)\src\YJ.Data.Factory\bin\Debug\YJ.Cache.Factory.pdb
+E:\PrivateProjects\1.株洲食品研究院OA-李学华-外包-(20181103-20190201)\src\YJ.Data.Factory\bin\Debug\YJ.Cache.InProc.pdb
+E:\PrivateProjects\1.株洲食品研究院OA-李学华-外包-(20181103-20190201)\src\YJ.Data.Factory\bin\Debug\YJ.Cache.Interface.pdb
+E:\PrivateProjects\1.株洲食品研究院OA-李学华-外包-(20181103-20190201)\src\YJ.Data.Factory\bin\Debug\YJ.Cache.IO.pdb
+E:\PrivateProjects\1.株洲食品研究院OA-李学华-外包-(20181103-20190201)\src\YJ.Data.Factory\bin\Debug\YJ.Data.Interface.pdb
+E:\PrivateProjects\1.株洲食品研究院OA-李学华-外包-(20181103-20190201)\src\YJ.Data.Factory\bin\Debug\YJ.Data.MSSQL.pdb
+E:\PrivateProjects\1.株洲食品研究院OA-李学华-外包-(20181103-20190201)\src\YJ.Data.Factory\bin\Debug\YJ.Data.MySql.pdb
+E:\PrivateProjects\1.株洲食品研究院OA-李学华-外包-(20181103-20190201)\src\YJ.Data.Factory\bin\Debug\YJ.Data.ORACLE.pdb
+E:\PrivateProjects\1.株洲食品研究院OA-李学华-外包-(20181103-20190201)\src\YJ.Data.Factory\bin\Debug\YJ.Utility.pdb
+E:\PrivateProjects\1.株洲食品研究院OA-李学华-外包-(20181103-20190201)\src\YJ.Data.Factory\bin\Debug\YJ.Data.Model.pdb
+E:\PrivateProjects\1.株洲食品研究院OA-李学华-外包-(20181103-20190201)\src\YJ.Data.Factory\bin\Debug\LitJSON.pdb
+E:\PrivateProjects\1.株洲食品研究院OA-李学华-外包-(20181103-20190201)\src\YJ.Data.Factory\obj\Debug\YJ.Data.Factory.csprojAssemblyReference.cache
+E:\PrivateProjects\1.株洲食品研究院OA-李学华-外包-(20181103-20190201)\src\YJ.Data.Factory\obj\Debug\YJ.Data.Factory.csproj.CoreCompileInputs.cache
+E:\PrivateProjects\1.株洲食品研究院OA-李学华-外包-(20181103-20190201)\src\YJ.Data.Factory\obj\Debug\YJ.Data.Factory.csproj.CopyComplete
+E:\PrivateProjects\1.株洲食品研究院OA-李学华-外包-(20181103-20190201)\src\YJ.Data.Factory\obj\Debug\YJ.Data.Factory.dll
+E:\PrivateProjects\1.株洲食品研究院OA-李学华-外包-(20181103-20190201)\src\YJ.Data.Factory\obj\Debug\YJ.Data.Factory.pdb
+E:\郭家小灶\PrivateProjects\1.株洲食品研究院OA-李学华-外包-(20181103-20190201)\src\YJ.Data.Factory\bin\Debug\YJ.Data.Factory.dll
+E:\郭家小灶\PrivateProjects\1.株洲食品研究院OA-李学华-外包-(20181103-20190201)\src\YJ.Data.Factory\bin\Debug\YJ.Data.Factory.pdb
+E:\郭家小灶\PrivateProjects\1.株洲食品研究院OA-李学华-外包-(20181103-20190201)\src\YJ.Data.Factory\bin\Debug\YJ.Cache.Factory.dll
+E:\郭家小灶\PrivateProjects\1.株洲食品研究院OA-李学华-外包-(20181103-20190201)\src\YJ.Data.Factory\bin\Debug\YJ.Cache.InProc.dll
+E:\郭家小灶\PrivateProjects\1.株洲食品研究院OA-李学华-外包-(20181103-20190201)\src\YJ.Data.Factory\bin\Debug\YJ.Cache.Interface.dll
+E:\郭家小灶\PrivateProjects\1.株洲食品研究院OA-李学华-外包-(20181103-20190201)\src\YJ.Data.Factory\bin\Debug\YJ.Cache.IO.dll
+E:\郭家小灶\PrivateProjects\1.株洲食品研究院OA-李学华-外包-(20181103-20190201)\src\YJ.Data.Factory\bin\Debug\YJ.Data.Interface.dll
+E:\郭家小灶\PrivateProjects\1.株洲食品研究院OA-李学华-外包-(20181103-20190201)\src\YJ.Data.Factory\bin\Debug\YJ.Data.MSSQL.dll
+E:\郭家小灶\PrivateProjects\1.株洲食品研究院OA-李学华-外包-(20181103-20190201)\src\YJ.Data.Factory\bin\Debug\YJ.Data.MySql.dll
+E:\郭家小灶\PrivateProjects\1.株洲食品研究院OA-李学华-外包-(20181103-20190201)\src\YJ.Data.Factory\bin\Debug\YJ.Data.ORACLE.dll
+E:\郭家小灶\PrivateProjects\1.株洲食品研究院OA-李学华-外包-(20181103-20190201)\src\YJ.Data.Factory\bin\Debug\YJ.Data.Model.dll
+E:\郭家小灶\PrivateProjects\1.株洲食品研究院OA-李学华-外包-(20181103-20190201)\src\YJ.Data.Factory\bin\Debug\MySql.Data.dll
+E:\郭家小灶\PrivateProjects\1.株洲食品研究院OA-李学华-外包-(20181103-20190201)\src\YJ.Data.Factory\bin\Debug\Oracle.ManagedDataAccess.dll
+E:\郭家小灶\PrivateProjects\1.株洲食品研究院OA-李学华-外包-(20181103-20190201)\src\YJ.Data.Factory\bin\Debug\LitJSON.dll
+E:\郭家小灶\PrivateProjects\1.株洲食品研究院OA-李学华-外包-(20181103-20190201)\src\YJ.Data.Factory\bin\Debug\ICSharpCode.SharpZipLib.dll
+E:\郭家小灶\PrivateProjects\1.株洲食品研究院OA-李学华-外包-(20181103-20190201)\src\YJ.Data.Factory\bin\Debug\NPOI.dll
+E:\郭家小灶\PrivateProjects\1.株洲食品研究院OA-李学华-外包-(20181103-20190201)\src\YJ.Data.Factory\bin\Debug\NPOI.OOXML.dll
+E:\郭家小灶\PrivateProjects\1.株洲食品研究院OA-李学华-外包-(20181103-20190201)\src\YJ.Data.Factory\bin\Debug\NPOI.OpenXmlFormats.dll
+E:\郭家小灶\PrivateProjects\1.株洲食品研究院OA-李学华-外包-(20181103-20190201)\src\YJ.Data.Factory\bin\Debug\NPOI.OpenXml4Net.dll
+E:\郭家小灶\PrivateProjects\1.株洲食品研究院OA-李学华-外包-(20181103-20190201)\src\YJ.Data.Factory\bin\Debug\YJ.Cache.Factory.pdb
+E:\郭家小灶\PrivateProjects\1.株洲食品研究院OA-李学华-外包-(20181103-20190201)\src\YJ.Data.Factory\bin\Debug\YJ.Cache.InProc.pdb
+E:\郭家小灶\PrivateProjects\1.株洲食品研究院OA-李学华-外包-(20181103-20190201)\src\YJ.Data.Factory\bin\Debug\YJ.Cache.Interface.pdb
+E:\郭家小灶\PrivateProjects\1.株洲食品研究院OA-李学华-外包-(20181103-20190201)\src\YJ.Data.Factory\bin\Debug\YJ.Cache.IO.pdb
+E:\郭家小灶\PrivateProjects\1.株洲食品研究院OA-李学华-外包-(20181103-20190201)\src\YJ.Data.Factory\bin\Debug\YJ.Data.Interface.pdb
+E:\郭家小灶\PrivateProjects\1.株洲食品研究院OA-李学华-外包-(20181103-20190201)\src\YJ.Data.Factory\bin\Debug\YJ.Data.MSSQL.pdb
+E:\郭家小灶\PrivateProjects\1.株洲食品研究院OA-李学华-外包-(20181103-20190201)\src\YJ.Data.Factory\bin\Debug\YJ.Data.MySql.pdb
+E:\郭家小灶\PrivateProjects\1.株洲食品研究院OA-李学华-外包-(20181103-20190201)\src\YJ.Data.Factory\bin\Debug\YJ.Data.ORACLE.pdb
+E:\郭家小灶\PrivateProjects\1.株洲食品研究院OA-李学华-外包-(20181103-20190201)\src\YJ.Data.Factory\bin\Debug\YJ.Data.Model.pdb
+E:\郭家小灶\PrivateProjects\1.株洲食品研究院OA-李学华-外包-(20181103-20190201)\src\YJ.Data.Factory\bin\Debug\LitJSON.pdb
+E:\郭家小灶\PrivateProjects\1.株洲食品研究院OA-李学华-外包-(20181103-20190201)\src\YJ.Data.Factory\obj\Debug\YJ.Data.Factory.csprojAssemblyReference.cache
+E:\郭家小灶\PrivateProjects\1.株洲食品研究院OA-李学华-外包-(20181103-20190201)\src\YJ.Data.Factory\obj\Debug\YJ.Data.Factory.csproj.CoreCompileInputs.cache
+E:\郭家小灶\PrivateProjects\1.株洲食品研究院OA-李学华-外包-(20181103-20190201)\src\YJ.Data.Factory\obj\Debug\YJ.Data.Factory.csproj.CopyComplete
+E:\郭家小灶\PrivateProjects\1.株洲食品研究院OA-李学华-外包-(20181103-20190201)\src\YJ.Data.Factory\obj\Debug\YJ.Data.Factory.dll
+E:\郭家小灶\PrivateProjects\1.株洲食品研究院OA-李学华-外包-(20181103-20190201)\src\YJ.Data.Factory\obj\Debug\YJ.Data.Factory.pdb
+E:\郭家小灶\PrivateProjects\1.株洲食品研究院OA-李学华-外包-(20181103-20190201)\weixinoa20190417\YJ.Data.Factory\bin\Debug\YJ.Data.Factory.dll
+E:\郭家小灶\PrivateProjects\1.株洲食品研究院OA-李学华-外包-(20181103-20190201)\weixinoa20190417\YJ.Data.Factory\bin\Debug\YJ.Data.Factory.pdb
+E:\郭家小灶\PrivateProjects\1.株洲食品研究院OA-李学华-外包-(20181103-20190201)\weixinoa20190417\YJ.Data.Factory\bin\Debug\YJ.Cache.Factory.dll
+E:\郭家小灶\PrivateProjects\1.株洲食品研究院OA-李学华-外包-(20181103-20190201)\weixinoa20190417\YJ.Data.Factory\bin\Debug\YJ.Cache.InProc.dll
+E:\郭家小灶\PrivateProjects\1.株洲食品研究院OA-李学华-外包-(20181103-20190201)\weixinoa20190417\YJ.Data.Factory\bin\Debug\YJ.Cache.Interface.dll
+E:\郭家小灶\PrivateProjects\1.株洲食品研究院OA-李学华-外包-(20181103-20190201)\weixinoa20190417\YJ.Data.Factory\bin\Debug\YJ.Cache.IO.dll
+E:\郭家小灶\PrivateProjects\1.株洲食品研究院OA-李学华-外包-(20181103-20190201)\weixinoa20190417\YJ.Data.Factory\bin\Debug\YJ.Data.Interface.dll
+E:\郭家小灶\PrivateProjects\1.株洲食品研究院OA-李学华-外包-(20181103-20190201)\weixinoa20190417\YJ.Data.Factory\bin\Debug\YJ.Data.MSSQL.dll
+E:\郭家小灶\PrivateProjects\1.株洲食品研究院OA-李学华-外包-(20181103-20190201)\weixinoa20190417\YJ.Data.Factory\bin\Debug\YJ.Utility.dll
+E:\郭家小灶\PrivateProjects\1.株洲食品研究院OA-李学华-外包-(20181103-20190201)\weixinoa20190417\YJ.Data.Factory\bin\Debug\YJ.Data.Model.dll
+E:\郭家小灶\PrivateProjects\1.株洲食品研究院OA-李学华-外包-(20181103-20190201)\weixinoa20190417\YJ.Data.Factory\bin\Debug\LitJSON.dll
+E:\郭家小灶\PrivateProjects\1.株洲食品研究院OA-李学华-外包-(20181103-20190201)\weixinoa20190417\YJ.Data.Factory\bin\Debug\ICSharpCode.SharpZipLib.dll
+E:\郭家小灶\PrivateProjects\1.株洲食品研究院OA-李学华-外包-(20181103-20190201)\weixinoa20190417\YJ.Data.Factory\bin\Debug\NPOI.dll
+E:\郭家小灶\PrivateProjects\1.株洲食品研究院OA-李学华-外包-(20181103-20190201)\weixinoa20190417\YJ.Data.Factory\bin\Debug\NPOI.OOXML.dll
+E:\郭家小灶\PrivateProjects\1.株洲食品研究院OA-李学华-外包-(20181103-20190201)\weixinoa20190417\YJ.Data.Factory\bin\Debug\NPOI.OpenXmlFormats.dll
+E:\郭家小灶\PrivateProjects\1.株洲食品研究院OA-李学华-外包-(20181103-20190201)\weixinoa20190417\YJ.Data.Factory\bin\Debug\NPOI.OpenXml4Net.dll
+E:\郭家小灶\PrivateProjects\1.株洲食品研究院OA-李学华-外包-(20181103-20190201)\weixinoa20190417\YJ.Data.Factory\bin\Debug\YJ.Cache.Factory.pdb
+E:\郭家小灶\PrivateProjects\1.株洲食品研究院OA-李学华-外包-(20181103-20190201)\weixinoa20190417\YJ.Data.Factory\bin\Debug\YJ.Cache.InProc.pdb
+E:\郭家小灶\PrivateProjects\1.株洲食品研究院OA-李学华-外包-(20181103-20190201)\weixinoa20190417\YJ.Data.Factory\bin\Debug\YJ.Cache.Interface.pdb
+E:\郭家小灶\PrivateProjects\1.株洲食品研究院OA-李学华-外包-(20181103-20190201)\weixinoa20190417\YJ.Data.Factory\bin\Debug\YJ.Cache.IO.pdb
+E:\郭家小灶\PrivateProjects\1.株洲食品研究院OA-李学华-外包-(20181103-20190201)\weixinoa20190417\YJ.Data.Factory\bin\Debug\YJ.Data.Interface.pdb
+E:\郭家小灶\PrivateProjects\1.株洲食品研究院OA-李学华-外包-(20181103-20190201)\weixinoa20190417\YJ.Data.Factory\bin\Debug\YJ.Data.MSSQL.pdb
+E:\郭家小灶\PrivateProjects\1.株洲食品研究院OA-李学华-外包-(20181103-20190201)\weixinoa20190417\YJ.Data.Factory\bin\Debug\YJ.Utility.pdb
+E:\郭家小灶\PrivateProjects\1.株洲食品研究院OA-李学华-外包-(20181103-20190201)\weixinoa20190417\YJ.Data.Factory\bin\Debug\YJ.Data.Model.pdb
+E:\郭家小灶\PrivateProjects\1.株洲食品研究院OA-李学华-外包-(20181103-20190201)\weixinoa20190417\YJ.Data.Factory\bin\Debug\LitJSON.pdb
+E:\郭家小灶\PrivateProjects\1.株洲食品研究院OA-李学华-外包-(20181103-20190201)\weixinoa20190417\YJ.Data.Factory\obj\Debug\YJ.Data.Factory.csprojAssemblyReference.cache
+E:\郭家小灶\PrivateProjects\1.株洲食品研究院OA-李学华-外包-(20181103-20190201)\weixinoa20190417\YJ.Data.Factory\obj\Debug\YJ.Data.Factory.csproj.CoreCompileInputs.cache
+E:\郭家小灶\PrivateProjects\1.株洲食品研究院OA-李学华-外包-(20181103-20190201)\weixinoa20190417\YJ.Data.Factory\obj\Debug\YJ.Data.Factory.csproj.CopyComplete
+E:\郭家小灶\PrivateProjects\1.株洲食品研究院OA-李学华-外包-(20181103-20190201)\weixinoa20190417\YJ.Data.Factory\obj\Debug\YJ.Data.Factory.dll
+E:\郭家小灶\PrivateProjects\1.株洲食品研究院OA-李学华-外包-(20181103-20190201)\weixinoa20190417\YJ.Data.Factory\obj\Debug\YJ.Data.Factory.pdb
+D:\系统开发\食研院OA开发\weixinoa20190417\weixinoa20190417\YJ.Data.Factory\obj\Debug\YJ.Data.Factory.dll
+D:\系统开发\食研院OA开发\weixinoa20190417\weixinoa20190417\YJ.Data.Factory\obj\Debug\YJ.Data.Factory.pdb
+D:\系统开发\食研院OA开发\weixinoa20190417\weixinoa20190417\YJ.Data.Factory\bin\Debug\YJ.Data.Factory.dll
+D:\系统开发\食研院OA开发\weixinoa20190417\weixinoa20190417\YJ.Data.Factory\bin\Debug\YJ.Data.Factory.pdb
+D:\系统开发\食研院OA开发\weixinoa20190417\weixinoa20190417\YJ.Data.Factory\bin\Debug\LitJSON.dll
+D:\系统开发\食研院OA开发\weixinoa20190417\weixinoa20190417\YJ.Data.Factory\bin\Debug\YJ.Cache.Factory.dll
+D:\系统开发\食研院OA开发\weixinoa20190417\weixinoa20190417\YJ.Data.Factory\bin\Debug\YJ.Cache.InProc.dll
+D:\系统开发\食研院OA开发\weixinoa20190417\weixinoa20190417\YJ.Data.Factory\bin\Debug\YJ.Cache.Interface.dll
+D:\系统开发\食研院OA开发\weixinoa20190417\weixinoa20190417\YJ.Data.Factory\bin\Debug\YJ.Cache.IO.dll
+D:\系统开发\食研院OA开发\weixinoa20190417\weixinoa20190417\YJ.Data.Factory\bin\Debug\YJ.Data.Interface.dll
+D:\系统开发\食研院OA开发\weixinoa20190417\weixinoa20190417\YJ.Data.Factory\bin\Debug\YJ.Data.Model.dll
+D:\系统开发\食研院OA开发\weixinoa20190417\weixinoa20190417\YJ.Data.Factory\bin\Debug\YJ.Data.MSSQL.dll
+D:\系统开发\食研院OA开发\weixinoa20190417\weixinoa20190417\YJ.Data.Factory\bin\Debug\YJ.Data.MySql.dll
+D:\系统开发\食研院OA开发\weixinoa20190417\weixinoa20190417\YJ.Data.Factory\bin\Debug\YJ.Data.ORACLE.dll
+D:\系统开发\食研院OA开发\weixinoa20190417\weixinoa20190417\YJ.Data.Factory\bin\Debug\YJ.Platform.dll
+D:\系统开发\食研院OA开发\weixinoa20190417\weixinoa20190417\YJ.Data.Factory\bin\Debug\YJ.Utility.dll
+D:\系统开发\食研院OA开发\weixinoa20190417\weixinoa20190417\YJ.Data.Factory\bin\Debug\MySql.Data.dll
+D:\系统开发\食研院OA开发\weixinoa20190417\weixinoa20190417\YJ.Data.Factory\bin\Debug\Oracle.ManagedDataAccess.dll
+D:\系统开发\食研院OA开发\weixinoa20190417\weixinoa20190417\YJ.Data.Factory\bin\Debug\Microsoft.AspNet.SignalR.Core.dll
+D:\系统开发\食研院OA开发\weixinoa20190417\weixinoa20190417\YJ.Data.Factory\bin\Debug\ICSharpCode.SharpZipLib.dll
+D:\系统开发\食研院OA开发\weixinoa20190417\weixinoa20190417\YJ.Data.Factory\bin\Debug\NPOI.dll
+D:\系统开发\食研院OA开发\weixinoa20190417\weixinoa20190417\YJ.Data.Factory\bin\Debug\NPOI.OOXML.dll
+D:\系统开发\食研院OA开发\weixinoa20190417\weixinoa20190417\YJ.Data.Factory\bin\Debug\Newtonsoft.Json.dll
+D:\系统开发\食研院OA开发\weixinoa20190417\weixinoa20190417\YJ.Data.Factory\bin\Debug\NPOI.OpenXmlFormats.dll
+D:\系统开发\食研院OA开发\weixinoa20190417\weixinoa20190417\YJ.Data.Factory\bin\Debug\NPOI.OpenXml4Net.dll
+D:\系统开发\食研院OA开发\weixinoa20190417\weixinoa20190417\YJ.Data.Factory\bin\Debug\LitJSON.pdb
+D:\系统开发\食研院OA开发\weixinoa20190417\weixinoa20190417\YJ.Data.Factory\bin\Debug\YJ.Cache.Factory.pdb
+D:\系统开发\食研院OA开发\weixinoa20190417\weixinoa20190417\YJ.Data.Factory\bin\Debug\YJ.Cache.InProc.pdb
+D:\系统开发\食研院OA开发\weixinoa20190417\weixinoa20190417\YJ.Data.Factory\bin\Debug\YJ.Cache.Interface.pdb
+D:\系统开发\食研院OA开发\weixinoa20190417\weixinoa20190417\YJ.Data.Factory\bin\Debug\YJ.Cache.IO.pdb
+D:\系统开发\食研院OA开发\weixinoa20190417\weixinoa20190417\YJ.Data.Factory\bin\Debug\YJ.Data.Interface.pdb
+D:\系统开发\食研院OA开发\weixinoa20190417\weixinoa20190417\YJ.Data.Factory\bin\Debug\YJ.Data.Model.pdb
+D:\系统开发\食研院OA开发\weixinoa20190417\weixinoa20190417\YJ.Data.Factory\bin\Debug\YJ.Data.MSSQL.pdb
+D:\系统开发\食研院OA开发\weixinoa20190417\weixinoa20190417\YJ.Data.Factory\bin\Debug\YJ.Data.MySql.pdb
+D:\系统开发\食研院OA开发\weixinoa20190417\weixinoa20190417\YJ.Data.Factory\bin\Debug\YJ.Data.ORACLE.pdb
+D:\系统开发\食研院OA开发\weixinoa20190417\weixinoa20190417\YJ.Data.Factory\bin\Debug\YJ.Platform.pdb
+D:\系统开发\食研院OA开发\weixinoa20190417\weixinoa20190417\YJ.Data.Factory\bin\Debug\YJ.Utility.pdb
+D:\系统开发\食研院OA开发\weixinoa20190417\weixinoa20190417\YJ.Data.Factory\bin\Debug\MySql.Data.xml
+F:\代码\gitsource\OA\YJ.Data.Factory\bin\Debug\YJ.Data.Factory.dll
+F:\代码\gitsource\OA\YJ.Data.Factory\bin\Debug\YJ.Data.Factory.pdb
+F:\代码\gitsource\OA\YJ.Data.Factory\bin\Debug\YJ.Data.Interface.dll
+F:\代码\gitsource\OA\YJ.Data.Factory\bin\Debug\YJ.Data.MSSQL.dll
+F:\代码\gitsource\OA\YJ.Data.Factory\bin\Debug\YJ.Data.Model.dll
+F:\代码\gitsource\OA\YJ.Data.Factory\bin\Debug\YJ.Utility.dll
+F:\代码\gitsource\OA\YJ.Data.Factory\bin\Debug\ICSharpCode.SharpZipLib.dll
+F:\代码\gitsource\OA\YJ.Data.Factory\bin\Debug\NPOI.dll
+F:\代码\gitsource\OA\YJ.Data.Factory\bin\Debug\NPOI.OOXML.dll
+F:\代码\gitsource\OA\YJ.Data.Factory\bin\Debug\NPOI.OpenXmlFormats.dll
+F:\代码\gitsource\OA\YJ.Data.Factory\bin\Debug\NPOI.OpenXml4Net.dll
+F:\代码\gitsource\OA\YJ.Data.Factory\bin\Debug\YJ.Data.Interface.pdb
+F:\代码\gitsource\OA\YJ.Data.Factory\bin\Debug\YJ.Data.MSSQL.pdb
+F:\代码\gitsource\OA\YJ.Data.Factory\bin\Debug\YJ.Data.Model.pdb
+F:\代码\gitsource\OA\YJ.Data.Factory\bin\Debug\YJ.Utility.pdb
+F:\代码\gitsource\OA\YJ.Data.Factory\obj\Debug\YJ.Data.Factory.csprojAssemblyReference.cache
+F:\代码\gitsource\OA\YJ.Data.Factory\obj\Debug\YJ.Data.Factory.csproj.CoreCompileInputs.cache
+F:\代码\gitsource\OA\YJ.Data.Factory\obj\Debug\YJ.Data.Factory.csproj.CopyComplete
+F:\代码\gitsource\OA\YJ.Data.Factory\obj\Debug\YJ.Data.Factory.dll
+F:\代码\gitsource\OA\YJ.Data.Factory\obj\Debug\YJ.Data.Factory.pdb
+E:\ZSC\LIMS\456\OA\YJ.Data.Factory\bin\Debug\YJ.Data.Factory.dll
+E:\ZSC\LIMS\456\OA\YJ.Data.Factory\bin\Debug\YJ.Data.Factory.pdb
+E:\ZSC\LIMS\456\OA\YJ.Data.Factory\bin\Debug\YJ.Data.Interface.dll
+E:\ZSC\LIMS\456\OA\YJ.Data.Factory\bin\Debug\YJ.Data.MSSQL.dll
+E:\ZSC\LIMS\456\OA\YJ.Data.Factory\bin\Debug\YJ.Data.Model.dll
+E:\ZSC\LIMS\456\OA\YJ.Data.Factory\bin\Debug\YJ.Utility.dll
+E:\ZSC\LIMS\456\OA\YJ.Data.Factory\bin\Debug\ICSharpCode.SharpZipLib.dll
+E:\ZSC\LIMS\456\OA\YJ.Data.Factory\bin\Debug\NPOI.dll
+E:\ZSC\LIMS\456\OA\YJ.Data.Factory\bin\Debug\NPOI.OOXML.dll
+E:\ZSC\LIMS\456\OA\YJ.Data.Factory\bin\Debug\NPOI.OpenXmlFormats.dll
+E:\ZSC\LIMS\456\OA\YJ.Data.Factory\bin\Debug\NPOI.OpenXml4Net.dll
+E:\ZSC\LIMS\456\OA\YJ.Data.Factory\bin\Debug\YJ.Data.Interface.pdb
+E:\ZSC\LIMS\456\OA\YJ.Data.Factory\bin\Debug\YJ.Data.MSSQL.pdb
+E:\ZSC\LIMS\456\OA\YJ.Data.Factory\bin\Debug\YJ.Data.Model.pdb
+E:\ZSC\LIMS\456\OA\YJ.Data.Factory\bin\Debug\YJ.Utility.pdb
+E:\ZSC\LIMS\456\OA\YJ.Data.Factory\obj\Debug\YJ.Data.Factory.csprojAssemblyReference.cache
+E:\ZSC\LIMS\456\OA\YJ.Data.Factory\obj\Debug\YJ.Data.Factory.csproj.CoreCompileInputs.cache
+E:\ZSC\LIMS\456\OA\YJ.Data.Factory\obj\Debug\YJ.Data.Factory.csproj.CopyComplete
+E:\ZSC\LIMS\456\OA\YJ.Data.Factory\obj\Debug\YJ.Data.Factory.dll
+E:\ZSC\LIMS\456\OA\YJ.Data.Factory\obj\Debug\YJ.Data.Factory.pdb
+D:\ZSC\OA\YJ.Data.Factory\bin\Debug\YJ.Data.Factory.dll
+D:\ZSC\OA\YJ.Data.Factory\bin\Debug\YJ.Data.Factory.pdb
+D:\ZSC\OA\YJ.Data.Factory\bin\Debug\YJ.Data.Interface.dll
+D:\ZSC\OA\YJ.Data.Factory\bin\Debug\YJ.Data.MSSQL.dll
+D:\ZSC\OA\YJ.Data.Factory\bin\Debug\YJ.Data.Model.dll
+D:\ZSC\OA\YJ.Data.Factory\bin\Debug\YJ.Utility.dll
+D:\ZSC\OA\YJ.Data.Factory\bin\Debug\ICSharpCode.SharpZipLib.dll
+D:\ZSC\OA\YJ.Data.Factory\bin\Debug\NPOI.dll
+D:\ZSC\OA\YJ.Data.Factory\bin\Debug\NPOI.OOXML.dll
+D:\ZSC\OA\YJ.Data.Factory\bin\Debug\NPOI.OpenXmlFormats.dll
+D:\ZSC\OA\YJ.Data.Factory\bin\Debug\NPOI.OpenXml4Net.dll
+D:\ZSC\OA\YJ.Data.Factory\bin\Debug\YJ.Data.Interface.pdb
+D:\ZSC\OA\YJ.Data.Factory\bin\Debug\YJ.Data.MSSQL.pdb
+D:\ZSC\OA\YJ.Data.Factory\bin\Debug\YJ.Data.Model.pdb
+D:\ZSC\OA\YJ.Data.Factory\bin\Debug\YJ.Utility.pdb
+D:\ZSC\OA\YJ.Data.Factory\obj\Debug\YJ.Data.Factory.csprojAssemblyReference.cache
+D:\ZSC\OA\YJ.Data.Factory\obj\Debug\YJ.Data.Factory.csproj.CoreCompileInputs.cache
+D:\ZSC\OA\YJ.Data.Factory\obj\Debug\YJ.Data.Factory.csproj.CopyComplete
+D:\ZSC\OA\YJ.Data.Factory\obj\Debug\YJ.Data.Factory.dll
+D:\ZSC\OA\YJ.Data.Factory\obj\Debug\YJ.Data.Factory.pdb

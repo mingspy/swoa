@@ -1,0 +1,212 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{4853EEE1-204A-4501-A2A6-7D14CA7DCD0E}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>YJ.Platform</RootNamespace>
+    <AssemblyName>YJ.Platform</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>
+    </SccProjectName>
+    <SccLocalPath>
+    </SccLocalPath>
+    <SccAuxPath>
+    </SccAuxPath>
+    <SccProvider>
+    </SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x86\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
+    <OutputPath>bin\x86\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="ICSharpCode.SharpZipLib">
+      <HintPath>..\Dlls\ICSharpCode.SharpZipLib.dll</HintPath>
+    </Reference>
+    <Reference Include="LitJSON, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Dlls\LitJSON.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.SignalR.Core">
+      <HintPath>..\WebMvc\bin\Microsoft.AspNet.SignalR.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.SignalR.Owin">
+      <HintPath>..\WebMvc\bin\Microsoft.AspNet.SignalR.Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.SignalR.SystemWeb">
+      <HintPath>..\WebMvc\bin\Microsoft.AspNet.SignalR.SystemWeb.dll</HintPath>
+    </Reference>
+    <Reference Include="MySql.Data">
+      <HintPath>..\Dlls\MySql.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Dlls\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="Oracle.ManagedDataAccess">
+      <HintPath>..\WebMvc\bin\Oracle.ManagedDataAccess.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Transactions" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AppLibrary.cs" />
+    <Compile Include="AppLibraryButtons.cs" />
+    <Compile Include="AppLibraryButtons1.cs" />
+    <Compile Include="AppLibrarySubPages.cs" />
+    <Compile Include="Areas\CRConferenceSign.cs" />
+    <Compile Include="DBConnection.cs" />
+    <Compile Include="Dictionary.cs" />
+    <Compile Include="DocumentDirectory.cs" />
+    <Compile Include="Documents.cs" />
+    <Compile Include="DocumentsReadUsers.cs" />
+    <Compile Include="Email.cs" />
+    <Compile Include="Files.cs" />
+    <Compile Include="HastenLog.cs" />
+    <Compile Include="HomeItems.cs" />
+    <Compile Include="LoginBlacklist.cs" />
+    <Compile Include="Log.cs" />
+    <Compile Include="Menu.cs" />
+    <Compile Include="MenuUser.cs" />
+    <Compile Include="OnlineUsers.cs" />
+    <Compile Include="Organize.cs" />
+    <Compile Include="ProgramBuilder.cs" />
+    <Compile Include="ProgramBuilderButtons.cs" />
+    <Compile Include="ProgramBuilderExport.cs" />
+    <Compile Include="ProgramBuilderFields.cs" />
+    <Compile Include="ProgramBuilderQuerys.cs" />
+    <Compile Include="ProgramBuilderValidates.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ShortMessage.cs" />
+    <Compile Include="SignalR\SignalRConnection.cs" />
+    <Compile Include="SignalR\SignalRHub.cs" />
+    <Compile Include="SMSLog.cs" />
+    <Compile Include="Users.cs" />
+    <Compile Include="UserShortcut.cs" />
+    <Compile Include="UsersRelation.cs" />
+    <Compile Include="WeiXinMessage.cs" />
+    <Compile Include="WeiXin\Agents.cs" />
+    <Compile Include="WeiXin\Config.cs" />
+    <Compile Include="WeiXin\Cryptography.cs" />
+    <Compile Include="WeiXin\Media.cs" />
+    <Compile Include="WeiXin\Message.cs" />
+    <Compile Include="WeiXin\Organize.cs" />
+    <Compile Include="WeiXin\WXBizMsgCrypt.cs" />
+    <Compile Include="Wildcard.cs" />
+    <Compile Include="WorkCalendar.cs" />
+    <Compile Include="WorkFlow.cs" />
+    <Compile Include="WorkFlowArchives.cs" />
+    <Compile Include="WorkFlowButtons.cs" />
+    <Compile Include="WorkFlowComment.cs" />
+    <Compile Include="WorkFlowData.cs" />
+    <Compile Include="WorkFlowDelegation.cs" />
+    <Compile Include="WorkFlowForm.cs" />
+    <Compile Include="WorkFlowTask.cs" />
+    <Compile Include="WorkGroup.cs" />
+    <Compile Include="WorkTime.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Analyzer Include="..\packages\Microsoft.DependencyValidation.Analyzers.0.9.0\analyzers\dotnet\cs\Microsoft.DependencyValidation.Analyzers.resources.dll" />
+    <Analyzer Include="..\packages\Microsoft.DependencyValidation.Analyzers.0.9.0\analyzers\dotnet\Microsoft.DependencyValidation.Analyzers.dll" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\YJ.Cache.Factory\YJ.Cache.Factory.csproj">
+      <Project>{4e252333-2513-411e-9a84-c4c7fe76515e}</Project>
+      <Name>YJ.Cache.Factory</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\YJ.Cache.InProc\YJ.Cache.InProc.csproj">
+      <Project>{cf5295f8-1ffc-4fd9-985a-5bb975cf4fb3}</Project>
+      <Name>YJ.Cache.InProc</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\YJ.Cache.Interface\YJ.Cache.Interface.csproj">
+      <Project>{4c0f93d1-d1d2-49bf-8d19-c70420607e33}</Project>
+      <Name>YJ.Cache.Interface</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\YJ.Cache.IO\YJ.Cache.IO.csproj">
+      <Project>{9409a6a6-64af-469d-97fe-f9f477516a58}</Project>
+      <Name>YJ.Cache.IO</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\YJ.Data.Factory\YJ.Data.Factory.csproj">
+      <Project>{c34a6499-929a-4f0e-b1ba-2a6a9734888e}</Project>
+      <Name>YJ.Data.Factory</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\YJ.Data.Interface\YJ.Data.Interface.csproj">
+      <Project>{1d067901-6b75-4919-8492-b3057fefcf65}</Project>
+      <Name>YJ.Data.Interface</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\YJ.Data.Model\YJ.Data.Model.csproj">
+      <Project>{75fb2c86-f7d3-4e94-82e9-46dd9787b39d}</Project>
+      <Name>YJ.Data.Model</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\YJ.Data.MSSQL\YJ.Data.MSSQL.csproj">
+      <Project>{7fba088c-5958-4554-85d9-da548c793373}</Project>
+      <Name>YJ.Data.MSSQL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\YJ.Utility\YJ.Utility.csproj">
+      <Project>{98251c13-a02b-4d99-b9f3-c1fc30887fec}</Project>
+      <Name>YJ.Utility</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

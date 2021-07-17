@@ -1,0 +1,38 @@
+﻿@{
+	string FlowID = Request.QueryString["flowid"];
+	string StepID = Request.QueryString["stepid"];
+	string GroupID = Request.QueryString["groupid"];
+	string TaskID = Request.QueryString["taskid"];
+	string InstanceID = Request.QueryString["instanceid"];
+	string DisplayModel = Request.QueryString["display"] ?? "0";
+	string DBConnID = "06075250-30dc-4d32-bf97-e922cb30fac8";
+	string DBTable = "AmHcBioMedium";
+	string DBTablePK = "ID";
+	string DBTableTitle = "Name";
+	if(InstanceID.IsNullOrEmpty()){InstanceID = Request.QueryString["instanceid1"];}
+	YJ.Platform.Dictionary BDictionary = new YJ.Platform.Dictionary();
+	YJ.Platform.WorkFlow BWorkFlow = new YJ.Platform.WorkFlow();
+	YJ.Platform.WorkFlowTask BWorkFlowTask = new YJ.Platform.WorkFlowTask();
+	string fieldStatus = BWorkFlow.GetFieldStatus(FlowID, StepID);
+	LitJson.JsonData initData = BWorkFlow.GetFormData(DBConnID, DBTable, DBTablePK, InstanceID, fieldStatus, "{\"amhcbiomedium.date\":\"yyyy-MM-dd\"}");
+	string TaskTitle = BWorkFlow.GetFromFieldData(initData, DBTable, DBTableTitle);
+}
+<link href="~/Scripts/FlowRun/Forms/flowform.css" rel="stylesheet" type="text/css" />
+<script src="~/Scripts/FlowRun/Forms/common.js" type="text/javascript" ></script>
+<input type="hidden" id="Form_ValidateAlertType" name="Form_ValidateAlertType" value="1" />
+<input type="hidden" id="Form_TitleField" name="Form_TitleField" value="AmHcBioMedium.Name" />
+<input type="hidden" id="Form_DBConnID" name="Form_DBConnID" value="06075250-30dc-4d32-bf97-e922cb30fac8" />
+<input type="hidden" id="Form_DBTable" name="Form_DBTable" value="AmHcBioMedium" />
+<input type="hidden" id="Form_DBTablePk" name="Form_DBTablePk" value="ID" />
+<input type="hidden" id="Form_DBTableTitle" name="Form_DBTableTitle" value="Name" />
+<input type="hidden" id="Form_AutoSaveData" name="Form_AutoSaveData" value="1" />
+<textarea id="Form_DBTableTitleExpression" name="Form_DBTableTitleExpression" style="display:none;width:0;height:0;">标准物质-{Name}</textarea>
+<script type="text/javascript">
+	var initData = @Html.Raw(BWorkFlow.GetFormDataJsonString(initData));
+	var fieldStatus = "1"=="@Request.QueryString["isreadonly"]" ? {} : @Html.Raw(fieldStatus);
+	var displayModel = '@DisplayModel';
+	$(window).load(function (){
+		formrun.initData(initData, "AmHcBioMedium", fieldStatus, displayModel);
+	});
+</script>
+<p><input name="AmHcBioMedium.CreateUId" id="AmHcBioMedium.CreateUId" type="hidden" value="u_@YJ.Platform.Users.CurrentUserID.ToString()" type1="flow_hidden" isflow="1"/></p><p><br/></p><link href="~/Content/Theme/tablenew.css" rel="stylesheet"/><table align="center" class="flowformtable tableF table table-bordered" cellspacing="0" cellpadding="0" data-sort="sortDisabled"><tbody><tr class="firstRow"><th align="center" valign="middle" rowspan="1" colspan="2"><span class="title">生物安全（培养基）信息</span></th></tr><tr><th align="left" class="titleT" valign="middle" rowspan="1" colspan="2"><p class="titleO">生物安全（培养基）信息</p></th></tr><tr class="topTr"><td align="left" class="top" valign="middle" rowspan="1" colspan="1"><p class="txt">培养基名称</p><input name="AmHcBioMedium.Name" title="" align="left" class="mytext" id="AmHcBioMedium.Name" type="text" value="" type1="flow_text" isflow="1" valuetype="0"/></td><td align="left" class="top" valign="middle" rowspan="1" colspan="1"><p class="txt">检验项目</p><input name="AmHcBioMedium.InspectionItem" title="" align="left" class="mytext" id="AmHcBioMedium.InspectionItem" type="text" value="" type1="flow_text" isflow="1" valuetype="0"/></td></tr><tr><td align="left" valign="middle" rowspan="1" colspan="1"><p class="txt">品牌</p><input name="AmHcBioMedium.ExtendField2" title="" align="left" class="mytext" id="AmHcBioMedium.ExtendField2" type="text" value="" type1="flow_text" isflow="1" valuetype="0"/></td><td align="left" valign="middle" style="-ms-word-break: break-all;" rowspan="1" colspan="1"><p class="txt">规格（g/瓶）</p><input name="AmHcBioMedium.Specs" title="" align="left" class="mytext" id="AmHcBioMedium.Specs" type="text" value="" type1="flow_text" isflow="1" valuetype="3"/></td></tr><tr><td align="left" valign="middle" style="-ms-word-break: break-all;" rowspan="1" colspan="1"><p class="txt">生产日期</p><input name="AmHcBioMedium.Date" title="" class="mycalendar" id="AmHcBioMedium.Date" type="text" value="" type1="flow_datetime" isflow="1" currentmonth="0" dayafter="0" daybefor="0" istime="0" defaultvalue="" format="yyyy-MM-dd"/></td><td align="left" valign="middle" style="-ms-word-break: break-all;" rowspan="1" colspan="1"><p class="txt"><br/></p></td></tr><tr class="bottomTr"><td align="left" class="bottom" valign="middle" rowspan="1" colspan="2"><p class="txt">备注</p><textarea name="AmHcReferenceMaterial.Remark" class="mytext" id="AmHcReferenceMaterial.Remark" style="height: 40px;" type1="flow_textarea" isflow="1"></textarea></td></tr></tbody></table>

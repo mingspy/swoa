@@ -1,0 +1,104 @@
+﻿body { margin: 0px; font-size: 12px; }
+table, td, th, p, div, span, label { font-size: 12px; }
+p { margin:8px 0;}
+.flowformtable { background-color:#f7f7f5; width:98%; margin:0 auto; }
+.flowformtable tbody tr td { background:#f7f7f5; padding:5px 0 5px 3px; vertical-align:middle;}
+.flowformtable thead tr th { background:#f7f7f5; padding:5px 0 5px 3px; vertical-align:middle;}
+
+.flowformsubtable { background-color:#f7f7f5; width:100%; margin:0 auto;}
+.flowformsubtable tbody tr td { background:#f7f7f5; padding:5px 0 5px 3px; vertical-align:middle;}
+.flowformsubtable thead tr th { background:#f7f7f5; padding:5px 0 5px 3px; vertical-align:middle;}
+
+
+/*子表*/
+.flowformtable {
+    background-color: #f7f7f5;
+    /*width: 100% !important;*/
+    margin: 0 !important;
+    padding: 0px !important;
+    padding-left: 19px;
+    padding-right: 7.5%;
+    table-layout: fixed !important;
+}
+
+    .flowformtable tbody tr td {
+        margin: 0 !important;
+        padding: 5px 0 0 19px !important;
+        border: 0px !important;
+        background: #f7f7f5 !important;
+        vertical-align: middle;
+        text-align: left;
+    }
+
+    .flowformtable thead tr th {
+        margin: 0 !important;
+        padding: 0px !important;
+        border: 0px !important;
+        background: #f7f7f5 !important;
+        vertical-align: middle;
+        text-align: left;
+        font-weight: bold !important;
+        color: #666666 !important;
+        font-size: 9pt !important;
+        font-family: Microsoft YaHei !important;
+    }
+
+.flowformsubtable tbody tr td {
+    padding: 0 !important;
+}
+
+.flowformsubtable tbody tr {
+    background: #f7f7f5 !important;
+}
+/*子表*/
+/*****/
+.flowformtable td p {
+    display: inline-block !important;
+    min-width: 90px;
+    text-align: left;
+}
+
+.flowformtable .Tradio input {
+    /*单选按钮 td*/
+    width: 18px !important;
+}
+
+.table .txt {
+    /*文字*/
+    padding: 0px !important;
+    margin: 0px !important;
+    font-weight: bold !important;
+    color: #666666 !important;
+    font-size: 9pt !important;
+    font-family: Microsoft YaHei !important;
+}
+
+@media only screen and (max-width: 700px) {
+    .flowformtable table,
+    .flowformtable tbody,
+    .flowformtable th,
+    .flowformtable td,
+    .flowformtable tr {
+        display: block;
+    }
+
+    .flowformtable tbody,
+    .flowformtable tr,
+    .flowformtable td {
+        /*max-width: calc(100% - 60px);*/
+    }
+
+        .flowformtable td p {
+            min-width: 55px;
+            width: auto !important;
+        }
+
+    .flowformtable input {
+        width: 50%;
+    }
+
+    .flowformtable select {
+        width: 51%;
+    }
+}
+/*****/

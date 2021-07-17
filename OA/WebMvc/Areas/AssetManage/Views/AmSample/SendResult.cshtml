@@ -1,0 +1,33 @@
+﻿@{
+    ViewBag.Title = "对账通知单";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var sms_content = "";
+    if (ViewBag.Type == "result")
+    {
+        sms_content = ViewBag.Sample.sjqy_mc + ",你好：贵单位委托的【" + ViewBag.Sample.ypmc+"】合同【" + ViewBag.Sample.bgbh+"】 检验结果为：[" + ViewBag.Sample.panding + "]";
+        sms_content += " 账户余额：";
+    }
+    else
+    {
+        sms_content = "合同【" + ViewBag.Sample.bgbh + "】对账明细";
+    }
+
+}
+
+<div style="text-align:center; margin: 5px;">
+    <p>@sms_content</p>
+    <input type="button" class="mybutton" value="取消" onclick="closeThis()"/>
+    <input type="button" class="mybutton" value="发送" onclick="sendMsg()"/>
+</div>
+
+<script type="text/javascript">
+    var s_content = "@sms_content";
+    function closeThis() {
+        new RoadUI.Window().close();
+    }
+
+    function sendMsg() {
+        alert(s_content);
+    }
+
+</script>

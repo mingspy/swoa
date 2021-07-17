@@ -1,0 +1,5 @@
+F:\代码\gitsource\OA\YJ.Data.Model\bin\x86\Debug\YJ.Data.Model.dll
+F:\代码\gitsource\OA\YJ.Data.Model\bin\x86\Debug\YJ.Data.Model.pdb
+F:\代码\gitsource\OA\YJ.Data.Model\obj\x86\Debug\YJ.Data.Model.csproj.CoreCompileInputs.cache
+F:\代码\gitsource\OA\YJ.Data.Model\obj\x86\Debug\YJ.Data.Model.dll
+F:\代码\gitsource\OA\YJ.Data.Model\obj\x86\Debug\YJ.Data.Model.pdb

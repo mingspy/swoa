@@ -1,0 +1,26 @@
+﻿@{
+    ViewBag.Title = "固定资产二维码";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div style="width:100%;height:100%;text-align:center;">
+    <div id="qrcode" style="width:240px; height:240px;margin: 40px auto 20px;"></div>
+    <input id="but" class="mybutton" value="打印二维码" onclick="print1()" style="text-align:center;" />
+</div>
+<script type="text/javascript">
+    var qrcode = new QRCode(document.getElementById("qrcode"), {
+        width: 240,
+        height: 240
+    });
+    $(function () {
+        makeCode();
+    });
+    function makeCode() {
+        qrcode.makeCode('@ViewBag.ImgUrl');
+    }
+    function print1() {
+        document.getElementById("but").style.display = "none";
+        window.print();
+    }
+
+</script>

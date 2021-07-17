@@ -1,0 +1,133 @@
+﻿@{
+	string FlowID = Request.QueryString["flowid"];
+	string StepID = Request.QueryString["stepid"];
+	string GroupID = Request.QueryString["groupid"];
+	string TaskID = Request.QueryString["taskid"];
+	string InstanceID = Request.QueryString["instanceid"];
+	string DisplayModel = Request.QueryString["display"] ?? "0";
+	string DBConnID = "06075250-30dc-4d32-bf97-e922cb30fac8";
+	string DBTable = "OaWorkOverGroup";
+	string DBTablePK = "ID";
+	string DBTableTitle = "";
+	if(InstanceID.IsNullOrEmpty()){InstanceID = Request.QueryString["instanceid1"];}
+	YJ.Platform.Dictionary BDictionary = new YJ.Platform.Dictionary();
+	YJ.Platform.WorkFlow BWorkFlow = new YJ.Platform.WorkFlow();
+	YJ.Platform.WorkFlowTask BWorkFlowTask = new YJ.Platform.WorkFlowTask();
+	string fieldStatus = BWorkFlow.GetFieldStatus(FlowID, StepID);
+	LitJson.JsonData initData = BWorkFlow.GetFormData(DBConnID, DBTable, DBTablePK, InstanceID, fieldStatus, "{}");
+	string TaskTitle = BWorkFlow.GetFromFieldData(initData, DBTable, DBTableTitle);
+}
+<link href="~/Scripts/FlowRun/Forms/flowform.css" rel="stylesheet" type="text/css" />
+<script src="~/Scripts/FlowRun/Forms/common.js" type="text/javascript" ></script>
+<input type="hidden" id="Form_ValidateAlertType" name="Form_ValidateAlertType" value="1" />
+<input type="hidden" id="OaWorkOverGroup." name="OaWorkOverGroup." value="@(TaskTitle.IsNullOrEmpty() ? BWorkFlow.GetAutoTaskTitle(FlowID, StepID, Request.QueryString["groupid"]) : TaskTitle)" />
+<input type="hidden" id="Form_TitleField" name="Form_TitleField" value="OaWorkOverGroup." />
+<input type="hidden" id="Form_DBConnID" name="Form_DBConnID" value="06075250-30dc-4d32-bf97-e922cb30fac8" />
+<input type="hidden" id="Form_DBTable" name="Form_DBTable" value="OaWorkOverGroup" />
+<input type="hidden" id="Form_DBTablePk" name="Form_DBTablePk" value="ID" />
+<input type="hidden" id="Form_DBTableTitle" name="Form_DBTableTitle" value="" />
+<input type="hidden" id="Form_AutoSaveData" name="Form_AutoSaveData" value="1" />
+<textarea id="Form_DBTableTitleExpression" name="Form_DBTableTitleExpression" style="display:none;width:0;height:0;"></textarea>
+<script type="text/javascript">
+	var initData = @Html.Raw(BWorkFlow.GetFormDataJsonString(initData));
+	var fieldStatus = "1"=="@Request.QueryString["isreadonly"]" ? {} : @Html.Raw(fieldStatus);
+	var displayModel = '@DisplayModel';
+	$(window).load(function (){
+		formrun.initData(initData, "OaWorkOverGroup", fieldStatus, displayModel);
+	});
+</script>
+<script>
+	var Hours = 0;
+	// 给日期类对象添加日期差方法，返回日期与diff参数日期的时间差，单位为天
+	Date.prototype.diff = function(start, end) {
+		return(end.getTime() - start.getTime()) / (60 * 60 * 1000);
+	}
+
+	function DateDiff() {
+
+		// 构造两个日期，分别是系统时间和2013/04/08 12:43:45
+
+		var startVar = $("#OaWorkOverTime\\.StartDate").val();
+		var endVar = $("#OaWorkOverTime\\.EndDate").val();
+		var start = new Date(startVar);
+		var end = new Date(endVar);
+		var over = new Date().diff(start, end);
+		if(over <= 0) {
+			alert("请选择正确的结束日期");
+		} else if(over < 8) {
+			$(srcObj).val(0.5);
+		} else if(over <= 24) {
+			$(srcObj).val(1);
+		} else {
+			$(srcObj).val(parseInt((over / 24)));
+		}
+	}
+
+	function check(e) {
+		var re = /^\d+(?=\.{0,1}\d+$|$)/
+		if(e.value != "") {
+			if(!re.test(e.value)) {
+				alert("请输入正确的数字");
+				e.value = "";
+				e.focus();
+			}
+		}
+
+	}
+
+	function clickdays() {
+		try {
+			var userid = document.getElementById("OaWorkOverTime.OwnerID").value;
+			if(userid == undefined || userid == null || userid == '') {
+				alert("请选择加班人员");
+				return;
+			}
+			var type = $("input[type='radio']:checked").val();
+			if(type.lenght == 0) {
+				alert("请选择加班类型");
+			}
+			var statedate = document.getElementById("OaWorkOverTime.StartDate").value;
+			var statedatehr = document.getElementById("OaWorkOverTime.StartDateHr").value;
+			var enddate = document.getElementById("OaWorkOverTime.EndDate").value;
+			var enddatehr = document.getElementById("OaWorkOverTime.EndDateHr").value;
+			if(type == 0 && !(statedatehr == '' || statedatehr == null || statedatehr == undefined)) {
+				if(timerange(statedatehr, "00:00", "17:30")) {
+					alert("您的加班类型为平常日，起始日期必须在17:30之后");
+					document.getElementById("OaWorkOverTime.StartDateHr").focus();
+					document.getElementById("OaWorkOverTime.StartDateHr").value = "";
+					return;
+				};
+			}
+			var url = "/PlatformApi/OaDailyOffice/GetWorkOverDays?userid=" + userid + "&statedate=" + statedate + "&enddate=" + enddate + "&statedatehr=" + statedatehr + "&enddatehr=" + enddatehr;
+			$.ajax({
+				url: url,
+				contentType: "application/json",
+				type: "GET",
+				dataType: "json",
+				async: false,
+				success: function(json) {
+					if(json.status == 1) {
+						document.getElementById("OaWorkOverTime.Days").value = json.data;
+						document.getElementById("OaWorkOverTime.Hours").value = json.Hours;
+						if(type == 0 && json.Hours < 4 && json.data == 0) {
+							//alert("您的加班时间不足4小时，不予计算加班时间。");
+							document.getElementById("OaWorkOverTime.Hours").value = 0;
+							document.getElementById("OaWorkOverTime.EndDateHr").focus();
+						}
+					} else if(json.status == 2) {
+						document.getElementById("OaWorkOverTime.Days").value = 0;
+						document.getElementById("OaWorkOverTime.Hours").value = 0;
+						alert(json.msg);
+					} else {
+						document.getElementById("OaWorkOverTime.Days").value = 0;
+						document.getElementById("OaWorkOverTime.Hours").value = 0;
+					}
+				},
+				error: function(json) {
+					RoadUI.Core.showError(json);
+				}
+			});
+		} catch(e) {
+			alert(e.message);
+		}
+	}</script><p><input type="hidden" id="OaWorkOverGroup.op" name="OaWorkOverGroup.op" isflow="1" type1="flow_hidden" value="u_@(new YJ.Platform.WorkFlowTask().GetFirstSnderID(FlowID.ToGuid(), GroupID.ToGuid(), true))"/></p><p><br/></p><p><br/></p><table class="flowformtable tableF table table-bordered" data-sort="sortDisabled" cellspacing="0" cellpadding="0" align="center"><tbody><tr class="firstRow"><th rowspan="1" colspan="2" valign="middle" align="center" style="word-break: break-all;"><span class="title">加 班 预 申 报</span></th></tr><tr><th class="titleT" rowspan="1" colspan="2" style="word-break: break-all;" valign="middle" align="left"><p class="titleO">加班人员信息</p></th></tr><tr class="topTr"><td class="top" rowspan="1" colspan="2" style="word-break: break-all;" valign="middle" align="left"><p class="txt"><table class="flowformsubtable" data-showindex="0" data-sortstring="" style="width:99%;margin:0 auto;" cellpadding="0" cellspacing="1" issubflowtable="1" id="subtable_OaWorkOverTime_ID_ID_GroupID"><thead><tr><th style="text-align:left;padding-right:3px;">申请人<input type="hidden" name="flowsubtable_id" value="OaWorkOverTime_ID_ID_GroupID"/><input type="hidden" name="flowsubtable_OaWorkOverTime_ID_ID_GroupID_secondtable" value="OaWorkOverTime"/><input type="hidden" name="flowsubtable_OaWorkOverTime_ID_ID_GroupID_primarytablefiled" value="ID"/><input type="hidden" name="flowsubtable_OaWorkOverTime_ID_ID_GroupID_secondtableprimarykey" value="ID"/><input type="hidden" name="flowsubtable_OaWorkOverTime_ID_ID_GroupID_secondtablerelationfield" value="GroupID"/></th><th style="text-align:left;padding-right:3px;">部门</th><th style="text-align:left;width:10%;padding-right:3px;">加班类别</th><th style="text-align:left;padding-right:3px;">加班日期</th><th style="text-align:left;padding-right:3px;">开始时间</th><th style="text-align:left;padding-right:3px;">结束时间</th><th style="text-align:left;padding-right:3px;">加班小时数</th><th></th></tr></thead><tbody><tr type1="listtr"><td data-title="申请人" colname="OaWorkOverTime_OwnerID" iscount="0" style="text-align:left;padding-right:3px;"><input type="hidden" name="hidden_guid_OaWorkOverTime_ID_ID_GroupID" value="ca5104e8418d9c4859c2b029da1f8097"/><input type="hidden" name="flowsubid" value="OaWorkOverTime_ID_ID_GroupID"/><input type="text" class="mymember" name="OaWorkOverTime_ID_ID_GroupID_ca5104e8418d9c4859c2b029da1f8097_OaWorkOverTime_OwnerID" id="OaWorkOverTime_ID_ID_GroupID_ca5104e8418d9c4859c2b029da1f8097_OaWorkOverTime_OwnerID" issubflow="1" type1="subflow_org" value="u_@(new YJ.Platform.WorkFlowTask().GetFirstSnderID(FlowID.ToGuid(), GroupID.ToGuid(), true))" colname="OaWorkOverTime_OwnerID" dept="0" station="0" user="1" workgroup="0" unit="0" more="0" rootid="@BWorkFlowTask.GetFirstSnderDeptID(FlowID.ToGuid(), GroupID.ToGuid())"/></td><td data-title="部门" colname="OaWorkOverTime_DeptID" iscount="0" style="text-align:left;padding-right:3px;"><input type="text" class="mymember" name="OaWorkOverTime_ID_ID_GroupID_ca5104e8418d9c4859c2b029da1f8097_OaWorkOverTime_DeptID" id="OaWorkOverTime_ID_ID_GroupID_ca5104e8418d9c4859c2b029da1f8097_OaWorkOverTime_DeptID" issubflow="1" type1="subflow_org" value="@(new YJ.Platform.WorkFlowTask().GetFirstSnderDeptID(FlowID.ToGuid(), GroupID.ToGuid()))" colname="OaWorkOverTime_DeptID" dept="1" station="0" user="0" workgroup="0" unit="0" more="0" rootid="@BWorkFlowTask.GetFirstSnderDeptID(FlowID.ToGuid(), GroupID.ToGuid())"/></td><td data-title="加班类别" colname="OaWorkOverTime_Type" iscount="0" style="text-align:left;padding-right:3px;"><select class="myselect" name="OaWorkOverTime_ID_ID_GroupID_ca5104e8418d9c4859c2b029da1f8097_OaWorkOverTime_Type" id="OaWorkOverTime_ID_ID_GroupID_ca5104e8418d9c4859c2b029da1f8097_OaWorkOverTime_Type" issubflow="1" type1="subflow_select" colname="OaWorkOverTime_Type"><option value="0" selected="selected">平常日</option><option value="1">公休日</option><option value="2">节假日</option></select><script type="text/javascript"></script></td><td data-title="加班日期" colname="OaWorkOverTime_StartDate" iscount="0" style="text-align:left;padding-right:3px;"><input type="text" class="mycalendar" name="OaWorkOverTime_ID_ID_GroupID_ca5104e8418d9c4859c2b029da1f8097_OaWorkOverTime_StartDate" id="OaWorkOverTime_ID_ID_GroupID_ca5104e8418d9c4859c2b029da1f8097_OaWorkOverTime_StartDate" issubflow="1" type1="subflow_datetime" value="@(YJ.Utility.DateTimeNew.ShortDate)" colname="OaWorkOverTime_StartDate" format="yyyy-MM-dd"/><script type="text/javascript"></script></td><td data-title="开始时间" colname="OaWorkOverTime_StartDateHr" iscount="0" style="text-align:left;padding-right:3px;"><input type="text" class="mycalendar" name="OaWorkOverTime_ID_ID_GroupID_ca5104e8418d9c4859c2b029da1f8097_OaWorkOverTime_StartDateHr" id="OaWorkOverTime_ID_ID_GroupID_ca5104e8418d9c4859c2b029da1f8097_OaWorkOverTime_StartDateHr" issubflow="1" type1="subflow_datetime" value="@(YJ.Utility.DateTimeNew.ShortTime)" colname="OaWorkOverTime_StartDateHr" istime="1" format="HH:mm"/><script type="text/javascript"></script></td><td data-title="结束时间" colname="OaWorkOverTime_EndDate" iscount="0" style="text-align:left;padding-right:3px;"><input type="text" class="mycalendar" name="OaWorkOverTime_ID_ID_GroupID_ca5104e8418d9c4859c2b029da1f8097_OaWorkOverTime_EndDate" id="OaWorkOverTime_ID_ID_GroupID_ca5104e8418d9c4859c2b029da1f8097_OaWorkOverTime_EndDate" issubflow="1" type1="subflow_datetime" value="" colname="OaWorkOverTime_EndDate" istime="1" format="HH:mm "/><script type="text/javascript"></script></td><td data-title="加班小时数" colname="OaWorkOverTime_Hours" iscount="0" style="text-align:left;padding-right:3px;"><input type="text" class="mytext" issubflow="1" type1="subflow_text" name="OaWorkOverTime_ID_ID_GroupID_ca5104e8418d9c4859c2b029da1f8097_OaWorkOverTime_Hours" id="OaWorkOverTime_ID_ID_GroupID_ca5104e8418d9c4859c2b029da1f8097_OaWorkOverTime_Hours" colname="OaWorkOverTime_Hours" value="" valuetype="4"/><script type="text/javascript"></script></td><td><input type="button" class="mybutton" style="margin-right:4px;" value="增加" onclick="formrun.subtableNewRow(this);"/><input type="button" class="mybutton" value="删除" onclick="formrun.subtableDeleteRow(this);"/></td></tr></tbody></table></p></td></tr><tr><th class="titleT" rowspan="1" colspan="2" style="word-break: break-all;" valign="middle" align="left"><p class="titleO">加班内容<br/></p></th></tr><tr class="bottomTr"><td class="bottom" rowspan="1" colspan="2" style="word-break: break-all;" valign="middle" align="left"><p class="txt">加班事由/内容</p><textarea isflow="1" type1="flow_textarea" id="OaWorkOverGroup.Reason" name="OaWorkOverGroup.Reason" class="mytext" style="width:80%; height:40px;"></textarea></td></tr></tbody></table>

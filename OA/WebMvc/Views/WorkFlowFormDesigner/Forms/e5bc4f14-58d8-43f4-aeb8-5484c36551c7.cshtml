@@ -1,0 +1,38 @@
+﻿@{
+	string FlowID = Request.QueryString["flowid"];
+	string StepID = Request.QueryString["stepid"];
+	string GroupID = Request.QueryString["groupid"];
+	string TaskID = Request.QueryString["taskid"];
+	string InstanceID = Request.QueryString["instanceid"];
+	string DisplayModel = Request.QueryString["display"] ?? "0";
+	string DBConnID = "06075250-30dc-4d32-bf97-e922cb30fac8";
+	string DBTable = "AmApplySample";
+	string DBTablePK = "ID";
+	string DBTableTitle = "Remark";
+	if(InstanceID.IsNullOrEmpty()){InstanceID = Request.QueryString["instanceid1"];}
+	YJ.Platform.Dictionary BDictionary = new YJ.Platform.Dictionary();
+	YJ.Platform.WorkFlow BWorkFlow = new YJ.Platform.WorkFlow();
+	YJ.Platform.WorkFlowTask BWorkFlowTask = new YJ.Platform.WorkFlowTask();
+	string fieldStatus = BWorkFlow.GetFieldStatus(FlowID, StepID);
+	LitJson.JsonData initData = BWorkFlow.GetFormData(DBConnID, DBTable, DBTablePK, InstanceID, fieldStatus, "{\"amapplysample.date\":\"yyyy-MM-dd\"}");
+	string TaskTitle = BWorkFlow.GetFromFieldData(initData, DBTable, DBTableTitle);
+}
+<link href="~/Scripts/FlowRun/Forms/flowform.css" rel="stylesheet" type="text/css" />
+<script src="~/Scripts/FlowRun/Forms/common.js" type="text/javascript" ></script>
+<input type="hidden" id="Form_ValidateAlertType" name="Form_ValidateAlertType" value="1" />
+<input type="hidden" id="Form_TitleField" name="Form_TitleField" value="AmApplySample.Remark" />
+<input type="hidden" id="Form_DBConnID" name="Form_DBConnID" value="06075250-30dc-4d32-bf97-e922cb30fac8" />
+<input type="hidden" id="Form_DBTable" name="Form_DBTable" value="AmApplySample" />
+<input type="hidden" id="Form_DBTablePk" name="Form_DBTablePk" value="ID" />
+<input type="hidden" id="Form_DBTableTitle" name="Form_DBTableTitle" value="Remark" />
+<input type="hidden" id="Form_AutoSaveData" name="Form_AutoSaveData" value="1" />
+<textarea id="Form_DBTableTitleExpression" name="Form_DBTableTitleExpression" style="display:none;width:0;height:0;">样品调用申请-{SampleId}</textarea>
+<script type="text/javascript">
+	var initData = @Html.Raw(BWorkFlow.GetFormDataJsonString(initData));
+	var fieldStatus = "1"=="@Request.QueryString["isreadonly"]" ? {} : @Html.Raw(fieldStatus);
+	var displayModel = '@DisplayModel';
+	$(window).load(function (){
+		formrun.initData(initData, "AmApplySample", fieldStatus, displayModel);
+	});
+</script>
+<script type="text/javascript">var amhc='Strain';</script><p><input name="AmApplySample.ExtendField1" id="AmApplySample.ExtendField1" type="hidden" value="@(YJ.Platform.Users.CurrentUserName)" isflow="1" type1="flow_hidden"/><input name="AmApplySample.ExtendField2" id="AmApplySample.ExtendField2" type="hidden" value="@(YJ.Platform.Users.CurrentUserName)" isflow="1" type1="flow_hidden"/><input name="AmApplySample.ExtendField3" id="AmApplySample.ExtendField3" type="hidden" value="@(YJ.Platform.Users.CurrentUserName)" isflow="1" type1="flow_hidden"/></p><p><br/></p><link href="~/Content/Theme/tablenew.css" rel="stylesheet"/><table align="center" class="flowformtable tableF table table-bordered" cellspacing="0" cellpadding="0" data-sort="sortDisabled"><tbody><tr class="firstRow"><th align="center" valign="middle" rowspan="1" colspan="2"><span class="title">样品调用申请表</span></th></tr><tr><th align="left" class="titleT" valign="middle" rowspan="1" colspan="2"><p class="titleO">申请信息</p></th></tr><tr class="topTr"><td align="left" class="top" valign="middle" rowspan="1" colspan="2"><p class="txt">选择样品</p><input name="AmApplySample.SampleId" title="" class="myselectdiv" id="AmApplySample.SampleId" type="text" value="" isflow="1" type1="flow_selectdiv" paramsname="" paramsvalue="" pkfield="bgbh" titlefield="bgbh" appid="8d5253ab-cdcb-4643-a866-40cd8fac4a59"/></td></tr><tr><td align="left" valign="middle" rowspan="1" colspan="1"><p class="txt">申请部门</p><input name="AmApplySample.UDeptID" title="" class="mymember" id="AmApplySample.UDeptID" style="width: 55%;" type="text" value="@(YJ.Platform.Users.CurrentDeptID)" workgroup="0" station="0" dept="1" more="0" user="0" unit="0" rootid="" isflow="1" type1="flow_org"/></td><td align="left" valign="middle" rowspan="1" colspan="1"><p class="txt">申请人</p><input name="AmApplySample.UID" title="" class="mymember" id="AmApplySample.UID" style="width: 55%;" type="text" value="u_@YJ.Platform.Users.CurrentUserID.ToString()" workgroup="0" station="0" dept="0" more="0" user="1" unit="0" rootid="" isflow="1" type1="flow_org"/></td></tr><tr><td align="left" valign="middle" rowspan="1" colspan="1"><p class="txt">取样类别</p><input name="AmApplySample.Type" title="" align="left" class="mytext" id="AmApplySample.Type" type="text" value="" isflow="1" type1="flow_text" valuetype="0"/></td><td align="left" valign="middle" rowspan="1" colspan="1"><p class="txt">申请时间</p><input name="AmApplySample.Date" title="" class="mycalendar" id="AmApplySample.Date" type="text" value="@(YJ.Utility.DateTimeNew.ShortDate)" isflow="1" type1="flow_datetime" format="yyyy-MM-dd" defaultvalue="%40(YJ.Utility.DateTimeNew.ShortDate)" istime="1" daybefor="0" dayafter="0" currentmonth="0"/></td></tr><tr class="bottomTr"><td align="left" class="bottom" valign="middle" rowspan="1" colspan="2"><p class="txt">申请事由</p><textarea name="AmApplySample.Cause" class="mytext" id="AmApplySample.Cause" style="height: 40px;" isflow="1" type1="flow_textarea"></textarea></td></tr></tbody></table>

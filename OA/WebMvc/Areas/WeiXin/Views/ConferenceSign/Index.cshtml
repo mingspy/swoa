@@ -1,0 +1,112 @@
+﻿@{
+    ViewBag.Title = "会议签到";
+    Layout = "~/Views/Shared/_Layout_App.cshtml";
+   
+}
+@model System.Data.DataTable
+<style>
+    .singinBox {
+        padding: 30% 5%;
+        height: 70%;
+        text-align: center;
+        position: absolute;
+        top: 0;
+        background: rgba(0, 0, 0, 0.6);
+    }
+
+        .singinBox img {
+            width: auto;
+            height: auto;
+            max-width: 100%;
+            max-height: 100%;
+        }
+
+    .table td{
+        font-size:14px;
+    }
+</style>
+<form action="" method="post">
+    @Html.AntiForgeryToken()
+    <br />
+    <table  class="flowformtable table tableF table-bordered" align="center" >
+        <tr class="firstRow">
+            <th style="" valign="middle" align="center">
+                <span class="title">会 议 签 到</span>
+            </th>
+        </tr>
+        <tr>
+            <th class="titleT" valign="middle" align="left"></th>
+        </tr>
+        <tr class="topTr">
+            <td>
+                <p class="txt">
+                    会议名称
+                </p>@Model.Rows[0]["ConferenceName"]
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <p class="txt">
+                    开始时间
+                </p>@Model.Rows[0]["BeginDT"]           
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <p class="txt">
+                    结束时间
+                </p>@Model.Rows[0]["EndDT"]
+            </td>
+        </tr>
+        <tr class="topTr bottomTr">
+            <td>
+                <p class="txt">
+                    &nbsp;
+                </p><input id="signBut" type="button" class="mybutton" value="签到" onclick="signForm(this);" />
+            </td>
+        </tr>
+    </table>
+    <input type="hidden" name="ConferenceID" id="ConferenceID" value="@Model.Rows[0]["ID"]" />
+
+</form>
+<script type="text/javascript">
+    var win = new RoadUI.Window();
+     function signForm()
+     {
+         var form1 = document.forms[0];
+        var token = $('input[name="__RequestVerificationToken"]', form1).val();
+        $.ajax({
+            url: "@Url.Content("~/ConferenceSign/Sign")",
+            type: "POST",
+            dataType: "json",
+            async: true,
+            data: { __RequestVerificationToken: token, ConferenceID: form1.ConferenceID.value, Cuid:'@ViewBag.Uid',Cuname:'@ViewBag.Uname'},
+            success: function (json)
+            {
+                switch (json.status)
+                {
+                    case 0:
+                    case 1:
+                        //document.getElementById("imgBox").style.display = "";
+                        //document.getElementById("img1").style.display = "";
+                        alert(json.msg);
+                        winClose();
+                        break;
+                    case 2:
+                        alert(json.msg);
+                        break;
+                }
+            }
+        });
+    }
+    
+    function winClose() {
+        var userAgent = navigator.userAgent;
+        if (userAgent.indexOf("Firefox") != -1 || userAgent.indexOf("Presto") != -1) { window.location.replace("about:blank"); }
+        else {
+            window.opener = null; window.open("", "_self");
+            window.close();
+        }
+    }
+    
+</script>

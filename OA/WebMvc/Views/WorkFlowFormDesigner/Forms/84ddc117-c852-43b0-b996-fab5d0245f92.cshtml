@@ -1,0 +1,42 @@
+﻿@{
+    string FlowID = Request.QueryString["flowid"];
+    string StepID = Request.QueryString["stepid"];
+    string GroupID = Request.QueryString["groupid"];
+    string TaskID = Request.QueryString["taskid"];
+    string InstanceID = Request.QueryString["instanceid"];
+    string DisplayModel = Request.QueryString["display"] ?? "0";
+    string DBConnID = "06075250-30dc-4d32-bf97-e922cb30fac8";
+    string DBTable = "FMS_SendDocuments";
+    string DBTablePK = "ID";
+    string DBTableTitle = "FileName";
+    if(InstanceID.IsNullOrEmpty()){InstanceID = Request.QueryString["instanceid1"];}
+    YJ.Platform.Dictionary BDictionary = new YJ.Platform.Dictionary();
+    YJ.Platform.WorkFlow BWorkFlow = new YJ.Platform.WorkFlow();
+    YJ.Platform.WorkFlowTask BWorkFlowTask = new YJ.Platform.WorkFlowTask();
+    string fieldStatus = BWorkFlow.GetFieldStatus(FlowID, StepID);
+    LitJson.JsonData initData = BWorkFlow.GetFormData(DBConnID, DBTable, DBTablePK, InstanceID, fieldStatus, "{\"fms_senddocuments.opdate\":\"yyyy年MM月dd日\",\"fms_senddocuments.handleterm\":\"yyyy年MM月dd日\"}");
+    string TaskTitle = BWorkFlow.GetFromFieldData(initData, DBTable, DBTableTitle);
+}
+<link href="~/Scripts/FlowRun/Forms/flowform.css" rel="stylesheet" type="text/css" />
+<script src="~/Scripts/FlowRun/Forms/common.js" type="text/javascript" ></script>
+<script src="~/Scripts/Ueditor/ueditor.config.js" type="text/javascript" ></script>
+<script src="~/Scripts/Ueditor/ueditor.all.min.js" type="text/javascript" ></script>
+<script src="~/Scripts/Ueditor/lang/zh-cn/zh-cn.js" type="text/javascript" ></script>
+<input type="hidden" id="Form_HasUEditor" name="Form_HasUEditor" value="1" />
+<input type="hidden" id="Form_ValidateAlertType" name="Form_ValidateAlertType" value="1" />
+<input type="hidden" id="Form_TitleField" name="Form_TitleField" value="FMS_SendDocuments.FileName" />
+<input type="hidden" id="Form_DBConnID" name="Form_DBConnID" value="06075250-30dc-4d32-bf97-e922cb30fac8" />
+<input type="hidden" id="Form_DBTable" name="Form_DBTable" value="FMS_SendDocuments" />
+<input type="hidden" id="Form_DBTablePk" name="Form_DBTablePk" value="ID" />
+<input type="hidden" id="Form_DBTableTitle" name="Form_DBTableTitle" value="FileName" />
+<input type="hidden" id="Form_AutoSaveData" name="Form_AutoSaveData" value="1" />
+<textarea id="Form_DBTableTitleExpression" name="Form_DBTableTitleExpression" style="display:none;width:0;height:0;"></textarea>
+<script type="text/javascript">
+	var initData = @Html.Raw(BWorkFlow.GetFormDataJsonString(initData));
+	var fieldStatus = "1"=="@Request.QueryString["isreadonly"]" ? {} : @Html.Raw(fieldStatus);
+	var displayModel = '@DisplayModel';
+	$(window).load(function (){
+		formrun.initData(initData, "FMS_SendDocuments", fieldStatus, displayModel);
+	});
+</script>
+<p><br/></p><link href="~/Content/Theme/tablenew.css" rel="stylesheet"/><script type="text/javascript"></script><table class="flowformtable tableF table table-bordered" data-sort="sortDisabled" width="NaN" cellspacing="0" cellpadding="0" align="center"><tbody><tr class="firstRow"><th rowspan="1" colspan="4" valign="middle" align="center"><span class="title">自拟公文</span></th></tr><tr><th class="titleT" rowspan="1" colspan="4" valign="middle" align="center"><br/></th></tr><tr class="firstRow"><td class="top" style="width: 10%;" rowspan="1" colspan="1"><span class="txt">序号</span></td><td class="top" style="width: 35%;" rowspan="1" colspan="1"><input type1="flow_serialnumber" id="FMS_SendDocuments.No" maxfiled="No" name="FMS_SendDocuments.No" value="" style="border: medium none; width: 90%; height: 25px; background-color: rgb(232, 232, 232);" placeholder="本序号自动生成无需手动录入" sqlwhere="" length="5" type="text" isflow="1" class="mytext" title="" readonly=""/><input type="hidden" value="FMS_SendDocuments.No" name="HasSerialNumber"/><input type="hidden" value="{'formatstring':'','sqlwhere':'','length':'5','maxfiled':'No'}" name="HasSerialNumberConfig_FMS_SendDocuments.No"/></td><td class="top" style="width: 10%;" rowspan="1" align="null"><span class="txt">文件名称</span></td><td class="top" style="width: 35%;" rowspan="1" align="null"><input name="FMS_SendDocuments.FileName" id="FMS_SendDocuments.FileName" style="border: currentColor; width: 95%; height: 25px; border-image: none;" value="" type1="flow_text" valuetype="0" type="text" isflow="1" class="mytext" title="" align="left"/></td></tr><tr><td rowspan="1" colspan="1"><span class="txt">发文单位</span></td><td rowspan="1" colspan="1"><input name="FMS_SendDocuments.SDCompany" id="FMS_SendDocuments.SDCompany" style="border: currentColor; width: 95%; height: 25px; border-image: none;" value="" type1="flow_text" valuetype="0" type="text" isflow="1" class="mytext" title="" align="left"/></td><td rowspan="1" colspan="1"><span class="txt">发文人</span></td><td rowspan="1" colspan="1"><input name="FMS_SendDocuments.SDName" id="FMS_SendDocuments.SDName" style="border: currentColor; width: 95%; height: 25px; border-image: none;" value="" type1="flow_text" valuetype="0" type="text" isflow="1" class="mytext" title="" align="left"/></td></tr><tr><td rowspan="1" colspan="1"><span class="txt">发文时间</span></td><td rowspan="1" colspan="1"><input name="FMS_SendDocuments.OPDate" id="FMS_SendDocuments.OPDate" style="border: currentColor; width: 95%; height: 25px; border-image: none;" value="" type1="flow_datetime" format="yyyy年MM月dd日" defaultvalue="" istime="0" daybefor="0" dayafter="0" currentmonth="0" type="text" isflow="1" class="mycalendar" title=""/></td><td rowspan="1" colspan="1"><span class="txt">文件号</span></td><td rowspan="1" colspan="1"><input name="FMS_SendDocuments.FileNo" id="FMS_SendDocuments.FileNo" style="border: currentColor; width: 95%; height: 25px; border-image: none;" value="" type1="flow_text" valuetype="0" type="text" isflow="1" class="mytext" title="" align="left"/></td></tr><tr><td rowspan="1" colspan="1"><span class="txt">文件类型</span></td><td rowspan="1" colspan="1"><select class="mycombox" id="FMS_SendDocuments.FileType" name="FMS_SendDocuments.FileType" style="width:50px" datasource="1" listmode="0" isflow="1" type1="flow_combox"><option value="3"></option><option value="0">加密公文</option><option value="1">紧急公文</option><option value="2">普通公文</option><option value="4">督办公文</option></select></td><td rowspan="1" colspan="1"><span class="txt">处理期限</span></td><td rowspan="1" colspan="1"><input name="FMS_SendDocuments.OPDate" id="FMS_SendDocuments.HandleTerm" style="border: currentColor; width: 95%; height: 25px; border-image: none;" value="" type1="flow_datetime" format="yyyy年MM月dd日" defaultvalue="" istime="0" daybefor="0" dayafter="0" currentmonth="0" type="text" isflow="1" class="mycalendar" title=""/></td></tr><tr><td rowspan="1" colspan="1"><span class="txt">落实情况</span></td><td rowspan="1" colspan="3"><input name="FMS_SendDocuments.ProcessSituation" id="FMS_SendDocuments.ProcessSituation" style="border: currentColor; width: 95%; height: 25px; border-image: none;" value="" type1="flow_text" valuetype="0" type="text" isflow="1" class="mytext" title="" align="left"/></td></tr><tr><td class="bottom top" rowspan="1" colspan="4"><textarea isflow="1" model="html" type1="flow_textarea" id="FMS_SendDocuments.FileContent" name="FMS_SendDocuments.FileContent" class="mytextarea" style="width: 99%; height: 500px;">@Html.Raw(BWorkFlow.GetFromFieldData(initData, "FMS_SendDocuments","FileContent"))</textarea><br/></td></tr></tbody></table><p><br/></p>

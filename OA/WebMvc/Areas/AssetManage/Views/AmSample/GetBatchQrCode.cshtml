@@ -1,0 +1,128 @@
+﻿@{
+    ViewBag.Title = "二维码打印";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<style media=print>
+
+    .Noprint {
+        display: none;
+    }
+
+    .PageNext {
+        page-break-after: always;
+    }
+</style>
+
+<style>
+    .QrStyle {
+        width: 240px;
+        height: 240px;
+        margin: 5px;
+    }
+</style>
+
+<div style="width:100%;height:100%;text-align:center;">
+    <div class="Noprint">
+        <table cellpadding="0" cellspacing="1" border="0" style="width:30%; margin:0 auto; border-spacing:0px 10px;" >
+            <tr>
+                <td style="width:50px; height:45px; text-align:center;">资产编号:</td>
+                <td align="left"><input id="assid" type="text"  maxlength="50" style="text-align:left;" /></td>
+            </tr>
+            <tr>
+                <td style="width:50px; height:45px; text-align:center;">
+                    <input id="gen" class="mybutton" value="生成二维码" style="text-align:center;" onclick="makeCode()" />
+                </td>
+                <td>
+                    <select id="tpSelector">
+                    <option value="sample" selected>检验样</option>
+                    <option value="review">复检样</option>
+                    <option value="assets">固定资产</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <input id="but" class="mybutton" value="打印二维码" style="text-align:center;" onclick="print1()" />
+                </td>
+                <td>
+                    分页打印 <input id="ckb1" type="checkbox" value="分页打印" onclick="setPaged(this)"/>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <div id="qr_div" style="margin:auto; width: 40%;">
+
+    </div>
+</div>
+
+
+
+
+<script type="text/javascript">
+    qr_cnt = 0;
+    function makeCode() {
+        var assid = $("#assid").val();
+        var its = assid.split(";");
+        var isPage = $("#ckb1").prop("checked");
+        var tp = $("#tpSelector").val();
+        for (var i = 0, len = its.length; i < len; i++) {
+            qno = its[i];
+            if (!qno ) {
+                continue;
+            }
+            qno = qno.replace(/(^\s+)|(\s+$)/g, "");
+            if (!qno) {
+                continue;
+            }
+            qr_cnt += 1;
+            qid = "qr_" + qr_cnt;
+
+            if (tp == "assets") {
+                var url = '@Url.Content(YJ.Utility.Config.WebUrl + "/weixin/AssetsQrCode/GetAssetsInfo?AssetsID=")' + qno;
+            } else if (tp == "sample") {
+                 var url = '@Url.Content(YJ.Utility.Config.WebUrl + "/AssetManage/AmSample/index?bgbh=")' + qno;
+            } else if (tp == "review") {
+
+            }
+            
+            //var url =   qno + "&type="+tp;
+            //$("#qr_table").append(tr);
+            var dt = "<label class=\"Noprint\">" + qno + "</label><div class=\"QrStyle\" id=\"" + qid + "\"></div>";
+
+            
+            if (isPage) {
+                dt += "<div name=\"page_div\" class=\"PageNext\"></div>";
+            } else {
+                dt += "<div name=\"page_div\" class=\"Noprint\"></div>";
+            }
+            
+            $("#qr_div").append(dt);
+            var qrcode = new QRCode(document.getElementById(qid), {
+                width: 240,
+                height: 240
+            });
+            qrcode.makeCode(url);
+        }
+ 
+    }
+
+    function setPaged(checkbox) {
+        cls = ""
+        if (checkbox.checked) {
+            cls = "PageNext";
+        }
+        //alert(cls);
+        $('div[name="page_div"]').each(function () {
+            $(this).attr("class", cls);
+        });
+    }
+    function print1() {
+        //document.getElementById("but").style.display = "none";
+        //$("#but").hide();
+        //$("#gen").hide();
+        window.print();
+    }
+
+</script>

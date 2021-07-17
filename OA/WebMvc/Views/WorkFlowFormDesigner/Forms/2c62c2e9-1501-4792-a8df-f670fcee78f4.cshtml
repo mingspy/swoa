@@ -1,0 +1,122 @@
+﻿@{
+	string FlowID = Request.QueryString["flowid"];
+	string StepID = Request.QueryString["stepid"];
+	string GroupID = Request.QueryString["groupid"];
+	string TaskID = Request.QueryString["taskid"];
+	string InstanceID = Request.QueryString["instanceid"];
+	string DisplayModel = Request.QueryString["display"] ?? "0";
+	string DBConnID = "06075250-30dc-4d32-bf97-e922cb30fac8";
+	string DBTable = "FMS_ReceiveDocuments";
+	string DBTablePK = "ID";
+	string DBTableTitle = "FileName";
+	if(InstanceID.IsNullOrEmpty()){InstanceID = Request.QueryString["instanceid1"];}
+	YJ.Platform.Dictionary BDictionary = new YJ.Platform.Dictionary();
+	YJ.Platform.WorkFlow BWorkFlow = new YJ.Platform.WorkFlow();
+	YJ.Platform.WorkFlowTask BWorkFlowTask = new YJ.Platform.WorkFlowTask();
+	string fieldStatus = BWorkFlow.GetFieldStatus(FlowID, StepID);
+	LitJson.JsonData initData = BWorkFlow.GetFormData(DBConnID, DBTable, DBTablePK, InstanceID, fieldStatus, "{\"fms_receivedocuments.rddate\":\"yyyy-MM-dd\"}");
+	string TaskTitle = BWorkFlow.GetFromFieldData(initData, DBTable, DBTableTitle);
+}
+<link href="~/Scripts/FlowRun/Forms/flowform.css" rel="stylesheet" type="text/css" />
+<script src="~/Scripts/FlowRun/Forms/common.js" type="text/javascript" ></script>
+<input type="hidden" id="Form_ValidateAlertType" name="Form_ValidateAlertType" value="1" />
+<input type="hidden" id="FMS_ReceiveDocuments.FileName" name="FMS_ReceiveDocuments.FileName" value="@(TaskTitle.IsNullOrEmpty() ? BWorkFlow.GetAutoTaskTitle(FlowID, StepID, Request.QueryString["groupid"]) : TaskTitle)" />
+<input type="hidden" id="Form_TitleField" name="Form_TitleField" value="FMS_ReceiveDocuments.FileName" />
+<input type="hidden" id="Form_DBConnID" name="Form_DBConnID" value="06075250-30dc-4d32-bf97-e922cb30fac8" />
+<input type="hidden" id="Form_DBTable" name="Form_DBTable" value="FMS_ReceiveDocuments" />
+<input type="hidden" id="Form_DBTablePk" name="Form_DBTablePk" value="ID" />
+<input type="hidden" id="Form_DBTableTitle" name="Form_DBTableTitle" value="FileName" />
+<input type="hidden" id="Form_AutoSaveData" name="Form_AutoSaveData" value="1" />
+<textarea id="Form_DBTableTitleExpression" name="Form_DBTableTitleExpression" style="display:none;width:0;height:0;"></textarea>
+<script type="text/javascript">
+	var initData = @Html.Raw(BWorkFlow.GetFormDataJsonString(initData));
+	var fieldStatus = "1"=="@Request.QueryString["isreadonly"]" ? {} : @Html.Raw(fieldStatus);
+	var displayModel = '@DisplayModel';
+	$(window).load(function (){
+		formrun.initData(initData, "FMS_ReceiveDocuments", fieldStatus, displayModel);
+	});
+</script>
+<script type="text/javascript">$(window).load(function (){
+        Selects();
+        SelectLower();
+    });
+    function Selects() {
+      var urls = document.location.toString();
+　　　var arrObj = urls.split("?");
+      var instanceid=null;
+      if (arrObj.length >1) {
+　　　　　　var arrPara = arrObj[1].split("&");
+　　　　　　var arr;
+
+　　　　　　for (var i = 0; i < arrPara.length; i++) {
+　　　　　　　　arr = arrPara[i].split("=");
+
+　　　　　　　　if (arr != null && arr[0] == 'instanceid') {
+　　　　　　　　　　instanceid=arr[1]
+　　　　　　　　}
+　　　　　　}
+　　　　}
+      var url = "/PlatformApi/WorkFlowTask/Select/";
+      var data = JSON.stringify({Instanceid:instanceid
+        });
+
+        RoadUI.Core.showWait();
+        $.ajax({
+            headers: { "__RequestVerificationToken": $("input[name='__RequestVerificationToken']").val() },
+            url: url, contentType: RoadUI.Core.ajaxContentType, data: data, type: "Post", dataType: "json", cache: false, async: true,
+            success: function (json) {
+                if (RoadUI.Core.checkLogin(json)) {
+                  document.getElementById("liu").innerHTML =json.list[0].Opinion;
+                  document.getElementById("liu1").innerHTML = json.list[0].Opinion1;
+                  document.getElementById("liu2").innerHTML = json.list[0].Opinion2;
+                  document.getElementById("liu3").innerHTML = json.list[0].Opinion3;
+                }
+                RoadUI.Core.closeWait();
+            },
+            error: function (json) {
+                RoadUI.Core.closeWait();
+            }
+        });
+      
+    }
+function SelectLower() {
+      var urls = document.location.toString();
+　　　var arrObj = urls.split("?");
+      var instanceid=null;
+      if (arrObj.length >1) {
+　　　　　　var arrPara = arrObj[1].split("&");
+　　　　　　var arr;
+
+　　　　　　for (var i = 0; i < arrPara.length; i++) {
+　　　　　　　　arr = arrPara[i].split("=");
+
+　　　　　　　　if (arr != null && arr[0] == 'instanceid') {
+　　　　　　　　　　instanceid=arr[1]
+　　　　　　　　}
+　　　　　　}
+　　　　}
+      var url = "/PlatformApi/WorkFlowTask/SelectLower/";
+      var data = JSON.stringify({Instanceid:instanceid
+        });
+
+        RoadUI.Core.showWait();
+        $.ajax({
+            headers: { "__RequestVerificationToken": $("input[name='__RequestVerificationToken']").val() },
+            url: url, contentType: RoadUI.Core.ajaxContentType, data: data, type: "Post", dataType: "json", cache: false, async: true,
+            success: function (json) {
+                if (RoadUI.Core.checkLogin(json)) {
+                 document.getElementById('myid').innerHTML = json.list; 
+                }
+                RoadUI.Core.closeWait();
+            },
+            error: function (json) {
+                RoadUI.Core.closeWait();
+            }
+        });  
+      
+      
+    }</script><style>span{
+  font-size:16px;font-family:宋体,Arial;
+  }
+label{font-size:16px; font-family:宋体,Arial;}
+td{font-size:16px;font-family:宋体,Arial;}</style><h3 style="text-align: center;" label="标题居中"><strong><span style="font-size: 28px;font-weight:bold;">公文处理单</span></strong></h3><p><br/></p><form action="" method="post"><table style="margin: 0px auto; width:680px; height: 700px; font-family: Georgia,"Times New Roman",Times,serif; font-size: 12px; text-decoration: none;" uetable="null" data-sort="sortDisabled" cellspacing="0" cellpadding="0" border="1" align="center"><tbody><tr class="firstRow"><td style="word-break: break-all;width:80px;" rowspan="1" align="center"><p><span style="font-size: 16px;">收文日期</span></p></td><td style="word-break: break-all;" align="center"><input type1="flow_datetime" id="FMS_ReceiveDocuments.RDDate" name="FMS_ReceiveDocuments.RDDate" value="" format="yyyy-MM-dd" defaultvalue="" istime="0" daybefor="0" dayafter="0" currentmonth="0" type="text" isflow="1" class="mycalendar" title=""/></td><td style="word-break: break-all;width:80px;" rowspan="1" align="center"><p><span style="font-size: 16px;">发文机关</span></p></td><td style="word-break: break-all;" align="center"><input id="FMS_ReceiveDocuments.RDCompany" type1="flow_text" name="FMS_ReceiveDocuments.RDCompany" value="" valuetype="0" type="text" isflow="1" class="mytext" title="" align="0"/></td><td style="word-break: break-all;width:80px;" rowspan="1" align="center"><p><span style="font-size: 16px;">文件编号</span></p></td><td style="word-break: break-all;" align="center"><input id="FMS_ReceiveDocuments.FileNo" type1="flow_text" name="FMS_ReceiveDocuments.FileNo" value="" valuetype="0" type="text" isflow="1" class="mytext" title="" align="0"/></td><td style="word-break: break-all;width:50px;" rowspan="1" align="center"><p><span style="font-size: 16px;">数量</span></p></td><td style="word-break: break-all;width:30px;" align="center"><input id="FMS_ReceiveDocuments.count" type1="flow_text" name="FMS_ReceiveDocuments.count" value="" valuetype="0" type="text" isflow="1" class="mytext" title="" align="0"/></td></tr><tr><td style="word-break: break-all;" rowspan="1" align="center"><p><span style="font-size: 16px;">文件名称</span></p></td><td colspan="7" style="word-break: break-all;" align="left"><input id="FMS_ReceiveDocuments.FileName" type1="flow_text" name="FMS_ReceiveDocuments.FileName" value="" valuetype="0" type="text" isflow="1" class="mytext" title="" align="0"/></td></tr><tr><td style="word-break: break-all;" rowspan="1" align="center"><p><span style="font-size: 16px;">拟办意见</span></p></td><td colspan="7" style="word-break: break-all;" align="left"><p><span id="liu" style="font-size: 16px;"></span></p><br/></td></tr><tr><td style="word-break: break-all;" rowspan="1" align="center"><p><span style="font-size: 16px;">分管领导<br/>批示</span></p></td><td colspan="7" style="word-break: break-all;" align="left"><p><span id="liu1" style="font-size: 16px;"></span></p><br/></td></tr><tr><td style="word-break: break-all;" rowspan="1" align="center"><p><span style="font-size: 16px;">分管领导<br/>批示</span></p></td><td colspan="7" style="word-break: break-all;" align="left"><p><span id="liu2" style="font-size: 16px;"></span></p><br/></td></tr><tr><td style="word-break: break-all;" rowspan="1" align="center"><p><span style="font-size: 16px;">领导批示</span></p></td><td colspan="7" style="word-break: break-all;" align="left"><p><span id="liu3" style="font-size: 16px;"></span></p><br/></td></tr><tr><td style="word-break: break-all;" rowspan="1" align="center"><p><span style="font-size: 16px;">办文情况</span></p></td><td id="myid" colspan="7" rowspan="1" style="word-break: break-all;boder:0;" align="center"><br/></td></tr></tbody></table><p><input id="FMS_ReceiveDocuments.LeadershipOpinion2" type1="flow_text" name="FMS_ReceiveDocuments.LeadershipOpinion2" value="" valuetype="0" type="text" isflow="1" class="mytext" title="" align="left"/></p></form>

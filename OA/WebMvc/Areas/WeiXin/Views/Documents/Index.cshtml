@@ -1,0 +1,100 @@
+﻿@{
+    ViewBag.Title = "文档中心";
+    Layout = "~/Views/Shared/_Layout_App1.cshtml";
+}
+
+<link href="~/Areas/WeiXin/Scripts/weui.min.css" rel="stylesheet" />
+<link href="~/Areas/WeiXin/Scripts/ext.css" rel="stylesheet" />
+<link href="~/Areas/WeiXin/Scripts/jquery-weui.min.css" rel="stylesheet" />
+<link href="~/Scripts/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
+<style>
+    .date {
+        color:#999; font-size:12px;
+    }
+</style>
+<!-- body 顶部加上如下代码 -->
+<div class="weui-pull-to-refresh__layer">
+    <div class='weui-pull-to-refresh__arrow'></div>
+    <div class='weui-pull-to-refresh__preloader'></div>
+    <div class="down">下拉刷新</div>
+    <div class="up">释放刷新</div>
+    <div class="refresh">正在刷新</div>
+</div>
+@{
+    YJ.Platform.DocumentDirectory docDir = new YJ.Platform.DocumentDirectory();
+    YJ.Platform.Documents bdoc = new YJ.Platform.Documents();
+    string searchTitle = string.Empty;
+    Guid userID = YJ.Platform.Users.CurrentUserID.IsEmptyGuid() ? YJ.Platform.WeiXin.Organize.CurrentUserID : YJ.Platform.Users.CurrentUserID;
+    Dictionary<Guid, string> dicts = docDir.GetDirs(userID);
+}
+    <form id="form1" action="Search" method="post">
+        @Html.AntiForgeryToken()
+        <div style="padding: 10px;background-color: #f2f2f2;position:relative;">
+            <i class="fa fa-search" style="position:absolute;margin: 7px;font-size: 14px;color:#97989d;"></i>
+            <input class="ext-input" id="searchkey" name="searchkey" placeholder="输入文档标题可查询" value="@ViewBag.SearchTitle" style="width:calc(100% - 71px);border: 1px solid #d6d9e0;border-radius: 3px;padding-left: 24px;" />
+            <input type="submit" class="ext-button" value="&nbsp;&nbsp;查询&nbsp;&nbsp;" style="width: 40px;color: #4e7199;border: none;background: none;box-shadow: none;font-size: 14px;" />
+        </div>
+        @{
+            
+        long noReadCount;
+        System.Data.DataTable DocDt = bdoc.GetList(out noReadCount, 1000, 1, "", userID.ToString(), "", "", "", true);
+        if(DocDt.Rows.Count>0)
+        {
+            <div class="weui-cells__title" style="font-weight:bold;"><a class="weui-cell_access">未读文档 (@noReadCount)</a></div>
+            <div class="weui-cells">
+            @foreach(System.Data.DataRow dr in DocDt.Rows)
+            {
+                string address = WebMvc.Common.Tools.BaseUrl + "/Documents/DocRead?ismobile=1&docid=" + dr["id"].ToString();
+                <a class="weui-cell weui-cell_access" href="@address">
+                    <div class="weui-cell__bd">
+                      <p>@dr["Title"]</p><p class="date">发布时间:@dr["WriteTime"].ToString().ToDateTime().ToDateTimeString() 发布人:@dr["WriteUserName"].ToString()</p>
+                    </div>
+                    <div class="weui-cell__ft">
+                    </div>
+                </a>
+            }
+            </div>
+        }
+        }
+        
+        @foreach (var dict in dicts)
+        {
+            long count;
+            var docs = bdoc.GetList(out count, 5, 1, dict.Key.ToString(), userID.ToString());
+            if (docs.Rows.Count > 0)
+            {
+        
+        <div class="weui-cells__title" style="font-weight:bold;"><a class="weui-cell_access" href="List?ismobile=1&dirid=@dict.Key">@dict.Value (@count)</a></div>
+        <div class="weui-cells">
+             
+                    @foreach (System.Data.DataRow dr in docs.Rows)
+                    {
+                        string address = WebMvc.Common.Tools.BaseUrl + "/Documents/DocRead?ismobile=1&docid=" + dr["id"].ToString();
+            
+            <a class="weui-cell weui-cell_access" href="@address">
+                <div class="weui-cell__bd">
+                  <p>@dr["Title"]</p><p class="date">发布时间:@dr["WriteTime"].ToString().ToDateTime().ToDateTimeString() 发布人:@dr["WriteUserName"].ToString()</p>
+                </div>
+                <div class="weui-cell__ft">
+                </div>
+            </a>
+                    }
+        </div>
+            }
+        }
+    </form>
+    <script src="~/Areas/WeiXin/Scripts/jquery-1.11.1.min.js"></script>
+    <script src="~/Areas/WeiXin/Scripts/jquery-weui.min.js"></script>
+    <script type="text/javascript">
+        $(function ()
+        {
+            $(document.body).infinite(50);
+            $(document.body).pullToRefresh();
+            $(document.body).on("pull-to-refresh", function ()
+            {
+                //do something
+                window.location = window.location;
+                $(document.body).pullToRefreshDone();
+            });
+        });
+    </script>

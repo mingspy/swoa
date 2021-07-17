@@ -1,0 +1,9 @@
+F:\代码\gitsource\OA\YJ.Cache.InProc\bin\x86\Debug\YJ.Cache.InProc.dll
+F:\代码\gitsource\OA\YJ.Cache.InProc\bin\x86\Debug\YJ.Cache.InProc.pdb
+F:\代码\gitsource\OA\YJ.Cache.InProc\bin\x86\Debug\YJ.Cache.Interface.dll
+F:\代码\gitsource\OA\YJ.Cache.InProc\bin\x86\Debug\YJ.Cache.Interface.pdb
+F:\代码\gitsource\OA\YJ.Cache.InProc\obj\x86\Debug\YJ.Cache.InProc.csprojAssemblyReference.cache
+F:\代码\gitsource\OA\YJ.Cache.InProc\obj\x86\Debug\YJ.Cache.InProc.csproj.CoreCompileInputs.cache
+F:\代码\gitsource\OA\YJ.Cache.InProc\obj\x86\Debug\YJ.Cache.InProc.csproj.CopyComplete
+F:\代码\gitsource\OA\YJ.Cache.InProc\obj\x86\Debug\YJ.Cache.InProc.dll
+F:\代码\gitsource\OA\YJ.Cache.InProc\obj\x86\Debug\YJ.Cache.InProc.pdb

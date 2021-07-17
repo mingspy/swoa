@@ -1,0 +1,38 @@
+﻿@{
+	string FlowID = Request.QueryString["flowid"];
+	string StepID = Request.QueryString["stepid"];
+	string GroupID = Request.QueryString["groupid"];
+	string TaskID = Request.QueryString["taskid"];
+	string InstanceID = Request.QueryString["instanceid"];
+	string DisplayModel = Request.QueryString["display"] ?? "0";
+	string DBConnID = "06075250-30dc-4d32-bf97-e922cb30fac8";
+	string DBTable = "办公用品入库记录";
+	string DBTablePK = "ID";
+	string DBTableTitle = "";
+	if(InstanceID.IsNullOrEmpty()){InstanceID = Request.QueryString["instanceid1"];}
+	YJ.Platform.Dictionary BDictionary = new YJ.Platform.Dictionary();
+	YJ.Platform.WorkFlow BWorkFlow = new YJ.Platform.WorkFlow();
+	YJ.Platform.WorkFlowTask BWorkFlowTask = new YJ.Platform.WorkFlowTask();
+	string fieldStatus = BWorkFlow.GetFieldStatus(FlowID, StepID);
+	LitJson.JsonData initData = BWorkFlow.GetFormData(DBConnID, DBTable, DBTablePK, InstanceID, fieldStatus, "{\"办公用品入库记录.入库时间\":\"yyyy-MM-dd\",\"办公用品入库记录.验收时间\":\"yyyy-MM-dd\"}");
+	string TaskTitle = BWorkFlow.GetFromFieldData(initData, DBTable, DBTableTitle);
+}
+<link href="~/Scripts/FlowRun/Forms/flowform.css" rel="stylesheet" type="text/css" />
+<script src="~/Scripts/FlowRun/Forms/common.js" type="text/javascript" ></script>
+<input type="hidden" id="Form_ValidateAlertType" name="Form_ValidateAlertType" value="1" />
+<input type="hidden" id="Form_TitleField" name="Form_TitleField" value="办公用品入库记录." />
+<input type="hidden" id="Form_DBConnID" name="Form_DBConnID" value="06075250-30dc-4d32-bf97-e922cb30fac8" />
+<input type="hidden" id="Form_DBTable" name="Form_DBTable" value="办公用品入库记录" />
+<input type="hidden" id="Form_DBTablePk" name="Form_DBTablePk" value="ID" />
+<input type="hidden" id="Form_DBTableTitle" name="Form_DBTableTitle" value="" />
+<input type="hidden" id="Form_AutoSaveData" name="Form_AutoSaveData" value="1" />
+<textarea id="Form_DBTableTitleExpression" name="Form_DBTableTitleExpression" style="display:none;width:0;height:0;"></textarea>
+<script type="text/javascript">
+	var initData = @Html.Raw(BWorkFlow.GetFormDataJsonString(initData));
+	var fieldStatus = "1"=="@Request.QueryString["isreadonly"]" ? {} : @Html.Raw(fieldStatus);
+	var displayModel = '@DisplayModel';
+	$(window).load(function (){
+		formrun.initData(initData, "办公用品入库记录", fieldStatus, displayModel);
+	});
+</script>
+<script type="text/javascript">var amhc='办公用品种类';</script><p><input type="hidden" id="办公用品入库记录.数据创建时间" name="办公用品入库记录.数据创建时间" isflow="1" type1="flow_hidden" value="@(YJ.Utility.DateTimeNew.ShortDateTime)"/></p><p style="white-space: normal;"><input type="hidden" id="办公用品入库记录.数据创建人" name="办公用品入库记录.数据创建人" isflow="1" type1="flow_hidden" value="u_@YJ.Platform.Users.CurrentUserID.ToString()"/></p><p style="white-space: normal;"><br/></p><table align="center" class="flowformtable tableF table table-bordered" cellspacing="0" cellpadding="0" data-sort="sortDisabled"><tbody><tr class="firstRow"><th align="center" valign="middle" rowspan="1" colspan="2"><span class="title">标准物质入库单</span></th></tr><tr><th align="left" class="titleT" valign="middle" rowspan="1" colspan="2"><p class="titleO">入库单信息</p></th></tr><tr><td align="left" valign="middle" rowspan="1" colspan="1"><p class="txt">选定物质</p><input type="text" id="办公用品入库记录.办公用品种类ID" type1="flow_selectdiv" name="办公用品入库记录.办公用品种类ID" value="" data-windowwidth="1000" data-windowheight="800" appid="2b0bf5e2-ff56-4e16-b054-92fbbc28f919" titlefield="" pkfield="" paramsvalue="amhc" paramsname="tablename" isflow="1" class="myselectdiv" title=""/></td><td align="left" valign="middle" rowspan="1" colspan="1"><p class="txt">入库时间</p><input type="text" type1="flow_datetime" id="办公用品入库记录.入库时间" name="办公用品入库记录.入库时间" value="@(YJ.Utility.DateTimeNew.ShortDate)" format="yyyy-MM-dd" defaultvalue="%40(YJ.Utility.DateTimeNew.ShortDate)" istime="1" daybefor="0" dayafter="0" currentmonth="0" isflow="1" class="mycalendar" title=""/></td></tr><tr><td align="left" valign="middle" rowspan="1" colspan="1"><p class="txt">入库人</p><input type="text" id="办公用品入库记录.入库人" type1="flow_text" name="办公用品入库记录.入库人" value="@(YJ.Platform.Users.CurrentUserName)" align="left" valuetype="0" isflow="1" class="mytext" title=""/></td><td align="left" valign="middle" rowspan="1" colspan="1"><p class="txt">入库数量</p><input type="text" id="办公用品入库记录.入库数量" type1="flow_text" name="办公用品入库记录.入库数量" value="" align="left" valuetype="3" isflow="1" class="mytext" title=""/></td></tr><tr><td align="left" valign="middle" style="word-break: break-all;" rowspan="1" colspan="1"><p class="txt">库存位置</p><input type="text" id="办公用品入库记录.库存位置" type1="flow_text" name="办公用品入库记录.库存位置" value="" align="left" valuetype="0" isflow="1" class="mytext" title=""/></td><td align="left" valign="middle" rowspan="1" colspan="1"><p class="txt">是否验收</p><select class="myselect" id="办公用品入库记录.是否已验收" name="办公用品入库记录.是否已验收" isflow="1" type1="flow_select">@Html.Raw(BDictionary.GetOptionsByID("25d0e405-edcb-439a-b657-f74c3a26b211".ToGuid(), YJ.Platform.Dictionary.OptionValueField.Value, "", true))</select></td></tr><tr><td align="left" valign="middle" style="word-break: break-all;" rowspan="1" colspan="1"><p class="txt">验收时间</p><input type="text" type1="flow_datetime" id="办公用品入库记录.验收时间" name="办公用品入库记录.验收时间" value="@(YJ.Utility.DateTimeNew.ShortDate)" format="yyyy-MM-dd" defaultvalue="%40(YJ.Utility.DateTimeNew.ShortDate)" istime="1" daybefor="0" dayafter="0" currentmonth="0" isflow="1" class="mycalendar" title=""/></td><td align="left" valign="middle" style="word-break: break-all;" rowspan="1" colspan="1"><p class="txt">供应商</p><input type="text" id="办公用品入库记录.供应商" type1="flow_text" name="办公用品入库记录.供应商" value="" align="left" valuetype="0" isflow="1" class="mytext" title=""/></td></tr><tr><td align="left" valign="middle" style="word-break: break-all;" rowspan="1" colspan="2"><p class="txt">单价</p><input type="text" id="办公用品入库记录.单价" type1="flow_text" name="办公用品入库记录.单价" value="" align="left" valuetype="0" isflow="1" class="mytext" title=""/></td></tr><tr class="bottomTr"><td align="left" class="bottom" valign="middle" style="word-break: break-all;" rowspan="1" colspan="2"><p class="txt">入库备注</p><textarea isflow="1" type1="flow_textarea" id="办公用品入库记录.入库备注" name="办公用品入库记录.入库备注" class="mytext" style="width:80%; height:40px;"></textarea></td></tr></tbody></table><p><br/></p>

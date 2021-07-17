@@ -1,0 +1,114 @@
+﻿@{
+	string FlowID = Request.QueryString["flowid"];
+	string StepID = Request.QueryString["stepid"];
+	string GroupID = Request.QueryString["groupid"];
+	string TaskID = Request.QueryString["taskid"];
+	string InstanceID = Request.QueryString["instanceid"];
+	string DisplayModel = Request.QueryString["display"] ?? "0";
+	string DBConnID = "06075250-30dc-4d32-bf97-e922cb30fac8";
+	string DBTable = "CRMeetingRequest";
+	string DBTablePK = "ID";
+	string DBTableTitle = "ConferenceName";
+	if(InstanceID.IsNullOrEmpty()){InstanceID = Request.QueryString["instanceid1"];}
+	YJ.Platform.Dictionary BDictionary = new YJ.Platform.Dictionary();
+	YJ.Platform.WorkFlow BWorkFlow = new YJ.Platform.WorkFlow();
+	YJ.Platform.WorkFlowTask BWorkFlowTask = new YJ.Platform.WorkFlowTask();
+	string fieldStatus = BWorkFlow.GetFieldStatus(FlowID, StepID);
+	LitJson.JsonData initData = BWorkFlow.GetFormData(DBConnID, DBTable, DBTablePK, InstanceID, fieldStatus, "{\"crmeetingrequest.applytime\":\"yyyy-MM-dd HH:mm \",\"crmeetingrequest.beginday\":\"yyyy-MM-dd\",\"crmeetingrequest.begintime\":\"HH:mm\",\"crmeetingrequest.endday\":\"yyyy-MM-dd\",\"crmeetingrequest.endtime\":\"HH:mm\"}");
+	string TaskTitle = BWorkFlow.GetFromFieldData(initData, DBTable, DBTableTitle);
+}
+<link href="~/Scripts/FlowRun/Forms/flowform.css" rel="stylesheet" type="text/css" />
+<script src="~/Scripts/FlowRun/Forms/common.js" type="text/javascript" ></script>
+<input type="hidden" id="Form_ValidateAlertType" name="Form_ValidateAlertType" value="1" />
+<input type="hidden" id="Form_TitleField" name="Form_TitleField" value="CRMeetingRequest.ConferenceName" />
+<input type="hidden" id="Form_DBConnID" name="Form_DBConnID" value="06075250-30dc-4d32-bf97-e922cb30fac8" />
+<input type="hidden" id="Form_DBTable" name="Form_DBTable" value="CRMeetingRequest" />
+<input type="hidden" id="Form_DBTablePk" name="Form_DBTablePk" value="ID" />
+<input type="hidden" id="Form_DBTableTitle" name="Form_DBTableTitle" value="ConferenceName" />
+<input type="hidden" id="Form_AutoSaveData" name="Form_AutoSaveData" value="1" />
+<textarea id="Form_DBTableTitleExpression" name="Form_DBTableTitleExpression" style="display:none;width:0;height:0;"></textarea>
+<script type="text/javascript">
+	var initData = @Html.Raw(BWorkFlow.GetFormDataJsonString(initData));
+	var fieldStatus = "1"=="@Request.QueryString["isreadonly"]" ? {} : @Html.Raw(fieldStatus);
+	var displayModel = '@DisplayModel';
+	$(window).load(function (){
+		formrun.initData(initData, "CRMeetingRequest", fieldStatus, displayModel);
+	});
+</script>
+<script>function SelectCR(){
+    var strToObj;
+    var myDate = new Date();
+    var time1=document.getElementById("CRMeetingRequest.BeginDay").value;
+    var time2=document.getElementById("CRMeetingRequest.EndDay").value;
+    var time3=document.getElementById("CRMeetingRequest.BeginTime").value;
+    var time4=document.getElementById("CRMeetingRequest.EndTime").value;
+    if(time1==""||time2==""||time3==""||time4==""){
+     return false;
+     }
+      var obj=document.getElementById('CRMeetingRequest.ConferenceRoom');
+      var guid=newGuid();
+      obj.options.length=0;
+      obj.options.add(new Option("请选择空闲会议室",""+guid+""));
+      var url = "/PlatformApi/ConferenceRoom/SelectCR/";
+      var data = JSON.stringify({BeginDay:time1,EndDay:time2,BeginTime:time3,EndTime:time4});
+        $.ajax({
+            headers: { "__RequestVerificationToken": $("input[name='__RequestVerificationToken']").val() },
+            url: url,
+            contentType:"application/json",
+            data: data, 
+            type: "Post", 
+            dataType: "json", 
+            cache: false, 
+            async: true,
+            success: function (json) { 
+              for(var i = 0; i < json.data.length; i){
+              strToObj = JSON.parse(json.data[i]); 
+              obj.options.add(new Option(""+strToObj.Name+"",""+strToObj.ID+""));
+                i++;
+              }
+            },
+            error: function (json) {
+              alert(1);
+               
+            }
+        });
+  }
+  function SelectAddress(){
+    var ID=document.getElementById("CRMeetingRequest.ConferenceRoom").value;
+    if(ID==""){
+     document.getElementById("CRMeetingRequest.Address").value="";
+    }
+    else{
+    var url = "/PlatformApi/ConferenceRoom/SelectAddress/";
+    var data = JSON.stringify({ID:ID});
+    $.ajax({
+            headers: { "__RequestVerificationToken": $("input[name='__RequestVerificationToken']").val() },
+            url: url,
+            contentType:"application/json",
+            data: data, 
+            type: "Post", 
+            dataType: "text", 
+            cache: false, 
+            async: true,
+            success: function (json) { 
+              document.getElementById("CRMeetingRequest.Address").value=json;
+            },
+            error: function (json) {
+              alert(1);
+               
+            }
+        });
+    }
+    
+  }
+function newGuid()
+{
+    var guid = "";
+    for (var i = 1; i <= 32; i++){
+      var n = Math.floor(Math.random()*16.0).toString(16);
+      guid +=   n;
+      if((i==8)||(i==12)||(i==16)||(i==20))
+        guid += "-";
+    }
+    return guid;    
+}</script><p><input type="hidden" id="" name="" isflow="1" type1="flow_hidden" value="u_@YJ.Platform.Users.CurrentUserID.ToString()"/></p><p><br/></p><table align="center" class="flowformtable tableF table table-bordered" cellspacing="0" cellpadding="0" data-sort="sortDisabled"><tbody><tr class="firstRow"><th align="center" valign="middle" rowspan="1" colspan="2" style="word-break: break-all;"><span class="title">会 议 计 划 申 请 表</span></th></tr><tr><th align="left" class="titleT" valign="middle" rowspan="1" colspan="2"><br/></th></tr><tr class="topTr"><td align="left" class="top" valign="middle" rowspan="1" colspan="2"><p class="txt">会议名称</p><input name="CRMeetingRequest.ConferenceName" align="left" id="CRMeetingRequest.ConferenceName" type="text" value="" type1="flow_text" valuetype="0" isflow="1" class="mytext" title=""/></td></tr><tr><td align="left" valign="middle" rowspan="1" colspan="2"><p class="txt">会议议程</p><textarea isflow="1" type1="flow_textarea" id="CRMeetingRequest.PlanningConference" name="CRMeetingRequest.PlanningConference" class="mytext" style=" height:40px;"></textarea></td></tr><tr><td align="left" valign="middle" style="word-break: break-all;" rowspan="1" colspan="2"><p class="txt">会议主持人</p><input name="CRMeetingRequest.ConferenceGoal" id="CRMeetingRequest.ConferenceGoal" style="width:55%" type="text" value="" more="0" type1="flow_org" isflow="1" class="mymember" title="" dept="0" station="0" user="1" workgroup="0" unit="0" rootid="04f12beb-d99d-43df-ac9a-3042957d6bda"/></td></tr><tr class="topTr"><td align="left" class="top" valign="middle" style="word-break: break-all;" rowspan="1" colspan="1"><p class="txt">会议申请人</p><input name="CRMeetingRequest.Applicant" id="CRMeetingRequest.Applicant" style="width:55%" type="text" value="u_@YJ.Platform.Users.CurrentUserID.ToString()" more="0" type1="flow_org" isflow="1" class="mymember" title="" dept="0" station="0" user="1" workgroup="0" unit="0" rootid="04f12beb-d99d-43df-ac9a-3042957d6bda"/></td><td align="left" class="top" valign="middle" style="word-break: break-all;" rowspan="1" colspan="1"><p class="txt">申请时间</p><input name="CRMeetingRequest.ApplyTime" id="CRMeetingRequest.ApplyTime" type="text" value="@(YJ.Utility.DateTimeNew.ShortDateTime)" type1="flow_datetime" format="yyyy-MM-dd HH:mm " defaultvalue="%40(YJ.Utility.DateTimeNew.ShortDateTime)" istime="0" daybefor="0" dayafter="0" currentmonth="0" isflow="1" class="mycalendar" title=""/></td></tr><tr><td align="left" valign="middle" style="word-break: break-all;" rowspan="1" colspan="1"><p class="txt">会议开始日期</p><input name="CRMeetingRequest.BeginDay" id="CRMeetingRequest.BeginDay" type="text" value="@(YJ.Utility.DateTimeNew.ShortDate)" type1="flow_datetime" format="yyyy-MM-dd" defaultvalue="%40(YJ.Utility.DateTimeNew.ShortDate)" istime="0" daybefor="0" dayafter="1" currentmonth="0" isflow="1" class="mycalendar" title=""/></td><td align="left" valign="middle" style="word-break: break-all;" rowspan="1" colspan="1"><p class="txt">会议开始时间</p><input name="CRMeetingRequest.BeginTime" id="CRMeetingRequest.BeginTime" type="text" value="" type1="flow_datetime" format="HH:mm" defaultvalue="" istime="0" daybefor="0" dayafter="0" currentmonth="0" isflow="1" class="mycalendar" title=""/></td></tr><tr><td align="left" valign="middle" style="word-break: break-all;" rowspan="1" colspan="1"><p class="txt">会议结束日期</p><input name="CRMeetingRequest.EndDay" id="CRMeetingRequest.EndDay" type="text" value="@(YJ.Utility.DateTimeNew.ShortDate)" type1="flow_datetime" format="yyyy-MM-dd" defaultvalue="%40(YJ.Utility.DateTimeNew.ShortDate)" istime="0" daybefor="0" dayafter="1" currentmonth="0" isflow="1" class="mycalendar" title="" onchange="onchange_644767d7aa112a3d405612e15bc35c80 (this);"/><script type="text/javascript">function onchange_644767d7aa112a3d405612e15bc35c80(srcObj){SelectCR();}</script></td><td align="left" valign="middle" style="word-break: break-all;" rowspan="1" colspan="1"><p class="txt">会议结束时间</p><input name="CRMeetingRequest.EndTime" id="CRMeetingRequest.EndTime" type="text" value="" type1="flow_datetime" format="HH:mm" defaultvalue="" istime="1" daybefor="0" dayafter="0" currentmonth="0" isflow="1" class="mycalendar" title="" onchange="onchange_298530aa4841138a2f0d17a1c78f6154 (this);"/><script type="text/javascript">function onchange_298530aa4841138a2f0d17a1c78f6154(srcObj){SelectCR();}</script></td></tr><tr><td align="left" id="CR" valign="middle" rowspan="1" colspan="2"><p class="txt">会议室</p><select class="myselect" id="CRMeetingRequest.ConferenceRoom" name="CRMeetingRequest.ConferenceRoom" isflow="1" type1="flow_select" onchange="onchange_835fcbf3d1e53fef37f36e87687942de (this);"><option value=""></option>@Html.Raw(new YJ.Platform.WorkFlowForm().GetOptionsFromSql("06075250-30dc-4d32-bf97-e922cb30fac8", "select ID,Name from CRConferenceRoom", ""))</select><script type="text/javascript">function onchange_835fcbf3d1e53fef37f36e87687942de(srcObj){SelectAddress();}</script></td></tr><tr><td align="left" valign="middle" style="word-break: break-all;" rowspan="1" colspan="2"><p class="txt">参会地点</p><input name="CRMeetingRequest.Address" align="left" id="CRMeetingRequest.Address" type="text" value="" type1="flow_text" valuetype="0" isflow="1" class="mytext" title="" onchange="onchange_f3e0e99bedf5b0499437f4197eb7280a (this);"/><script type="text/javascript">function onchange_f3e0e99bedf5b0499437f4197eb7280a(srcObj){SelectAddress();}</script></td></tr><tr><td align="left" valign="middle" rowspan="1" colspan="2"><p class="txt">参会人员</p><input type="text" type1="flow_org" id="CRMeetingRequest.Participants" name="CRMeetingRequest.Participants" value="" style="width:55%" more="1" isflow="1" class="mymember" title="" dept="1" station="1" user="1" workgroup="1" unit="1" rootid="04f12beb-d99d-43df-ac9a-3042957d6bda"/></td></tr><tr><td align="left" valign="middle" rowspan="1" colspan="2"><p class="txt">注意事项</p><textarea isflow="1" type1="flow_textarea" id="CRMeetingRequest.Note" name="CRMeetingRequest.Note" class="mytext" style="height:40px;"></textarea></td></tr><tr class="bottomTr"><td align="left" class="bottom" valign="middle" style="word-break: break-all;" rowspan="1" colspan="2"><p class="txt">附件</p><input name="CRMeetingRequest.Annex" id="CRMeetingRequest.Annex" style="width:55%" type="text" value="" type1="flow_files" filetype="" isflow="1" class="myfile" title=""/></td></tr></tbody></table>

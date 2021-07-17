@@ -1,0 +1,24 @@
+﻿@{
+    ViewBag.Title = "Tree";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    string rootid = new YJ.Platform.Dictionary().GetIDByCode("AeestType").ToString();
+}
+<form id="form1" runat="server">
+    <div id="tree"></div>
+</form>
+<script type="text/javascript">
+    var AppID = '@Request.QueryString["appid"]';
+    var roadTree = null;
+    $(function ()
+    {
+        roadTree = new RoadUI.Tree({ id: "tree", path: "../../Dict/Tree1?ischild=1&root=@rootid", refreshpath: "../../Dict/TreeRefresh", onclick: openUrl });
+    });
+    function openUrl(json)
+    {
+        parent.frames[1].location = "Body?id=" + json.id + "&appid=" + AppID;
+    }
+    function reLoad(id)
+    {
+        roadTree.refresh(id);
+    }
+</script>

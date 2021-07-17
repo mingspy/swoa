@@ -1,0 +1,245 @@
+﻿@{
+    ViewBag.Title = "固定资产信息";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@model System.Data.DataTable
+<div style="width:100%;height:100%;text-align:center;">
+    <div id="AssetInfo" style="width:240px; height:240px;margin: 20px auto 20px;">
+<table align="center" class="flowformtable tableF table table-bordered"  width="400px">
+        <tbody>
+ <tr class="firstRow">
+<th align="center" valign="middle" style="word-break: break-all;" rowspan="1" colspan="4">
+<span class="title">固定资产明细信息表</span>
+</th>
+</tr>
+<tr>
+	<td valign="top" style="word-break: break-all;">资产编号</td>
+	<td valign="top" style="word-break: break-all;"><input type="text"  id="固定资产信息.资产编号"  name="固定资产信息.资产编号" value='@Model.Rows[0]["资产编号"]' align="left" valuetype="0" isflow="1" class="mytext" title=""/></td>
+	<td valign="top" style="word-break: break-all;">资产国标大类<br/></td>
+	<td valign="top" style="word-break: break-all;"><input type="text" id="固定资产信息.资产国标大类"  name="固定资产信息.资产国标大类" value='@Model.Rows[0]["资产国标大类"]' align="left" valuetype="0" isflow="1" class="mytext" title=""/></td>
+</tr>
+<tr>
+	<td valign="top" style="word-break: break-all;">资产分类<br/></td>
+	<td valign="top" style="word-break: break-all;"><input type="text" id="固定资产信息.资产分类"  name="固定资产信息.资产分类" value='@Model.Rows[0]["资产分类"]' align="left" valuetype="0" isflow="1" class="mytext" title=""/></td>
+	<td valign="top" style="word-break: break-all;">资产名称</td>
+	<td valign="top" style="word-break: break-all;"><input type="text" id="固定资产信息.资产名称"  name="固定资产信息.资产名称" value='@Model.Rows[0]["资产名称"]' align="left" valuetype="0" isflow="1" class="mytext" title=""/></td>
+</tr>
+<tr>
+	<td valign="top" style="word-break: break-all;">财务入账日志<br/></td>
+	<td valign="top" style="word-break: break-all;"><input type="text" id="固定资产信息.财务入账日期"  name="固定资产信息.财务入账日期" value='@Model.Rows[0]["财务入账日期"]' align="left" valuetype="0" isflow="1" class="mytext" title=""/></td>
+	<td valign="top" style="word-break: break-all;">价值类型</td>
+	<td valign="top" style="word-break: break-all;"><input type="text" id="固定资产信息.价值类型"  name="固定资产信息.价值类型" value='@Model.Rows[0]["价值类型"]' align="left" valuetype="0" isflow="1" class="mytext" title=""/></td>
+</tr>
+<tr>
+	<td valign="top" style="word-break: break-all;">价值</td>
+	<td valign="top" style="word-break: break-all;"><input type="text" id="固定资产信息.价值"  name="固定资产信息.价值" value='@Model.Rows[0]["价值"]' align="left" valuetype="0" isflow="1" class="mytext" title=""/></td>
+	<td valign="top" style="word-break: break-all;">取得方式</td>
+	<td valign="top" style="word-break: break-all;"><input type="text" id="固定资产信息.取得方式"  name="固定资产信息.取得方式" value='@Model.Rows[0]["取得方式"]' align="left" valuetype="0" isflow="1" class="mytext" title=""/></td>
+</tr>
+<tr>
+	<td valign="top" style="word-break: break-all;">取得日期<br/></td>
+	<td valign="top" style="word-break: break-all;"><input type="text" id="固定资产信息.取得日期"  name="固定资产信息.取得日期" value='@Model.Rows[0]["取得日期"]' align="left" valuetype="0" isflow="1" class="mytext" title=""/></td>
+	<td valign="top" style="word-break: break-all;">使用状况</td>
+	<td valign="top" style="word-break: break-all;"><input type="text" id="固定资产信息.使用状况"  name="固定资产信息.使用状况" value='@Model.Rows[0]["使用状况"]' align="left" valuetype="0" isflow="1" class="mytext" title=""/></td>
+</tr>
+<tr>
+	<td valign="top" style="word-break: break-all;">使用部门</td>
+	<td valign="top" style="word-break: break-all;"><input type="text" id="固定资产信息.使用部门"  name="固定资产信息.使用部门" value='@Model.Rows[0]["使用部门"]' align="left" valuetype="0" isflow="1" class="mytext" title=""/></td>
+	<td valign="top" style="word-break: break-all;">管理部门</td>
+	<td valign="top" style="word-break: break-all;"><input type="text" id="固定资产信息.管理部门"  name="固定资产信息.管理部门" value='@Model.Rows[0]["管理部门"]' align="left" valuetype="0" isflow="1" class="mytext" title=""/></td>
+</tr>
+<tr>
+	<td valign="top" style="word-break: break-all;">使用人<br/></td>
+	<td valign="top" style="word-break: break-all;"><input type="text" id="固定资产信息.使用人"  name="固定资产信息.使用人" value='@Model.Rows[0]["使用人"]' align="left" valuetype="0" isflow="1" class="mytext" title=""/></td>
+	<td valign="top" style="word-break: break-all;">用途分类</td>
+	<td valign="top" style="word-break: break-all;"><input type="text" id="固定资产信息.用途分类"  name="固定资产信息.用途分类" value='@Model.Rows[0]["用途分类"]' align="left" valuetype="0" isflow="1" class="mytext" title=""/></td>
+</tr>
+<tr>
+	<td valign="top" style="word-break: break-all;">产品序列号<br/></td>
+	<td valign="top" style="word-break: break-all;"><input type="text" id="固定资产信息.产品序列号"  name="固定资产信息.产品序列号" value='@Model.Rows[0]["产品序列号"]' align="left" valuetype="0" isflow="1" class="mytext" title=""/></td>
+	<td valign="top" style="word-break: break-all;">数量</td>
+	<td valign="top" style="word-break: break-all;"><input type="text" id="固定资产信息.数量"  name="固定资产信息.数量" value='@Model.Rows[0]["数量"]' align="left" valuetype="0" isflow="1" class="mytext" title=""/></td>
+</tr>
+<tr>
+	<td valign="top" style="word-break: break-all;">制单人<br/></td>
+	<td valign="top" style="word-break: break-all;"><input type="text" id="固定资产信息.制单人"  name="固定资产信息.制单人" value='@Model.Rows[0]["制单人"]' align="left" valuetype="0" isflow="1" class="mytext" title=""/></td>
+	<td valign="top" style="word-break: break-all;">制单时间</td>
+	<td valign="top" style="word-break: break-all;"><input type="text" id="固定资产信息.制单时间"  name="固定资产信息.制单时间" value='@Model.Rows[0]["制单时间"]' align="left" valuetype="0" isflow="1" class="mytext" title=""/></td>
+</tr>
+<tr>
+	<td valign="top" style="word-break: break-all;">清查编号</td>
+	<td valign="top" style="word-break: break-all;"><input type="text" id="固定资产信息.清查编号"  name="固定资产信息.清查编号" value='@Model.Rows[0]["清查编号"]' align="left" valuetype="0" isflow="1" class="mytext" title=""/></td>
+	<td valign="top" style="word-break: break-all;">所属单位</td>
+	<td valign="top" style="word-break: break-all;"><input type="text" id="固定资产信息.所属单位"  name="固定资产信息.所属单位" value='@Model.Rows[0]["所属单位"]' align="left" valuetype="0" isflow="1" class="mytext" title=""/></td>
+</tr>
+<tr>
+	<td valign="top" style="word-break: break-all;">卡片状态<br/></td>
+	<td valign="top" style="word-break: break-all;"><input type="text" id="固定资产信息.卡片状态"  name="固定资产信息.卡片状态" value='@Model.Rows[0]["卡片状态"]' align="left" valuetype="0" isflow="1" class="mytext" title=""/></td>
+	<td valign="top" style="word-break: break-all;">折旧年限</td>
+	<td valign="top" style="word-break: break-all;"><input type="text" id="固定资产信息.折旧年限"  name="固定资产信息.折旧年限" value='@Model.Rows[0]["折旧年限"]' align="left" valuetype="0" isflow="1" class="mytext" title=""/></td>
+</tr>
+<tr>
+	<td valign="top" style="word-break: break-all;">累计折旧<br/></td>
+	<td valign="top" style="word-break: break-all;"><input type="text" id="固定资产信息.累计折旧"  name="固定资产信息.累计折旧" value='@Model.Rows[0]["累计折旧"]' align="left" valuetype="0" isflow="1" class="mytext" title=""/></td>
+	<td valign="top" style="word-break: break-all;">已提折旧月数</td>
+	<td valign="top" style="word-break: break-all;"><input type="text" id="固定资产信息.已提折旧月数"  name="固定资产信息.已提折旧月数" value='@Model.Rows[0]["已提折旧月数"]' align="left" valuetype="0" isflow="1" class="mytext" title=""/></td>
+</tr>
+<tr>
+	<td valign="top" style="word-break: break-all;">月折旧额<br/></td>
+	<td valign="top" style="word-break: break-all;"><input type="text" id="固定资产信息.月折旧额"  name="固定资产信息.月折旧额" value='@Model.Rows[0]["月折旧额"]' align="left" valuetype="0" isflow="1" class="mytext" title=""/></td>
+	<td valign="top" style="word-break: break-all;">折旧方法</td>
+	<td valign="top" style="word-break: break-all;"><input type="text" id="固定资产信息.折旧方法"  name="固定资产信息.折旧方法" value='@Model.Rows[0]["折旧方法"]' align="left" valuetype="0" isflow="1" class="mytext" title=""/></td>
+</tr>
+<tr>
+	<td valign="top" style="word-break: break-all;">净值<br/></td>
+	<td valign="top" style="word-break: break-all;"><input type="text" id="固定资产信息.净值"  name="固定资产信息.净值" value='@Model.Rows[0]["净值"]' align="left" valuetype="0" isflow="1" class="mytext" title=""/></td>
+	<td valign="top" style="word-break: break-all;">项目预算编号</td>
+	<td valign="top" style="word-break: break-all;"><input type="text" id="固定资产信息.预算项目编号"  name="固定资产信息.预算项目编号" value='@Model.Rows[0]["预算项目编号"]' align="left" valuetype="0" isflow="1" class="mytext" title=""/></td>
+</tr>
+<tr>
+	<td valign="top" style="word-break: break-all;">采购组织形式<br/></td>
+	<td valign="top" style="word-break: break-all;"><input type="text" id="固定资产信息.采购组织形式"  name="固定资产信息.采购组织形式" value='@Model.Rows[0]["采购组织形式"]' align="left" valuetype="0" isflow="1" class="mytext" title=""/></td>
+	<td valign="top" style="word-break: break-all;">持证人</td>
+	<td valign="top" style="word-break: break-all;"><input type="text" id="固定资产信息.持证人"  name="固定资产信息.持证人" value='@Model.Rows[0]["持证人"]' align="left" valuetype="0" isflow="1" class="mytext" title=""/></td>
+</tr>
+<tr>
+	<td valign="top" style="word-break: break-all;">品牌</td>
+	<td valign="top" style="word-break: break-all;"><input type="text" id="固定资产信息.品牌"  name="固定资产信息.品牌" value='@Model.Rows[0]["品牌"]' align="left" valuetype="0" isflow="1" class="mytext" title=""/></td>
+	<td valign="top" style="word-break: break-all;">规格型号</td>
+	<td valign="top" style="word-break: break-all;"><input type="text" id="固定资产信息.规格型号"  name="固定资产信息.规格型号" value='@Model.Rows[0]["规格型号"]' align="left" valuetype="0" isflow="1" class="mytext" title=""/></td>
+</tr>
+<tr>
+	<td valign="top" style="word-break: break-all;">存放地点</td>
+	<td valign="top" style="word-break: break-all;"><input type="text" id="固定资产信息.存放地点"  name="固定资产信息.存放地点" value='@Model.Rows[0]["存放地点"]' align="left" valuetype="0" isflow="1" class="mytext" title=""/></td>
+	<td valign="top" style="word-break: break-all;">生产厂家</td>
+	<td valign="top" style="word-break: break-all;"><input type="text" id="固定资产信息.生产厂家"  name="固定资产信息.生产厂家" value='@Model.Rows[0]["生产厂家"]' align="left" valuetype="0" isflow="1" class="mytext" title=""/></td>
+</tr>
+<tr>
+	<td valign="top" style="word-break: break-all;">销售商</td>
+	<td valign="top" style="word-break: break-all;"><input type="text" id="固定资产信息.销售商"  name="固定资产信息.销售商" value='@Model.Rows[0]["销售商"]' align="left" valuetype="0" isflow="1" class="mytext" title=""/></td>
+	<td valign="top" style="word-break: break-all;">合同编号</td>
+	<td valign="top" style="word-break: break-all;"><input type="text" id="固定资产信息.合同编号"  name="固定资产信息.合同编号" value='@Model.Rows[0]["合同编号"]' align="left" valuetype="0" isflow="1" class="mytext" title=""/></td>
+</tr>
+<tr>
+	<td valign="top" style="word-break: break-all;">发票号</td>
+	<td valign="top" style="word-break: break-all;"><input type="text" id="固定资产信息.发票号"  name="固定资产信息.发票号" value='@Model.Rows[0]["发票号"]' align="left" valuetype="0" isflow="1" class="mytext" title=""/></td>
+	<td valign="top" style="word-break: break-all;">财政拨款</td>
+	<td valign="top" style="word-break: break-all;"><input type="text" id="固定资产信息.财政拨款"  name="固定资产信息.财政拨款" value='@Model.Rows[0]["财政拨款"]' align="left" valuetype="0" isflow="1" class="mytext" title=""/></td>
+</tr>
+<tr>
+	<td valign="top" style="word-break: break-all;">非财政拨款</td>
+	<td valign="top" style="word-break: break-all;"><input type="text" id="固定资产信息.非财政拨款"  name="固定资产信息.非财政拨款" value='@Model.Rows[0]["非财政拨款"]' align="left" valuetype="0" isflow="1" class="mytext" title=""/></td>
+	<td valign="top" style="word-break: break-all;">会计凭证号</td>
+	<td valign="top" style="word-break: break-all;"><input type="text" id="固定资产信息.会计凭证号"  name="固定资产信息.会计凭证号" value='@Model.Rows[0]["会计凭证号"]' align="left" valuetype="0" isflow="1" class="mytext" title=""/></td>
+</tr>
+<tr>
+	<td valign="top" style="word-break: break-all;">[折旧/摊销状态]</td>
+	<td valign="top" style="word-break: break-all;"><input type="text" id="固定资产信息.折旧/摊销状态"  name="固定资产信息.折旧/摊销状态" value='@Model.Rows[0]["折旧/摊销状态"]' align="left" valuetype="0" isflow="1" class="mytext" title=""/></td>
+	<td valign="top" style="word-break: break-all;">残值</td>
+	<td valign="top" style="word-break: break-all;"><input type="text" id="固定资产信息.残值"  name="固定资产信息.残值" value='@Model.Rows[0]["残值"]' align="left" valuetype="0" isflow="1" class="mytext" title=""/></td>
+</tr>
+<tr>
+	<td valign="top" style="word-break: break-all;">残值率</td>
+	<td valign="top" style="word-break: break-all;"><input type="text" id="固定资产信息.残值率"  name="固定资产信息.残值率" value='@Model.Rows[0]["残值率"]' align="left" valuetype="0" isflow="1" class="mytext" title=""/></td>
+	<td valign="top" style="word-break: break-all;">备注</td>
+	<td valign="top" style="word-break: break-all;"><input type="text" id="固定资产信息.备注"  name="固定资产信息.备注" value='@Model.Rows[0]["备注"]' align="left" valuetype="0" isflow="1" class="mytext" title=""/></td>
+</tr>
+<tr>
+	<td valign="top" style="word-break: break-all;">[使用权面积/建筑面积]</td>
+	<td valign="top" style="word-break: break-all;"><input type="text" id="固定资产信息.使用权面积/建筑面积"  name="固定资产信息.使用权面积/建筑面积" value='@Model.Rows[0]["使用权面积/建筑面积"]' align="left" valuetype="0" isflow="1" class="mytext" title=""/></td>
+	<td valign="top" style="word-break: break-all;">取暖面积</td>
+	<td valign="top" style="word-break: break-all;"><input type="text" id="固定资产信息.取暖面积"  name="固定资产信息.取暖面积" value='@Model.Rows[0]["取暖面积"]' align="left" valuetype="0" isflow="1" class="mytext" title=""/></td>
+</tr>
+<tr>
+	<td valign="top" style="word-break: break-all;">危房面积</td>
+	<td valign="top" style="word-break: break-all;"><input type="text" id="固定资产信息.危房面积"  name="固定资产信息.危房面积" value='@Model.Rows[0]["危房面积"]' align="left" valuetype="0" isflow="1" class="mytext" title=""/></td>
+	<td valign="top" style="word-break: break-all;">建筑结构</td>
+	<td valign="top" style="word-break: break-all;"><input type="text" id="固定资产信息.建筑结构"  name="固定资产信息.建筑结构" value='@Model.Rows[0]["建筑结构"]' align="left" valuetype="0" isflow="1" class="mytext" title=""/></td>
+</tr>
+<tr>
+	<td valign="top" style="word-break: break-all;">设计用途</td>
+	<td valign="top" style="word-break: break-all;"><input type="text" id="固定资产信息.设计用途"  name="固定资产信息.设计用途" value='@Model.Rows[0]["设计用途"]' align="left" valuetype="0" isflow="1" class="mytext" title=""/></td>
+	<td valign="top" style="word-break: break-all;">产权形式</td>
+	<td valign="top" style="word-break: break-all;"><input type="text" id="固定资产信息.产权形式"  name="固定资产信息.产权形式" value='@Model.Rows[0]["产权形式"]' align="left" valuetype="0" isflow="1" class="mytext" title=""/></td>
+</tr>
+<tr>
+	<td valign="top" style="word-break: break-all;">权属证号</td>
+	<td valign="top" style="word-break: break-all;"><input type="text" id="固定资产信息.权属性质"  name="固定资产信息.权属性质" value='@Model.Rows[0]["权属性质"]' align="left" valuetype="0" isflow="1" class="mytext" title=""/></td>
+	<td valign="top" style="word-break: break-all;">土地使用权类型</td>
+	<td valign="top" style="word-break: break-all;"><input type="text" id="固定资产信息.土地使用权类型"  name="固定资产信息.土地使用权类型" value='@Model.Rows[0]["土地使用权类型"]' align="left" valuetype="0" isflow="1" class="mytext" title=""/></td>
+</tr>
+<tr>
+	<td valign="top" style="word-break: break-all;">发证日期</td>
+	<td valign="top" style="word-break: break-all;"><input type="text" id="固定资产信息.发证日期"  name="固定资产信息.发证日期" value='@Model.Rows[0]["发证日期"]' align="left" valuetype="0" isflow="1" class="mytext" title=""/></td>
+	<td valign="top" style="word-break: break-all;">[地类（用途）]</td>
+	<td valign="top" style="word-break: break-all;"><input type="text" id="固定资产信息.地类（用途）"  name="固定资产信息.地类（用途）" value='@Model.Rows[0]["地类（用途）"]' align="left" valuetype="0" isflow="1" class="mytext" title=""/></td>
+</tr>
+<tr>
+	<td valign="top" style="word-break: break-all;">土地级次</td>
+	<td valign="top" style="word-break: break-all;"><input type="text" id="固定资产信息.土地级次"  name="固定资产信息.土地级次" value='@Model.Rows[0]["土地级次"]' align="left" valuetype="0" isflow="1" class="mytext" title=""/></td>
+	<td valign="top" style="word-break: break-all;">坐落位置</td>
+	<td valign="top" style="word-break: break-all;"><input type="text" id="固定资产信息.坐落位置"  name="固定资产信息.坐落位置" value='@Model.Rows[0]["坐落位置"]' align="left" valuetype="0" isflow="1" class="mytext" title=""/></td>
+</tr>
+<tr>
+	<td valign="top" style="word-break: break-all;">车辆用途</td>
+	<td valign="top" style="word-break: break-all;"><input type="text" id="固定资产信息.车辆用途"  name="固定资产信息.车辆用途" value='@Model.Rows[0]["车辆用途"]' align="left" valuetype="0" isflow="1" class="mytext" title=""/></td>
+	<td valign="top" style="word-break: break-all;">车辆产地</td>
+	<td valign="top" style="word-break: break-all;"><input type="text" id="固定资产信息.车辆产地"  name="固定资产信息.车辆产地" value='@Model.Rows[0]["车辆产地"]' align="left" valuetype="0" isflow="1" class="mytext" title=""/></td>
+</tr>
+<tr>
+	<td valign="top" style="word-break: break-all;">车牌号</td>
+	<td valign="top" style="word-break: break-all;"><input type="text" id="固定资产信息.车牌号"  name="固定资产信息.车牌号" value='@Model.Rows[0]["车牌号"]' align="left" valuetype="0" isflow="1" class="mytext" title=""/></td>
+	<td valign="top" style="word-break: break-all;">车架号</td>
+	<td valign="top" style="word-break: break-all;"><input type="text" id="固定资产信息.车架号"  name="固定资产信息.车架号" value='@Model.Rows[0]["车架号"]' align="left" valuetype="0" isflow="1" class="mytext" title=""/></td>
+</tr>
+<tr>
+	<td valign="top" style="word-break: break-all;">发动机号</td>
+	<td valign="top" style="word-break: break-all;"><input type="text" id="固定资产信息.发动机号"  name="固定资产信息.发动机号" value='@Model.Rows[0]["发动机号"]' align="left" valuetype="0" isflow="1" class="mytext" title=""/></td>
+	<td valign="top" style="word-break: break-all;">汽车排气量</td>
+	<td valign="top" style="word-break: break-all;"><input type="text" id="固定资产信息.汽车排气量"  name="固定资产信息.汽车排气量" value='@Model.Rows[0]["汽车排气量"]' align="left" valuetype="0" isflow="1" class="mytext" title=""/></td>
+</tr>
+<tr>
+	<td valign="top" style="word-break: break-all;">汽车行驶证</td>
+	<td valign="top" style="word-break: break-all;"><input type="text" id="固定资产信息.车辆行驶证"  name="固定资产信息.车辆行驶证" value='@Model.Rows[0]["车辆行驶证"]' align="left" valuetype="0" isflow="1" class="mytext" title=""/></td>
+	<td valign="top" style="word-break: break-all;">注册登记日期</td>
+	<td valign="top" style="word-break: break-all;"><input type="text" id="固定资产信息.注册登记日期"  name="固定资产信息.注册登记日期" value='@Model.Rows[0]["注册登记日期"]' align="left" valuetype="0" isflow="1" class="mytext" title=""/></td>
+</tr>
+<tr>
+	<td valign="top" style="word-break: break-all;">统一受控编号</td>
+	<td valign="top" style="word-break: break-all;"><input type="text" id="固定资产信息.统一受控编号"  name="固定资产信息.统一受控编号" value='@Model.Rows[0]["统一受控编号"]' align="left" valuetype="0" isflow="1" class="mytext" title=""/></td>
+	<td valign="top" style="word-break: break-all;"><br/></td>
+	<td valign="top" style="word-break: break-all;"><br/></td>
+</tr>
+<tr>
+	<td valign="top" style="word-break: break-all;">附件</td>
+	<td valign="top" style="word-break: break-all;" rowspan="1" colspan="3"><input type="text" type1="flow_files" id="固定资产信息.附件" name="固定资产信息.附件" value='@Model.Rows[0]["附件"]' filetype="" isflow="1" class="myfile" title=""/></td>
+</tr>
+</tbody></table><p><br/></p><p><br/></p><p><br/></p>
+    </div>
+   
+</div>
+
+<input type="checkbox" value="ZY2020000010 name=" checkbox_app"="" id="68CE40D0-CAD4-4279-8C1F-558D99513E3E style=" vertical-align:middle;"="">
+<input type="checkbox" value="ZY2020000010 name="checkbox_app" id="68CE40D0-CAD4-4279-8C1F-558D99513E3E style="vertical-align:middle;"/>ZY2020000010
+<input type="checkbox" value="ZY2019000024" name="checkbox_app" id="DFA18C86-210A-451F-B6FA-C6D48076320A" style="vertical-align:middle;"/>ZY2019000024
+<input type="checkbox" value="ZY2020000010" name="checkbox_app" id="68CE40D0-CAD4-4279-8C1F-558D99513E3E" style="vertical-align:middle;">
+
+
+
+
+function readradio() {          
+    var item = null;
+    var obj = document.getElementsByName("checkbox_app")
+    for (var i = 0; i < obj.length; i++) { //遍历Radio 
+        if (obj[i].checked) {
+            item += obj[i].value;                   
+        }
+    }
+	alert(item);
+}
+
+top.openApp('/WeiXin/AssetsQrCode/GetQrCode?AssetsID='+no, 2, '固定资产二维码打印', 'Assets_print', 350, 400);
+top.openApp('/WeiXin/AssetsQrCode/BatchRemove?AssetsIDs='+item，2, '批量删除', 'AssetsRemove', 350, 400);
+
+
+

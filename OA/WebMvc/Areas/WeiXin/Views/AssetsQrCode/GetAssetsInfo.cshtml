@@ -1,0 +1,221 @@
+﻿@{
+    ViewBag.Title = "固定资产信息";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@model System.Data.DataTable
+<div style="width:100%;height:100%;text-align:center;">
+    <div id="AssetInfo" style="width:240px; height:240px;margin: 20px 0px 0px 0px;">
+<table align="center" class="flowformtable tableF table table-bordered"  width="400px">
+        <tbody>
+ <tr class="firstRow">
+<th align="center" valign="middle" style="word-break: break-all;" rowspan="1" colspan="4">
+<span class="title">固定资产明细信息表</span>
+</th>
+</tr>
+<tr>
+	<td valign="top" style="word-break: break-all;">资产编号</td>
+	<td valign="top" style="word-break: break-all;"><p class="txt">@Model.Rows[0]["资产编号"]</p></td>
+	<td valign="top" style="word-break: break-all;">资产国标大类<br/></td>
+	<td valign="top" style="word-break: break-all;"><p class="txt">@Model.Rows[0]["资产国标大类"]</p></td>
+</tr>
+<tr>
+	<td valign="top" style="word-break: break-all;">资产分类<br/></td>
+	<td valign="top" style="word-break: break-all;"><p class="txt">@Model.Rows[0]["资产分类"]</p></td>
+	<td valign="top" style="word-break: break-all;">资产名称</td>
+	<td valign="top" style="word-break: break-all;"><p class="txt">@Model.Rows[0]["资产名称"]</p></td>
+</tr>
+<tr>
+	<td valign="top" style="word-break: break-all;">财务入账日志<br/></td>
+	<td valign="top" style="word-break: break-all;"><p class="txt">@Model.Rows[0]["财务入账日期"]</p></td>
+	<td valign="top" style="word-break: break-all;">价值类型</td>
+	<td valign="top" style="word-break: break-all;"><p class="txt">@Model.Rows[0]["价值类型"]</p></td>
+</tr>
+<tr>
+	<td valign="top" style="word-break: break-all;">价值</td>
+	<td valign="top" style="word-break: break-all;"><p class="txt">@Model.Rows[0]["价值"]</p></td>
+	<td valign="top" style="word-break: break-all;">取得方式</td>
+	<td valign="top" style="word-break: break-all;"><p class="txt">@Model.Rows[0]["取得方式"]</p></td>
+</tr>
+<tr>
+	<td valign="top" style="word-break: break-all;">取得日期<br/></td>
+	<td valign="top" style="word-break: break-all;"><p class="txt">@Model.Rows[0]["取得日期"]</p></td>
+	<td valign="top" style="word-break: break-all;">使用状况</td>
+	<td valign="top" style="word-break: break-all;"><p class="txt">@Model.Rows[0]["使用状况"]</p></td>
+</tr>
+<tr>
+	<td valign="top" style="word-break: break-all;">使用部门</td>
+	<td valign="top" style="word-break: break-all;"><p class="txt">@Model.Rows[0]["使用部门"]</p></td>
+	<td valign="top" style="word-break: break-all;">管理部门</td>
+	<td valign="top" style="word-break: break-all;"><p class="txt">@Model.Rows[0]["管理部门"]</p></td>
+</tr>
+<tr>
+	<td valign="top" style="word-break: break-all;">使用人<br/></td>
+	<td valign="top" style="word-break: break-all;"><p class="txt">@Model.Rows[0]["使用人"]</p></td>
+	<td valign="top" style="word-break: break-all;">用途分类</td>
+	<td valign="top" style="word-break: break-all;"><p class="txt">@Model.Rows[0]["用途分类"]</p></td>
+</tr>
+<tr>
+	<td valign="top" style="word-break: break-all;">产品序列号<br/></td>
+	<td valign="top" style="word-break: break-all;"><p class="txt">@Model.Rows[0]["产品序列号"]</p></td>
+	<td valign="top" style="word-break: break-all;">数量</td>
+	<td valign="top" style="word-break: break-all;"><p class="txt">@Model.Rows[0]["数量"]</p></td>
+</tr>
+<tr>
+	<td valign="top" style="word-break: break-all;">制单人<br/></td>
+	<td valign="top" style="word-break: break-all;"><p class="txt">@Model.Rows[0]["制单人"]</p></td>
+	<td valign="top" style="word-break: break-all;">制单时间</td>
+	<td valign="top" style="word-break: break-all;"><p class="txt">@Model.Rows[0]["制单时间"]</p></td>
+</tr>
+<tr>
+	<td valign="top" style="word-break: break-all;">清查编号</td>
+	<td valign="top" style="word-break: break-all;"><p class="txt">@Model.Rows[0]["清查编号"]</p></td>
+	<td valign="top" style="word-break: break-all;">所属单位</td>
+	<td valign="top" style="word-break: break-all;"><p class="txt">@Model.Rows[0]["所属单位"]</p></td>
+</tr>
+<tr>
+	<td valign="top" style="word-break: break-all;">卡片状态<br/></td>
+	<td valign="top" style="word-break: break-all;"><p class="txt">@Model.Rows[0]["卡片状态"]</p></td>
+	<td valign="top" style="word-break: break-all;">折旧年限</td>
+	<td valign="top" style="word-break: break-all;"><p class="txt">@Model.Rows[0]["折旧年限"]</p></td>
+</tr>
+<tr>
+	<td valign="top" style="word-break: break-all;">累计折旧<br/></td>
+	<td valign="top" style="word-break: break-all;"><p class="txt">@Model.Rows[0]["累计折旧"]</p></td>
+	<td valign="top" style="word-break: break-all;">已提折旧月数</td>
+	<td valign="top" style="word-break: break-all;"><p class="txt">@Model.Rows[0]["已提折旧月数"]</p></td>
+</tr>
+<tr>
+	<td valign="top" style="word-break: break-all;">月折旧额<br/></td>
+	<td valign="top" style="word-break: break-all;"><p class="txt">@Model.Rows[0]["月折旧额"]</p></td>
+	<td valign="top" style="word-break: break-all;">折旧方法</td>
+	<td valign="top" style="word-break: break-all;"><p class="txt">@Model.Rows[0]["折旧方法"]</p></td>
+</tr>
+<tr>
+	<td valign="top" style="word-break: break-all;">净值<br/></td>
+	<td valign="top" style="word-break: break-all;"><p class="txt">@Model.Rows[0]["净值"]</p></td>
+	<td valign="top" style="word-break: break-all;">项目预算编号</td>
+	<td valign="top" style="word-break: break-all;"><p class="txt">@Model.Rows[0]["预算项目编号"]</p></td>
+</tr>
+<tr>
+	<td valign="top" style="word-break: break-all;">采购组织形式<br/></td>
+	<td valign="top" style="word-break: break-all;"><p class="txt">@Model.Rows[0]["采购组织形式"]</p></td>
+	<td valign="top" style="word-break: break-all;">持证人</td>
+	<td valign="top" style="word-break: break-all;"><p class="txt">@Model.Rows[0]["持证人"]</p></td>
+</tr>
+<tr>
+	<td valign="top" style="word-break: break-all;">品牌</td>
+	<td valign="top" style="word-break: break-all;"><p class="txt">@Model.Rows[0]["品牌"]</p></td>
+	<td valign="top" style="word-break: break-all;">规格型号</td>
+	<td valign="top" style="word-break: break-all;"><p class="txt">@Model.Rows[0]["规格型号"]</p></td>
+</tr>
+<tr>
+	<td valign="top" style="word-break: break-all;">存放地点</td>
+	<td valign="top" style="word-break: break-all;"><p class="txt">@Model.Rows[0]["存放地点"]</p></td>
+	<td valign="top" style="word-break: break-all;">生产厂家</td>
+	<td valign="top" style="word-break: break-all;"><p class="txt">@Model.Rows[0]["生产厂家"]</p></td>
+</tr>
+<tr>
+	<td valign="top" style="word-break: break-all;">销售商</td>
+	<td valign="top" style="word-break: break-all;"><p class="txt">@Model.Rows[0]["销售商"]</p></td>
+	<td valign="top" style="word-break: break-all;">合同编号</td>
+	<td valign="top" style="word-break: break-all;"><p class="txt">@Model.Rows[0]["合同编号"]</p></td>
+</tr>
+<tr>
+	<td valign="top" style="word-break: break-all;">发票号</td>
+	<td valign="top" style="word-break: break-all;"><p class="txt">@Model.Rows[0]["发票号"]</p></td>
+	<td valign="top" style="word-break: break-all;">财政拨款</td>
+	<td valign="top" style="word-break: break-all;"><p class="txt">@Model.Rows[0]["财政拨款"]</p></td>
+</tr>
+<tr>
+	<td valign="top" style="word-break: break-all;">非财政拨款</td>
+	<td valign="top" style="word-break: break-all;"><p class="txt">@Model.Rows[0]["非财政拨款"]</p></td>
+	<td valign="top" style="word-break: break-all;">会计凭证号</td>
+	<td valign="top" style="word-break: break-all;"><p class="txt">@Model.Rows[0]["会计凭证号"]</p></td>
+</tr>
+<tr>
+	<td valign="top" style="word-break: break-all;">[折旧/摊销状态]</td>
+	<td valign="top" style="word-break: break-all;"><p class="txt">@Model.Rows[0]["折旧/摊销状态"]</p></td>
+	<td valign="top" style="word-break: break-all;">残值</td>
+	<td valign="top" style="word-break: break-all;"><p class="txt">@Model.Rows[0]["残值"]</p></td>
+</tr>
+<tr>
+	<td valign="top" style="word-break: break-all;">残值率</td>
+	<td valign="top" style="word-break: break-all;"><p class="txt">@Model.Rows[0]["残值率"]</p></td>
+	<td valign="top" style="word-break: break-all;">备注</td>
+	<td valign="top" style="word-break: break-all;"><p class="txt">@Model.Rows[0]["备注"]</p></td>
+</tr>
+<tr>
+	<td valign="top" style="word-break: break-all;">[使用权面积/建筑面积]</td>
+	<td valign="top" style="word-break: break-all;"><p class="txt">@Model.Rows[0]["使用权面积/建筑面积"]</p></td>
+	<td valign="top" style="word-break: break-all;">取暖面积</td>
+	<td valign="top" style="word-break: break-all;"><p class="txt">@Model.Rows[0]["取暖面积"]</p></td>
+</tr>
+<tr>
+	<td valign="top" style="word-break: break-all;">危房面积</td>
+	<td valign="top" style="word-break: break-all;"><p class="txt">@Model.Rows[0]["危房面积"]</p></td>
+	<td valign="top" style="word-break: break-all;">建筑结构</td>
+	<td valign="top" style="word-break: break-all;"><p class="txt">@Model.Rows[0]["建筑结构"]</p></td>
+</tr>
+<tr>
+	<td valign="top" style="word-break: break-all;">设计用途</td>
+	<td valign="top" style="word-break: break-all;"><p class="txt">@Model.Rows[0]["设计用途"]</p></td>
+	<td valign="top" style="word-break: break-all;">产权形式</td>
+	<td valign="top" style="word-break: break-all;"><p class="txt">@Model.Rows[0]["产权形式"]</p></td>
+</tr>
+<tr>
+	<td valign="top" style="word-break: break-all;">权属证号</td>
+	<td valign="top" style="word-break: break-all;"><p class="txt">@Model.Rows[0]["权属性质"]</p></td>
+	<td valign="top" style="word-break: break-all;">土地使用权类型</td>
+	<td valign="top" style="word-break: break-all;"><p class="txt">@Model.Rows[0]["土地使用权类型"]</p></td>
+</tr>
+<tr>
+	<td valign="top" style="word-break: break-all;">发证日期</td>
+	<td valign="top" style="word-break: break-all;"><p class="txt">@Model.Rows[0]["发证日期"]</p></td>
+	<td valign="top" style="word-break: break-all;">[地类（用途）]</td>
+	<td valign="top" style="word-break: break-all;"><p class="txt">@Model.Rows[0]["地类（用途）"]</p></td>
+</tr>
+<tr>
+	<td valign="top" style="word-break: break-all;">土地级次</td>
+	<td valign="top" style="word-break: break-all;"><p class="txt">@Model.Rows[0]["土地级次"]</p></td>
+	<td valign="top" style="word-break: break-all;">坐落位置</td>
+	<td valign="top" style="word-break: break-all;"><p class="txt">@Model.Rows[0]["坐落位置"]</p></td>
+</tr>
+<tr>
+	<td valign="top" style="word-break: break-all;">车辆用途</td>
+	<td valign="top" style="word-break: break-all;"><p class="txt">@Model.Rows[0]["车辆用途"]</p></td>
+	<td valign="top" style="word-break: break-all;">车辆产地</td>
+	<td valign="top" style="word-break: break-all;"><p class="txt">@Model.Rows[0]["车辆产地"]</p></td>
+</tr>
+<tr>
+	<td valign="top" style="word-break: break-all;">车牌号</td>
+	<td valign="top" style="word-break: break-all;"><p class="txt">@Model.Rows[0]["车牌号"]</p></td>
+	<td valign="top" style="word-break: break-all;">车架号</td>
+	<td valign="top" style="word-break: break-all;"><p class="txt">@Model.Rows[0]["车架号"]</p></td>
+</tr>
+<tr>
+	<td valign="top" style="word-break: break-all;">发动机号</td>
+	<td valign="top" style="word-break: break-all;"><p class="txt">@Model.Rows[0]["发动机号"]</p></td>
+	<td valign="top" style="word-break: break-all;">汽车排气量</td>
+	<td valign="top" style="word-break: break-all;"><p class="txt">@Model.Rows[0]["汽车排气量"]</p></td>
+</tr>
+<tr>
+	<td valign="top" style="word-break: break-all;">汽车行驶证</td>
+	<td valign="top" style="word-break: break-all;"><p class="txt">@Model.Rows[0]["车辆行驶证"]</p></td>
+	<td valign="top" style="word-break: break-all;">注册登记日期</td>
+	<td valign="top" style="word-break: break-all;"><p class="txt">@Model.Rows[0]["注册登记日期"]</p></td>
+</tr>
+<tr>
+	<td valign="top" style="word-break: break-all;">统一受控编号</td>
+	<td valign="top" style="word-break: break-all;"><p class="txt">@Model.Rows[0]["统一受控编号"]</p></td>
+	<td valign="top" style="word-break: break-all;"><br/></td>
+	<td valign="top" style="word-break: break-all;"><br/></td>
+</tr>
+<tr>
+	<td valign="top" style="word-break: break-all;">附件</td>
+	<td valign="top" style="word-break: break-all;" rowspan="1" colspan="3"><input type="text" type1="flow_files" id="一般固定资产信息.附件" name="一般固定资产信息.附件" value='@Model.Rows[0]["附件"]' filetype="" isflow="1" class="myfile" title="" /></td>
+</tr>
+</tbody></table><p><br/></p><p><br/></p><p><br/></p>
+    </div>
+   
+</div>
+

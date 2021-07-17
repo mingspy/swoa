@@ -1,0 +1,38 @@
+﻿@{
+	string FlowID = Request.QueryString["flowid"];
+	string StepID = Request.QueryString["stepid"];
+	string GroupID = Request.QueryString["groupid"];
+	string TaskID = Request.QueryString["taskid"];
+	string InstanceID = Request.QueryString["instanceid"];
+	string DisplayModel = Request.QueryString["display"] ?? "0";
+	string DBConnID = "06075250-30dc-4d32-bf97-e922cb30fac8";
+	string DBTable = "AmHcChemicalReagent";
+	string DBTablePK = "ID";
+	string DBTableTitle = "Name";
+	if(InstanceID.IsNullOrEmpty()){InstanceID = Request.QueryString["instanceid1"];}
+	YJ.Platform.Dictionary BDictionary = new YJ.Platform.Dictionary();
+	YJ.Platform.WorkFlow BWorkFlow = new YJ.Platform.WorkFlow();
+	YJ.Platform.WorkFlowTask BWorkFlowTask = new YJ.Platform.WorkFlowTask();
+	string fieldStatus = BWorkFlow.GetFieldStatus(FlowID, StepID);
+	LitJson.JsonData initData = BWorkFlow.GetFormData(DBConnID, DBTable, DBTablePK, InstanceID, fieldStatus, "{}");
+	string TaskTitle = BWorkFlow.GetFromFieldData(initData, DBTable, DBTableTitle);
+}
+<link href="~/Scripts/FlowRun/Forms/flowform.css" rel="stylesheet" type="text/css" />
+<script src="~/Scripts/FlowRun/Forms/common.js" type="text/javascript" ></script>
+<input type="hidden" id="Form_ValidateAlertType" name="Form_ValidateAlertType" value="1" />
+<input type="hidden" id="Form_TitleField" name="Form_TitleField" value="AmHcChemicalReagent.Name" />
+<input type="hidden" id="Form_DBConnID" name="Form_DBConnID" value="06075250-30dc-4d32-bf97-e922cb30fac8" />
+<input type="hidden" id="Form_DBTable" name="Form_DBTable" value="AmHcChemicalReagent" />
+<input type="hidden" id="Form_DBTablePk" name="Form_DBTablePk" value="ID" />
+<input type="hidden" id="Form_DBTableTitle" name="Form_DBTableTitle" value="Name" />
+<input type="hidden" id="Form_AutoSaveData" name="Form_AutoSaveData" value="1" />
+<textarea id="Form_DBTableTitleExpression" name="Form_DBTableTitleExpression" style="display:none;width:0;height:0;">标准物质-{Name}</textarea>
+<script type="text/javascript">
+	var initData = @Html.Raw(BWorkFlow.GetFormDataJsonString(initData));
+	var fieldStatus = "1"=="@Request.QueryString["isreadonly"]" ? {} : @Html.Raw(fieldStatus);
+	var displayModel = '@DisplayModel';
+	$(window).load(function (){
+		formrun.initData(initData, "AmHcChemicalReagent", fieldStatus, displayModel);
+	});
+</script>
+<p><input type="hidden" id="AmHcChemicalReagent.CreateUId" name="AmHcChemicalReagent.CreateUId" isflow="1" type1="flow_hidden" value="u_@YJ.Platform.Users.CurrentUserID.ToString()"/></p><p><br/></p><link href="~/Content/Theme/tablenew.css" rel="stylesheet"/><table class="flowformtable tableF table table-bordered" data-sort="sortDisabled" cellspacing="0" cellpadding="0" align="center"><tbody><tr class="firstRow"><th rowspan="1" colspan="2" valign="middle" align="center"><span class="title">化学试剂信息</span></th></tr><tr><th class="titleT" rowspan="1" colspan="2" valign="middle" align="left"><p class="titleO">试剂信息</p></th></tr><tr class="topTr"><td class="top" rowspan="1" colspan="1" valign="middle" align="left"><p class="txt">试剂名称</p><input type="text" id="AmHcChemicalReagent.Name" type1="flow_text" name="AmHcChemicalReagent.Name" value="" valuetype="0" isflow="1" class="mytext" title="" align="left"/></td><td class="top" rowspan="1" colspan="1" valign="middle" align="left"><p class="txt">等级</p><input type="text" id="AmHcChemicalReagent.Rank" type1="flow_text" name="AmHcChemicalReagent.Rank" value="" valuetype="0" isflow="1" class="mytext" title="" align="left"/></td></tr><tr><td rowspan="1" colspan="1" valign="middle" align="left"><p class="txt">规格、型号</p><input type="text" id="AmHcChemicalReagent.Specs" type1="flow_text" name="AmHcChemicalReagent.Specs" value="" valuetype="0" isflow="1" class="mytext" title="" align="left"/></td><td rowspan="1" colspan="1" valign="middle" align="left"><p class="txt">计量单位</p><input type="text" id="AmHcChemicalReagent.MeasureUnit" type1="flow_text" name="AmHcChemicalReagent.MeasureUnit" value="" valuetype="0" isflow="1" class="mytext" title="" align="left"/></td></tr><tr><td rowspan="1" colspan="1" valign="middle" align="left"><p class="txt">生产厂商</p><input type="text" id="AmHcChemicalReagent.ProduceUnit" type1="flow_text" name="AmHcChemicalReagent.ProduceUnit" value="" valuetype="0" isflow="1" class="mytext" title="" align="left"/></td><td rowspan="1" colspan="1" style="word-break: break-all;" valign="middle" align="left"><p class="txt">化学品性质</p><p class="txt"><select class="myselect" id="AmHcChemicalReagent.Explain" name="AmHcChemicalReagent.Explain" isflow="1" type1="flow_select">@Html.Raw(BDictionary.GetOptionsByID("7cb3a921-1d63-4086-b8fb-2ce61f9d7cd9".ToGuid(), YJ.Platform.Dictionary.OptionValueField.Value, "8590ce64-00c8-4a4f-a2d7-db7ccd439730", true))</select></p></td></tr><tr class="bottomTr"><td class="bottom" rowspan="1" colspan="2" valign="middle" align="left"><p class="txt">备注</p><textarea isflow="1" type1="flow_textarea" id="AmHcReferenceMaterial.Remark" name="AmHcReferenceMaterial.Remark" class="mytext" style=" height:40px;"></textarea></td></tr></tbody></table>
