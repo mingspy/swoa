@@ -364,9 +364,8 @@ namespace YJ.Platform
                 menuSb.Append("</div>");
 
             }
-            var s = menuSb.ToString();
 
-            return s;
+            return menuSb.ToString();
         }
 
         /// <summary>

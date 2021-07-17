@@ -1,5 +1,0 @@
-F:\代码\gitsource\OA\YJ.Cache.Interface\bin\x86\Debug\YJ.Cache.Interface.dll
-F:\代码\gitsource\OA\YJ.Cache.Interface\bin\x86\Debug\YJ.Cache.Interface.pdb
-F:\代码\gitsource\OA\YJ.Cache.Interface\obj\x86\Debug\YJ.Cache.Interface.csproj.CoreCompileInputs.cache
-F:\代码\gitsource\OA\YJ.Cache.Interface\obj\x86\Debug\YJ.Cache.Interface.dll
-F:\代码\gitsource\OA\YJ.Cache.Interface\obj\x86\Debug\YJ.Cache.Interface.pdb
