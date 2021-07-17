@@ -1,0 +1,63 @@
+﻿@{
+	string FlowID = Request.QueryString["flowid"];
+	string StepID = Request.QueryString["stepid"];
+	string GroupID = Request.QueryString["groupid"];
+	string TaskID = Request.QueryString["taskid"];
+	string InstanceID = Request.QueryString["instanceid"];
+	string DisplayModel = Request.QueryString["display"] ?? "0";
+	string DBConnID = "06075250-30dc-4d32-bf97-e922cb30fac8";
+	string DBTable = "办公用品出库记录";
+	string DBTablePK = "ID";
+	string DBTableTitle = "";
+	if(InstanceID.IsNullOrEmpty()){InstanceID = Request.QueryString["instanceid1"];}
+	YJ.Platform.Dictionary BDictionary = new YJ.Platform.Dictionary();
+	YJ.Platform.WorkFlow BWorkFlow = new YJ.Platform.WorkFlow();
+	YJ.Platform.WorkFlowTask BWorkFlowTask = new YJ.Platform.WorkFlowTask();
+	string fieldStatus = BWorkFlow.GetFieldStatus(FlowID, StepID);
+	LitJson.JsonData initData = BWorkFlow.GetFormData(DBConnID, DBTable, DBTablePK, InstanceID, fieldStatus, "{\"办公用品出库记录.出库时间\":\"yyyy-MM-dd\"}");
+	string TaskTitle = BWorkFlow.GetFromFieldData(initData, DBTable, DBTableTitle);
+}
+<link href="~/Scripts/FlowRun/Forms/flowform.css" rel="stylesheet" type="text/css" />
+<script src="~/Scripts/FlowRun/Forms/common.js" type="text/javascript" ></script>
+<input type="hidden" id="Form_ValidateAlertType" name="Form_ValidateAlertType" value="1" />
+<input type="hidden" id="Form_TitleField" name="Form_TitleField" value="办公用品出库记录." />
+<input type="hidden" id="Form_DBConnID" name="Form_DBConnID" value="06075250-30dc-4d32-bf97-e922cb30fac8" />
+<input type="hidden" id="Form_DBTable" name="Form_DBTable" value="办公用品出库记录" />
+<input type="hidden" id="Form_DBTablePk" name="Form_DBTablePk" value="ID" />
+<input type="hidden" id="Form_DBTableTitle" name="Form_DBTableTitle" value="" />
+<input type="hidden" id="Form_AutoSaveData" name="Form_AutoSaveData" value="1" />
+<textarea id="Form_DBTableTitleExpression" name="Form_DBTableTitleExpression" style="display:none;width:0;height:0;">办公用品领用-{申领原因}</textarea>
+<script type="text/javascript">
+	var initData = @Html.Raw(BWorkFlow.GetFormDataJsonString(initData));
+	var fieldStatus = "1"=="@Request.QueryString["isreadonly"]" ? {} : @Html.Raw(fieldStatus);
+	var displayModel = '@DisplayModel';
+	$(window).load(function (){
+		formrun.initData(initData, "办公用品出库记录", fieldStatus, displayModel);
+	});
+</script>
+<script type="text/javascript">var amhc='办公用品种类';</script><p style="white-space: normal;"><input type="hidden" id="办公用品出库记录.数据创建人" name="办公用品出库记录.数据创建人" isflow="1" type1="flow_hidden" value="u_@YJ.Platform.Users.CurrentUserID.ToString()"/></p><p style="white-space: normal;"><input type="hidden" id="办公用品出库记录.数据创建时间" name="办公用品出库记录.数据创建时间" isflow="1" type1="flow_hidden" value="@(YJ.Utility.DateTimeNew.ShortDateTime)"/></p><table align="center" class="flowformtable tableF table table-bordered" cellspacing="0" cellpadding="0" data-sort="sortDisabled"><tbody><tr class="firstRow"><th align="center" valign="middle" rowspan="1" colspan="2"><span class="title">办公用品领用单</span></th></tr><tr><th align="left" class="titleT" valign="middle" rowspan="1" colspan="2"><p class="titleO">领用单信息</p></th></tr><tr class="topTr"><td align="left" class="top" valign="middle" style="word-break: break-all;" rowspan="1" colspan="2"><p class="txt">选择办公用品</p><input type="text" id="办公用品出库记录.办公用品种类ID" type1="flow_selectdiv" name="办公用品出库记录.办公用品种类ID" value="" style="width:260px" data-windowwidth="1000" data-windowheight="500" appid="fb6f03a7-a064-4528-b9a9-36a2c3980456" titlefield="办公用品名称" pkfield="办公ID" paramsvalue="amhc" paramsname="tablename" isflow="1" class="myselectdiv" title=""/></td></tr><tr><td align="left" valign="middle" rowspan="1" colspan="1"><p class="txt">领用人</p><input type="text" type1="flow_org" id="办公用品出库记录.出库人" name="办公用品出库记录.出库人" value="u_@YJ.Platform.Users.CurrentUserID.ToString()" style="width:200px" more="0" isflow="1" class="mymember" title="" dept="0" station="0" user="1" workgroup="0" unit="0" rootid="04f12beb-d99d-43df-ac9a-3042957d6bda"/></td><td align="left" valign="middle" rowspan="1" colspan="1"><p class="txt">领用数量</p><input type="text" id="办公用品出库记录.出库数量" type1="flow_text" name="办公用品出库记录.出库数量" value="" align="left" style="width:50px;text-align:left;padding-right:3px;" valuetype="3" isflow="1" class="mytext" title="" onchange="onchange_ca90139875ca1c9178223c1eb8abc2d1 (this);"/><script type="text/javascript">function onchange_ca90139875ca1c9178223c1eb8abc2d1(srcObj){var hcid=document.getElementById("办公用品出库记录.办公用品种类ID").value;
+var outnum=$(srcObj).val();
+var url = "/PlatformApi/AmHcmanage/OfficeSupCompare?supid=" + hcid+"&outnum="+outnum;
+$.ajax({
+url: url,
+contentType: RoadUI.Core.ajaxContentType,
+type: "post",
+dataType: "json",
+cache: false,
+async: true,
+success: function(json) {
+//设置输入框最大值
+if(json.status==0){
+alert(json.msg);
+$(srcObj).val('0');
+return;
+}
+$(srcObj).attr('placeholder','当前结余为'+json.data);
+if((json.data-outnum)<0){
+alert("库存数量不足，请重新填写！");
+$(srcObj).val('0');
+}
+},
+error: function(json) {
+}
+});}</script></td></tr><tr><td align="left" valign="middle" rowspan="1" colspan="2"><p class="txt">领用时间</p><input type="text" type1="flow_datetime" id="办公用品出库记录.出库时间" name="办公用品出库记录.出库时间" value="@(YJ.Utility.DateTimeNew.ShortDate)" style="width:200px" format="yyyy-MM-dd" defaultvalue="%40(YJ.Utility.DateTimeNew.ShortDate)" istime="1" daybefor="0" dayafter="0" currentmonth="0" isflow="1" class="mycalendar" title=""/></td></tr><tr class="bottomTr"><td align="left" class="bottom" valign="middle" rowspan="1" colspan="2"><p class="txt">备注</p><textarea isflow="1" type1="flow_textarea" id="办公用品出库记录.出库备注" name="办公用品出库记录.出库备注" class="mytext" style="width:80%; height:40px;"></textarea></td></tr></tbody></table><p><br/></p>

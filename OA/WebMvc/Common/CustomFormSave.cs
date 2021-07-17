@@ -236,6 +236,78 @@ namespace WebMvc.Common
         }
 
         /// <summary>
+        /// 办公用品采购阶段1，把“办公用品采购记录对中应的采购进度标志更为1”。
+        /// </summary>
+        /// <param name="eventParams"></param>
+        /// <returns></returns>
+        public static string OfficeAcquisitionPhase1(YJ.Data.Model.WorkFlowCustomEventParams eventParams)
+        {
+            YJ.Data.Model.WorkFlowExecute.Execute execute = new YJ.Data.Model.WorkFlowExecute.Execute();
+            string ID = eventParams.InstanceID;
+
+            try
+            {
+                YJ.Data.MSSQL.DBHelper db = new YJ.Data.MSSQL.DBHelper();
+                db.Execute(string.Format("UPDATE 办公用品采购记录 SET 采购进度=1 WHERE 申请流程ID='{0}'", eventParams.InstanceID));
+                YJ.Platform.Log.Add("办公用品采购记录对中应的采购进度标志更为1", "", YJ.Platform.Log.Types.其它分类);
+                return "1";
+            }
+            catch (Exception e)
+            {
+                YJ.Platform.Log.Add("办公用品采购记录对中应的采购进度标志更为1", e.Message, YJ.Platform.Log.Types.其它分类);
+                return "0";
+            }
+        }
+
+        /// <summary>
+        /// 办公用品采购阶段2完成采购，把“办公用品采购记录对中应的采购进度标志更为2”。
+        /// </summary>
+        /// <param name="eventParams"></param>
+        /// <returns></returns>
+        public static string OfficeAcquisitionPhase2(YJ.Data.Model.WorkFlowCustomEventParams eventParams)
+        {
+            YJ.Data.Model.WorkFlowExecute.Execute execute = new YJ.Data.Model.WorkFlowExecute.Execute();
+            string ID = eventParams.InstanceID;
+
+            try
+            {
+                YJ.Data.MSSQL.DBHelper db = new YJ.Data.MSSQL.DBHelper();
+                db.Execute(string.Format("UPDATE 办公用品采购记录 SET 采购进度=2 WHERE 申请流程ID='{0}'", eventParams.InstanceID));
+                YJ.Platform.Log.Add("办公用品采购记录对中应的采购进度标志更为2", "", YJ.Platform.Log.Types.其它分类);
+                return "1";
+            }
+            catch (Exception e)
+            {
+                YJ.Platform.Log.Add("办公用品采购记录对中应的采购进度标志更为2", e.Message, YJ.Platform.Log.Types.其它分类);
+                return "0";
+            }
+        }
+
+        /// <summary>
+        /// 办公用品采购阶段3完成入库，把“办公用品采购记录对中应的采购进度标志更为3”。
+        /// </summary>
+        /// <param name="eventParams"></param>
+        /// <returns></returns>
+        public static string OfficeAcquisitionPhase3(YJ.Data.Model.WorkFlowCustomEventParams eventParams)
+        {
+            YJ.Data.Model.WorkFlowExecute.Execute execute = new YJ.Data.Model.WorkFlowExecute.Execute();
+            string ID = eventParams.InstanceID;
+
+            try
+            {
+                YJ.Data.MSSQL.DBHelper db = new YJ.Data.MSSQL.DBHelper();
+                db.Execute(string.Format("UPDATE 办公用品采购记录 SET 采购进度=3 WHERE 申请流程ID='{0}'", eventParams.InstanceID));
+                YJ.Platform.Log.Add("办公用品采购记录对中应的采购进度标志更为3", "", YJ.Platform.Log.Types.其它分类);
+                return "1";
+            }
+            catch (Exception e)
+            {
+                YJ.Platform.Log.Add("办公用品采购记录对中应的采购进度标志更为3", e.Message, YJ.Platform.Log.Types.其它分类);
+                return "0";
+            }
+        }
+
+        /// <summary>
         /// 化学试剂领用流程完成后，把“化学试剂出库记录对中应的数据出库标志更为1”。
         /// </summary>
         /// <param name="eventParams"></param>

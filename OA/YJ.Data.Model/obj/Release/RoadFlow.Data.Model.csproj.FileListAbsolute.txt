@@ -1,5 +1,0 @@
-D:\Projects1\RoadFlow\Src\RoadFlow.Data.Model\bin\Release\RoadFlow.Data.Model.dll
-D:\Projects1\RoadFlow\Src\RoadFlow.Data.Model\bin\Release\RoadFlow.Data.Model.pdb
-D:\Projects1\RoadFlow\Src\RoadFlow.Data.Model\obj\Release\RoadFlow.Data.Model.csprojResolveAssemblyReference.cache
-D:\Projects1\RoadFlow\Src\RoadFlow.Data.Model\obj\Release\RoadFlow.Data.Model.dll
-D:\Projects1\RoadFlow\Src\RoadFlow.Data.Model\obj\Release\RoadFlow.Data.Model.pdb

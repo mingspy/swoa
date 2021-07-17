@@ -1,0 +1,38 @@
+﻿@{
+	string FlowID = Request.QueryString["flowid"];
+	string StepID = Request.QueryString["stepid"];
+	string GroupID = Request.QueryString["groupid"];
+	string TaskID = Request.QueryString["taskid"];
+	string InstanceID = Request.QueryString["instanceid"];
+	string DisplayModel = Request.QueryString["display"] ?? "0";
+	string DBConnID = "06075250-30dc-4d32-bf97-e922cb30fac8";
+	string DBTable = "仪器设备期间核查计划_子表";
+	string DBTablePK = "";
+	string DBTableTitle = "";
+	if(InstanceID.IsNullOrEmpty()){InstanceID = Request.QueryString["instanceid1"];}
+	YJ.Platform.Dictionary BDictionary = new YJ.Platform.Dictionary();
+	YJ.Platform.WorkFlow BWorkFlow = new YJ.Platform.WorkFlow();
+	YJ.Platform.WorkFlowTask BWorkFlowTask = new YJ.Platform.WorkFlowTask();
+	string fieldStatus = BWorkFlow.GetFieldStatus(FlowID, StepID);
+	LitJson.JsonData initData = BWorkFlow.GetFormData(DBConnID, DBTable, DBTablePK, InstanceID, fieldStatus, "{}");
+	string TaskTitle = BWorkFlow.GetFromFieldData(initData, DBTable, DBTableTitle);
+}
+<link href="~/Scripts/FlowRun/Forms/flowform.css" rel="stylesheet" type="text/css" />
+<script src="~/Scripts/FlowRun/Forms/common.js" type="text/javascript" ></script>
+<input type="hidden" id="Form_ValidateAlertType" name="Form_ValidateAlertType" value="1" />
+<input type="hidden" id="Form_TitleField" name="Form_TitleField" value="仪器设备期间核查计划_子表." />
+<input type="hidden" id="Form_DBConnID" name="Form_DBConnID" value="06075250-30dc-4d32-bf97-e922cb30fac8" />
+<input type="hidden" id="Form_DBTable" name="Form_DBTable" value="仪器设备期间核查计划_子表" />
+<input type="hidden" id="Form_DBTablePk" name="Form_DBTablePk" value="" />
+<input type="hidden" id="Form_DBTableTitle" name="Form_DBTableTitle" value="" />
+<input type="hidden" id="Form_AutoSaveData" name="Form_AutoSaveData" value="1" />
+<textarea id="Form_DBTableTitleExpression" name="Form_DBTableTitleExpression" style="display:none;width:0;height:0;"></textarea>
+<script type="text/javascript">
+	var initData = @Html.Raw(BWorkFlow.GetFormDataJsonString(initData));
+	var fieldStatus = "1"=="@Request.QueryString["isreadonly"]" ? {} : @Html.Raw(fieldStatus);
+	var displayModel = '@DisplayModel';
+	$(window).load(function (){
+		formrun.initData(initData, "仪器设备期间核查计划_子表", fieldStatus, displayModel);
+	});
+</script>
+<p><br/></p><table class="flowformtable tableF table table-bordered" cellspacing="1" cellpadding="0" data-sort="sortDisabled" width="307"><tbody><tr class="firstRow"><th rowspan="1" colspan="2" style="word-break: break-all;"><span style="font-weight: 700; text-align: -webkit-center; background-color: rgb(247, 247, 247);">仪器设备期间核查计划_子表</span></th></tr><tr><td valign="top" colspan="1" rowspan="1" width="null" style="word-break: break-all;"><p>仪器类别</p><p><input type="text" id="仪器设备期间核查计划_子表.仪器类别" type1="flow_text" name="仪器设备期间核查计划_子表.仪器类别" value="" align="left" style="width:150px;text-align:left;padding-right:3px;" valuetype="0" isflow="1" class="mytext" title=""/></p></td><td valign="top" colspan="1" rowspan="1" style="border-left-color: rgb(221, 221, 221); border-top-color: rgb(221, 221, 221); word-break: break-all;"><p class="txt" style="margin-top: 0px; margin-bottom: 0px; padding: 0px; white-space: normal;">统一编号</p><p class="txt" style="margin-top: 0px; margin-bottom: 0px; padding: 0px; white-space: normal;"><textarea isflow="1" type1="flow_textarea" id="仪器设备期间核查计划_子表.统一编号" name="仪器设备期间核查计划_子表.统一编号" class="mytext" style="width:150px"></textarea></p></td></tr><tr><td valign="top" colspan="1" rowspan="1" width="null" style="word-break: break-all;"><p>设备名称</p><p><textarea isflow="1" type1="flow_textarea" id="仪器设备期间核查计划_子表.设备名称" name="仪器设备期间核查计划_子表.设备名称" class="mytext" style="width:150px"></textarea></p></td><td valign="top" style="border-color: rgb(221, 221, 221); word-break: break-all;"><p class="txt" style="margin-top: 0px; margin-bottom: 0px; padding: 0px; white-space: normal;">型号规格</p><p class="txt" style="margin-top: 0px; margin-bottom: 0px; padding: 0px; white-space: normal;"><textarea isflow="1" type1="flow_textarea" id="仪器设备期间核查计划_子表.型号规格" name="仪器设备期间核查计划_子表.型号规格" class="mytext" style="width:150px"></textarea></p></td></tr><tr><td valign="top" colspan="1" rowspan="1" width="null" style="word-break: break-all;"><p>生产厂商</p><p><textarea isflow="1" type1="flow_textarea" id="仪器设备期间核查计划_子表.生产产商" name="仪器设备期间核查计划_子表.生产产商" class="mytext" style="width:150px"></textarea></p></td><td valign="top" style="border-color: rgb(221, 221, 221); word-break: break-all;" colspan="1"><p class="txt">购置时间</p><p class="txt"><textarea isflow="1" type1="flow_textarea" id="仪器设备期间核查计划_子表.购置时间" name="仪器设备期间核查计划_子表.购置时间" class="mytext" style="width:150px"></textarea></p></td></tr><tr><td valign="top" colspan="1" rowspan="1" style="word-break: break-all;"><p>上次检定日期</p><p><textarea isflow="1" type1="flow_textarea" id="仪器设备期间核查计划_子表.上次检定日期" name="仪器设备期间核查计划_子表.上次检定日期" class="mytext" style="width:150px"></textarea></p></td><td valign="top" colspan="1" rowspan="1" style="word-break: break-all;"><p>检定周期</p><p><textarea isflow="1" type1="flow_textarea" id="仪器设备期间核查计划_子表.检定周期" name="仪器设备期间核查计划_子表.检定周期" class="mytext" style="width:150px"></textarea></p></td></tr><tr><td valign="top" style="word-break: break-all;"><p>计划核查日期</p><p><textarea isflow="1" type1="flow_textarea" id="仪器设备期间核查计划_子表.计划核查日期" name="仪器设备期间核查计划_子表.计划核查日期" class="mytext" style="width:150px"></textarea></p></td><td valign="top" style="word-break: break-all;"><p>设备管理员</p><p><input type="text" type1="flow_org" id="仪器设备期间核查计划_子表.设备管理员" name="仪器设备期间核查计划_子表.设备管理员" value="" more="0" isflow="1" class="mymember" title="" dept="1" station="0" user="1" workgroup="0" unit="0" rootid=""/></p><p><br/></p></td></tr><tr><td valign="top" colspan="2" rowspan="1" style="word-break: break-all;">现在位置<textarea isflow="1" type1="flow_textarea" id="仪器设备期间核查计划_子表.现在位置" name="仪器设备期间核查计划_子表.现在位置" class="mytext" style="width:150px"></textarea></td></tr></tbody></table>
