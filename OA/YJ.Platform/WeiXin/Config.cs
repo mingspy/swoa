@@ -28,6 +28,23 @@ namespace YJ.Platform.WeiXin
                 return ConfigurationManager.AppSettings["wxqy_CorpID"];
             }
         }
+
+        public static string SuitID
+        {
+            get
+            {
+                return ConfigurationManager.AppSettings["wxqy_SuitID"];
+            }
+        }
+
+        public static string SuitSecret
+        {
+            get
+            {
+                return ConfigurationManager.AppSettings["wxqy_SuitSecret"];
+            }
+        }
+
         /// <summary>
         /// 微信secret
         /// </summary>
@@ -68,6 +85,7 @@ namespace YJ.Platform.WeiXin
                 return "";
             }
             string url = string.Format("https://qyapi.weixin.qq.com/cgi-bin/gettoken?corpid={0}&corpsecret={1}", CorpID, secret);
+            //string url = string.Format("https://qyapi.weixin.qq.com/cgi-bin/gettoken?corpid={0}&corpsecret={1}", SuitID, SuitSecret);
             string token = Utility.HttpHelper.SendGet(url);//token:{"access_token":"7p-2wZwAYnGwE80-VXubyqXNS9YZxIbmcHscjdfB78FA1zNPRKOGftJQdHAR8447","expires_in":7200}
             LitJson.JsonData jd = LitJson.JsonMapper.ToObject(token);
             if (jd.ContainsKey("access_token"))

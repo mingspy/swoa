@@ -799,7 +799,10 @@ namespace YJ.Platform.WeiXin
                 if (Config.IsUse)
                 {
                     System.Web.HttpContext.Current.Response.Cookies.Add(new System.Web.HttpCookie("LastURL", System.Web.HttpContext.Current.Request.Url.PathAndQuery));
-                    string url = "https://open.weixin.qq.com/connect/oauth2/authorize?appid=" + Config.CorpID + "&redirect_uri=" + Config.GetAccountUrl + "&response_type=code&scope=snsapi_base&state=a#wechat_redirect";
+                    string url = "https://open.weixin.qq.com/connect/oauth2/authorize?appid=";
+                    //url += Config.CorpID;
+                    url += Config.SuitID;
+                    url += "&redirect_uri=" + Config.GetAccountUrl + "&response_type=code&scope=snsapi_base&state=a#wechat_redirect";
                     //Log.Add("调用了微信获取人员CODE", url, Log.Types.微信企业号, url);
                     System.Web.HttpContext.Current.Response.Redirect(url);
                 }

@@ -16,6 +16,21 @@ namespace WebMvc.Areas.AssetManage.Controllers
         [MyAttribute(CheckApp = false, CheckUrl = false, CheckLogin = false)]
         public ActionResult Index()
         {
+            string loginMsg;
+            if (!WebMvc.Common.Tools.CheckLogin(out loginMsg) && YJ.Platform.WeiXin.Organize.CurrentUserID.IsEmptyGuid())
+            {
+                if (YJ.Platform.WeiXin.Config.IsUse)
+                {
+                    System.Web.HttpContext.Current.Response.Cookies.Add(new System.Web.HttpCookie("LastURL", System.Web.HttpContext.Current.Request.Url.PathAndQuery));
+                    string url = "https://open.weixin.qq.com/connect/oauth2/authorize?appid=";
+                    url += YJ.Platform.WeiXin.Config.SuitID;
+                    url += "&redirect_uri=" + YJ.Platform.WeiXin.Config.GetAccountUrl + "&response_type=code&scope=snsapi_base&state=a#wechat_redirect";
+                    //Log.Add("调用了微信获取人员CODE", url, Log.Types.微信企业号, url);
+                    return Redirect(url);
+                }
+            }
+
+
             string bgbh = Request.QueryString.Get("bgbh");
             ViewBag.index_bgbh = bgbh != null? bgbh : "";
             return View();

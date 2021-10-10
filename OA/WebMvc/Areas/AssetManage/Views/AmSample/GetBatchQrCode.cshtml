@@ -1,103 +1,214 @@
 ﻿@{
-    ViewBag.Title = "二维码打印";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+	ViewBag.Title = "二维码打印";
+	Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <style media=print>
 
-    .Noprint {
-        display: none;
-    }
+	.Noprint {
+		display: none;
+	}
 
-    .PageNext {
-        page-break-after: always;
-    }
+	.PageNext {
+		page-break-after: always;
+	}
 </style>
 
 <style>
-    .QrStyle {
-        width: 240px;
-        height: 240px;
-        margin: 5px;
-    }
+	.QrStyle {
+		width: 240px;
+		height: 240px;
+		margin: 5px;
+	}
 </style>
 
-<div style="width:100%;height:100%;text-align:center;">
-    <div class="Noprint">
-        <table cellpadding="0" cellspacing="1" border="0" style="width:30%; margin:0 auto; border-spacing:0px 10px;" >
-            <tr>
-                <td style="width:50px; height:45px; text-align:center;">资产编号:</td>
-                <td align="left"><input id="assid" type="text"  maxlength="50" style="text-align:left;" /></td>
-            </tr>
-            <tr>
-                <td style="width:50px; height:45px; text-align:center;">
-                    <input id="gen" class="mybutton" value="生成二维码" style="text-align:center;" onclick="makeCode()" />
-                </td>
-                <td>
-                    <select id="tpSelector">
-                    <option value="sample" selected>检验样</option>
-                    <option value="review">复检样</option>
-                    <option value="assets">固定资产</option>
-                    </select>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <input id="but" class="mybutton" value="打印二维码" style="text-align:center;" onclick="print1()" />
-                </td>
-                <td>
-                    分页打印 <input id="ckb1" type="checkbox" value="分页打印" onclick="setPaged(this)"/>
-                </td>
-            </tr>
-        </table>
-    </div>
 
-    <div id="qr_div" style="margin:auto; width: 40%;">
+<div class="Noprint" style="margin:50px;">
+	<div>
+		<table border="0" style="margin:auto;" align="center">
+			<tr>
+				<td>
+					<input id="gen" class="mybutton" value="生成二维码" style="text-align:center;" onclick="makeCode()" />
+				</td>
+				<td>分号数：<input id="total_num" type="text" value="1" /></td>
+			</tr>
+			<tr>
+				<td><input id="but" class="mybutton" value="打印二维码" style="text-align:center;" onclick="print1()" /></td>
+				<td>
+					<input id="ckb1" type="checkbox" value="分页打印" onclick="setPaged(this)" checked />分页打印
+				</td>
+			</tr>
+		</table>
+	</div>
+	<HR style="FILTER: progid:DXImageTransform.Microsoft.Shadow(color:#987cb9,direction:145,strength:15)" width="80%" color=#987cb9 SIZE=1>
+	<div>
+		<p style="text-align:center; font-size:20px;"><img src="~/Images/logo_head.png" width="20" height="20" />湖南省食品监督检查研究院样品标签</p>
+		<table border="1" style="margin:auto; text-align:left; border-collapse:collapse; font-size:20px" align="center">
+			<tr><td rowspan="7"><img src="~/Images/qrdemo.PNG" /></td></tr>
+			<tr>
+				<td style="text-align:left;">编   号:</td>
+				<td align="left" colspan="2"><input id="ass_id" type="text" style="text-align:left;" /></td>
+			</tr>
+			<tr>
+				<td>名   称:</td>
+				<td colspan="2"><input id="ass_name" type="text" /></td>
+			</tr>
+			<tr>
+				<td rowspan="2"><input id="ass_date" type="date" /></td>
+				<td rowspan="2"><input id="ass_num" type="text" value="样品总量-" /></td>
+				<td><input id="ass_sample" value="检验-"></td>
+			</tr>
+			<tr><td><input id="ass_review" value="复检-" /></td></tr>
+			<tr>
+				<td colspan="2">
+					<select id="tpSelector">
+						<option value="sample" selected>检验样</option>
+						<option value="review">复检样</option>
+						<option value="assets">固定资产</option>
+					</select>
+				</td>
+				<td><input id="is_gy" type="checkbox" />共样</td>
+			</tr>
+			<tr>
+				<td><input type="checkbox" />待检</td>
+				<td><input type="checkbox" />在检</td>
+				<td><input type="checkbox" />检毕</td>
+			</tr>
+		</table>
+	</div>
+	<HR style="FILTER: progid:DXImageTransform.Microsoft.Shadow(color:#987cb9,direction:145,strength:15)" width="80%" color=#987cb9 SIZE=1>
 
-    </div>
+</div>
+
+
+<div id="qr_div" style="margin:20px; width: 100%;">
+
 </div>
 
 
 
-
 <script type="text/javascript">
+	var start = document.getElementById("ass_date");
+	var date = new Date();
+	var month_t = date.getMonth().toString();
+	if (date.getMonth() + 1 < 10)
+		month_t = '0' + (date.getMonth() + 1);
+
+	var day_t = date.getDate().toString();
+	if (date.getDate() < 10)
+		day_t = '0' + (date.getDate() + 1)
+
+	var dateString = date.getFullYear() + "-" + (month_t) + "-" + day_t;
+	start.value = dateString;
+
+	String.prototype.format = function (args) {
+		var result = this;
+		if (arguments.length > 0) {
+			if (arguments.length == 1 && typeof (args) == "object") {
+				for (var key in args) {
+					if (args[key] != undefined) {
+						var reg = new RegExp("({" + key + "})", "g");
+						result = result.replace(reg, args[key]);
+					}
+				}
+			}
+			else {
+				for (var i = 0; i < arguments.length; i++) {
+					if (arguments[i] != undefined) {
+						var reg = new RegExp("({)" + i + "(})", "g");
+						result = result.replace(reg, arguments[i]);
+					}
+				}
+			}
+		}
+		return result;
+	}
+
+
     qr_cnt = 0;
     function makeCode() {
-        var assid = $("#assid").val();
+		var assid = $("#ass_id").val();
         var its = assid.split(";");
         var isPage = $("#ckb1").prop("checked");
-        var tp = $("#tpSelector").val();
-        for (var i = 0, len = its.length; i < len; i++) {
-            qno = its[i];
+		var tp = $("#tpSelector").val();
+		var tp_name = $("#tpSelector").find("option:selected").text()
+		var ass_name = $("#ass_name").val();
+		var ass_date = $("#ass_date").val();
+		var ass_num = $("#ass_num").val();
+		var ass_sample = $("#ass_sample").val();
+		var ass_review = $("#ass_review").val();
+		var is_gy = $("#is_gy").prop("checked");
+		var total_num = $("#total_num").val();
+
+		if (is_gy) {
+			is_gy = 'checked';
+		} else {
+			is_gy = '';
+		}
+
+		for (var i = 0; i < total_num; i++) {
+            //qno = its[i];
+			qno = assid;
             if (!qno ) {
                 continue;
             }
             qno = qno.replace(/(^\s+)|(\s+$)/g, "");
             if (!qno) {
                 continue;
-            }
-            qr_cnt += 1;
+			}
+
+			var fh = i + 1;
+			qr_cnt += 1;
+			var ass_sample_t = ass_sample + ',样品分号-';
+			var ass_review_t = ass_review +',样品分号-';
             qid = "qr_" + qr_cnt;
 
             if (tp == "assets") {
                 var url = '@Url.Content(YJ.Utility.Config.WebUrl + "/weixin/AssetsQrCode/GetAssetsInfo?AssetsID=")' + qno;
             } else if (tp == "sample") {
-                 var url = '@Url.Content(YJ.Utility.Config.WebUrl + "/AssetManage/AmSample/index?bgbh=")' + qno;
-            } else if (tp == "review") {
-
+				var url = '@Url.Content(YJ.Utility.Config.WebUrl + "/AssetManage/AmSample/index?bgbh=")' + qno;
+				ass_sample_t += fh;
+			} else if (tp == "review") {
+				var url = '@Url.Content(YJ.Utility.Config.WebUrl + "/AssetManage/AmSample/index?bgbh=")' + qno;
+				ass_review_t += fh;
             }
-            
-            //var url =   qno + "&type="+tp;
-            //$("#qr_table").append(tr);
-            var dt = "<label class=\"Noprint\">" + qno + "</label><div class=\"QrStyle\" id=\"" + qid + "\"></div>";
 
-            
+			 
+			var dt = '<div style="width:100%;" > \
+				<p style = "text-align:center; font-size:12px;" > <img src="/Images/logo_head.png" width="20" height="20" />湖南省食品监督检查研究院样品标签</p> \
+				<table border="1" style="text-align:left; border-collapse:collapse; font-size:12px" align="center"> \
+						<tr><td rowspan="7"><div class="QrStyle" id="{0}"></div></td></tr> \
+						<tr> \
+							<td style="text-align:left;">编    号:</td> \
+							<td align="left" colspan="2">{1}</td> \
+						</tr> \
+						<tr> \
+							<td>名   称:</td> \
+							<td colspan="2">{2}</td> \
+						</tr> \
+						<tr> \
+							<td rowspan="2">{3}</td> \
+							<td rowspan="2">{4}</td> \
+							<td>{5}</td> \
+						</tr> \
+						<tr><td>{6}</td></tr> \
+						<tr><td colspan="2"><input type="checkbox" checked />{7}</td><td><input type="checkbox" {8}/>共样</td></tr> \
+						<tr> \
+							<td><input type="checkbox" />待检</td> \
+							<td><input type="checkbox" />在检</td> \
+							<td><input type="checkbox" />检毕</td> \
+						</tr> \
+				</table> \
+			    <HR class="Noprint"> \
+			</div>'.format(qid, qno, ass_name, ass_date, ass_num, ass_sample_t, ass_review_t, tp_name, is_gy);
+
+
             if (isPage) {
                 dt += "<div name=\"page_div\" class=\"PageNext\"></div>";
             } else {
                 dt += "<div name=\"page_div\" class=\"Noprint\"></div>";
             }
-            
+
             $("#qr_div").append(dt);
             var qrcode = new QRCode(document.getElementById(qid), {
                 width: 240,
@@ -105,7 +216,7 @@
             });
             qrcode.makeCode(url);
         }
- 
+
     }
 
     function setPaged(checkbox) {

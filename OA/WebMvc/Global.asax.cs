@@ -1,12 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using System.Web;
 using System.Web.Http;
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
 using System.Web.SessionState;
+using YJ.Utility;
 
 namespace WebMvc
 {
@@ -15,6 +17,7 @@ namespace WebMvc
 
     public class MvcApplication : System.Web.HttpApplication
     {
+        Thread server_thread;
         protected void Application_Start()
         {
             //每一分钟检查需要自动提交的任务
@@ -46,8 +49,13 @@ namespace WebMvc
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
-            
+
             //BundleTable.EnableOptimizations = true;
+
+            server_thread = new System.Threading.Thread(
+                new System.Threading.ThreadStart(new TemperatureServer().start_server)
+                );//开辟一个新线程
+            server_thread.Start();
         }
         protected void Application_end()
         {
@@ -80,6 +88,8 @@ namespace WebMvc
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
+
+            server_thread.Abort();
         }
 
     }

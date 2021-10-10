@@ -134,8 +134,8 @@ namespace YJ.Platform.WeiXin
                 sMsg = "";
                 return (int)WXBizMsgCryptErrorCode.WXBizMsgCrypt_DecryptAES_Error;
             }
-            if (cpid != m_sCorpID)
-                return (int)WXBizMsgCryptErrorCode.WXBizMsgCrypt_ValidateCorpid_Error;
+            //if (cpid != m_sCorpID)
+            //    return (int)WXBizMsgCryptErrorCode.WXBizMsgCrypt_ValidateCorpid_Error;
             return 0;
         }
 

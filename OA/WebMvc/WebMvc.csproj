@@ -283,6 +283,7 @@
     <Compile Include="Controllers\OnlineUsersController.cs" />
     <Compile Include="Controllers\ProgramBuilderController.cs" />
     <Compile Include="Controllers\ShortMessageController.cs" />
+    <Compile Include="Controllers\TempController.cs" />
     <Compile Include="Controllers\TestController.cs" />
     <Compile Include="Controllers\UserDefineController.cs" />
     <Compile Include="Controllers\UserInfoController.cs" />
@@ -320,6 +321,7 @@
     <Compile Include="Scripts\Ueditor\net\App_Code\NotSupportedHandler.cs" />
     <Compile Include="Scripts\Ueditor\net\App_Code\PathFormater.cs" />
     <Compile Include="Scripts\Ueditor\net\App_Code\UploadHandler.cs" />
+    <Compile Include="TemperatureServer.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\WeiXin\Images\signin.png" />
@@ -509,6 +511,8 @@
     <Content Include="Images\login\loginicon2.png" />
     <Content Include="Images\login\loginimg.png" />
     <Content Include="Images\login\logintop.png" />
+    <Content Include="Images\logo_head.PNG" />
+    <Content Include="Images\qrdemo.PNG" />
     <Content Include="Scripts\ajaxfileupload.js" />
     <Content Include="Scripts\bigcolorpicker\css\jquery.bigcolorpicker.css" />
     <Content Include="Scripts\bigcolorpicker\css\syntaxHighlighter\shCore.css" />
@@ -562,6 +566,7 @@
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\bootstrap\bootstrapSwitch.css" />
     <Content Include="Scripts\bootstrap\bootstrapSwitch.js" />
+    <Content Include="Scripts\chart.min.js" />
     <Content Include="Scripts\data.js" />
     <Content Include="Scripts\FlowDesinger\workflow-show.js" />
     <Content Include="Scripts\FlowDesinger\workflow.js" />
@@ -1976,6 +1981,7 @@
     <Content Include="Views\WorkFlowFormDesigner\Forms\fef1e929-78e0-4dce-8e4f-9c3b4af8245a.cshtml" />
     <Content Include="Views\UserDefine\Index.cshtml" />
     <Content Include="Views\UserDefine\GetStartOdometer.cshtml" />
+    <Content Include="Views\Temp\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Analyzer Include="..\packages\Microsoft.DependencyValidation.Analyzers.0.9.0\analyzers\dotnet\cs\Microsoft.DependencyValidation.Analyzers.resources.dll" />

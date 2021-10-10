@@ -1,0 +1,145 @@
+﻿@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<style type="text/css">
+	#menu {
+		/* 父容器设置宽度, 并超出部分不显示 */
+		width: 500px;
+		height: 300px;
+		overflow: hidden;
+	}
+
+	#menu > menuItem {
+		/* 子容器比父容器的宽度多 17 px, 经测正好是滚动条的默认宽度 */
+		width: 517px;
+		height: 300px;
+		line-height: 30px;
+		text-align: center;
+		overflow-y: scroll;
+	}
+</style>
+
+<div id="container" style="width:95%" >
+
+	<div id="header" style="background-color:#FFA500;">
+		<h1 style="margin-bottom:0;">   温湿度</h1>
+	</div>
+
+	<div id="menu" style="background-color:#FFD700;height:600px;width:20%;float:left" class="menu">
+		<div id="menuItem">
+		</div>
+	</div>
+
+	<div id="content" style="background-color:#EEEEEE;height:600px;width:80%;float:right;">
+
+		<input type="button" onclick="change_type('line')" value="线状图" style="float:right"/>
+		<input type="button" onclick="change_type('bar')" value="柱状图"  style="float:right"/>
+		<canvas id="myChart" height="100"></canvas>
+
+
+	</div>
+
+	<div id="footer" style="background-color:#FFA500;clear:both;text-align:center;">
+		-----------------------
+	</div>
+
+</div>
+<script type="text/javascript" src="~/Scripts/chart.min.js"></script>
+<script type="text/javascript">
+	var selected_did = "";
+	var ttp = 'line';
+	//boolean first_time = false;
+	var myNewChart = null;
+	function showDetail(did) {
+		if (!did) {
+			return;
+		}
+		url = '/temp/GetDetail?did=' + did;		
+		$.ajax({
+			url: url, contentType: RoadUI.Core.ajaxContentType, type: "Post", dataType: "json", cache: false, async: true,
+			success: function (json) {
+				//alert(json.datetimes);
+				var chartData = {
+					//表的X轴参数
+					labels: JSON.parse(json.datetimes),
+					datasets: [
+						{
+							label: "温度",
+							backgroundColor: 'rgb(255, 99, 132)',
+							borderColor: 'rgb(255, 99, 132)',
+							//tension: 0.1,
+							data: JSON.parse(json.temps)    //点的Y轴值
+						},
+						{
+							label: "湿度",
+							backgroundColor: 'rgb(75, 192, 192)',
+							borderColor: 'rgb(75, 192, 192)',
+							//tension: 0.1,
+							data: JSON.parse(json.humbs)    //data中的参数，通过下方for循环，获取arr2中的数据
+						}
+					]
+				}
+
+				//
+				if (!myNewChart) {
+					
+					var ctx = $("#myChart").get(0).getContext("2d");
+
+					//This will get the first returned node in the jQuery collection.
+					myNewChart = new Chart(ctx, {
+						type: ttp,
+						data: chartData,
+						options: {
+
+						}
+					});
+				} else {					
+					myNewChart.type = ttp;
+					myNewChart.data = chartData;
+					myNewChart.update('none');
+				}
+			},
+			error: function (json) {
+				//alert("error");
+			}
+		});
+
+		selected_did = did;
+	}
+
+	function change_type(tp) {
+		ttp = tp;
+		$("#myChart").replaceWith('<canvas id="myChart" height="100"></canvas>');
+		myNewChart = null;
+		showDetail(selected_did);
+	}
+
+	function load_dids() {
+		url = '/temp/GetDids';
+		$.ajax({
+			url: url, contentType: RoadUI.Core.ajaxContentType, type: "Post", dataType: "json", cache: false, async: true,
+			success: function (json) {
+				dids = JSON.parse(json.dids);
+				for (var i = 0; i < dids.length; i++) {
+					item = dids[i];
+					$('#menuItem').append('<a onclick="showDetail(\''+item.did+'\')">'+item.did +' 位置:'+item.address+' ip:'+item.ip+'</a>');
+				}
+				if (dids.length > 0) {
+					showDetail(dids[0].did);
+				}
+			},
+			error: function (json) {
+				alert("load_dids error");
+			}
+		});
+	}
+
+	
+	$(document).ready(function () {
+		load_dids();
+	});
+
+	var int = self.setInterval("showDetail(selected_did)", 10000);
+</script>
