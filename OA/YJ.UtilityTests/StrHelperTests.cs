@@ -11,6 +11,11 @@ namespace YJ.Utility.Tests
     public class StrHelperTests
     {
         [TestMethod()]
+        public void testSyncDB()
+        {
+        }
+
+        [TestMethod()]
         public void toNumTest()
         {
             var ret = "2.5k".ToNumUnit();

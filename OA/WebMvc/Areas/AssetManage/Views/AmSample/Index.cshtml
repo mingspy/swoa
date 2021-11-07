@@ -7,49 +7,52 @@
 <form method="post" style="height:100%">
     @Html.AntiForgeryToken()
     <div class="querybar" style="padding: 10px 0 10px 5px;background: #fafbfc;border-bottom: 0px solid #eef1f5;">
-        <table cellpadding="0" cellspacing="1" border="0" width="100%">
+		<table cellpadding="0" cellspacing="1" border="0" width="100%">
 
-            <tr class="topTr">
-                <td rowspan="1" colspan="2" valign="middle" align="left" width="30%">
-                    <select id="appSelector" onchange="changeApp(this.options[this.options.selectedIndex].value)">
-                        <option value="inout" selected>样品入库</option>
-                        <option value="exchange">样品转移</option>
-                        <option value="draw">样品领取</option>
-                    </select>
-                </td>
-               
-                <td class="top" rowspan="3" colspan="2" valign="middle" align="left">
-                    <textarea type1="flow_textarea" id="Code" name="Code" class="mytext" placeholder="请用扫码枪扫码..." style="height:300px;width:80%;"></textarea>
-                    <br />
-                    <input type="button" name="Search1" onclick="clerSam();" value="清空样品码" class="mybutton" style="margin: 10px"/>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    请在右侧输入框扫码录入信息，或手机扫码
-                    <input type="file" id="file-selector" title="扫一扫">
-                </td>
-            </tr>
-            <tr id="sampleInout" style="display:block">
-                <td>
-                    <input type="button" name="Search" onclick=query("addsample",0) value="备检样品入库" class="mybutton" />
-                </td>
-                <td>
-                    <input type="button" name="Search1" onclick=query("addsample",1) value="复检样品入库" class="mybutton" />
+			<tr class="topTr">
+				<td class="top"  colspan="2" valign="middle" align="left">
+					<textarea type1="flow_textarea" id="Code" name="Code" class="mytext" placeholder="请用扫码枪扫码..." style="height:300px;width:80%;"></textarea>
+					<br />
+					<input type="button" name="Search1" onclick="clerSam();" value="清空样品码" class="mybutton" style="margin: 10px" />
+				</td>
+			</tr>
+			<tr class="topTr">
+				<td rowspan="1" colspan="2" valign="middle" align="left" width="30%">
+					<select id="appSelector" onchange="changeApp(this.options[this.options.selectedIndex].value)">
+						<option value="inout" selected>样品入库</option>
+						<option value="exchange">样品转移</option>
+						<option value="draw">样品领取</option>
+					</select>
+				</td>
 
-                </td>
-            </tr>
-            <tr id="sampleExchange" style="display:none">
-                <td>
-                    <input type="button" name="Search" onclick=query("exsample",2) value="转移样品确认" class="mybutton" />
-                </td>
-            </tr>
-            <tr id="sampleDraw" style="display:none">
-                <td>
-                    <input type="button" name="Search" onclick=query("drawsample",2) value="领用样品确认" class="mybutton" />
-                </td>
-            </tr>
-        </table>
+				
+			</tr>
+			<tr>
+				<td>
+					请在右侧输入框扫码录入信息，或手机扫码
+					<input type="file" id="file-selector" title="扫一扫">
+				</td>
+			</tr>
+			<tr id="sampleInout" style="display:block">
+				<td>
+					<input type="button" name="Search" onclick=query("addsample",0) value="备检样品入库" class="mybutton" />
+				</td>
+				<td>
+					<input type="button" name="Search1" onclick=query("addsample",1) value="复检样品入库" class="mybutton" />
+
+				</td>
+			</tr>
+			<tr id="sampleExchange" style="display:none">
+				<td>
+					<input type="button" name="Search" onclick=query("exsample",2) value="转移样品确认" class="mybutton" />
+				</td>
+			</tr>
+			<tr id="sampleDraw" style="display:none">
+				<td>
+					<input type="button" name="Search" onclick=query("drawsample",2) value="领用样品确认" class="mybutton" />
+				</td>
+			</tr>
+		</table>
     </div>
     <div class="querybar" style="background:#ffffff;width:100%">
         <table class="flowformtable tableF table table-bordered" data-sort="sortDisabled" cellspacing="0" cellpadding="0" align="left" width="98%">
@@ -224,6 +227,7 @@
             url += "&remark=" + encodeURIComponent(remark);
         }
 
+		//url = '@Url.Content(YJ.Utility.Config.WebUrl)' + url;
         RoadUI.Core.showWait();
         $.ajax({
             //headers: { "__RequestVerificationToken": $("input[name='__RequestVerificationToken']").val() },

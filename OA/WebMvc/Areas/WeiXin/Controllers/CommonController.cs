@@ -17,8 +17,8 @@ namespace WebMvc.Areas.WeiXin.Controllers
         //string encodingAESKey = "J6B1ZF1bAx77hVYHhd6aNs6Yyha2BsNxtZq1dprOX2v";
         string corpId = YJ.Platform.WeiXin.Config.CorpID;
         string suitId = YJ.Platform.WeiXin.Config.SuitID;
-        string token = "Hsv9fYk4ToN";
-        string encodingAESKey = "3U5uB6lFt2Dk99haHk2W2OsVR2YMWHwYJgt37MAJQvm";
+        string token = YJ.Platform.WeiXin.Config.MsgToken;
+        string encodingAESKey = YJ.Platform.WeiXin.Config.MsgAESKey;
 
 
         public ActionResult Index()
@@ -139,7 +139,7 @@ namespace WebMvc.Areas.WeiXin.Controllers
                 Response.End();
                 return;
             }
-            System.Web.HttpContext.Current.Response.Cookies.Add(new HttpCookie("weixin_userid", user.ID.ToString()) { Expires = YJ.Utility.DateTimeNew.Now.AddYears(10) });
+            System.Web.HttpContext.Current.Response.Cookies.Add(new HttpCookie("weixin_userid", user.ID.ToString()) { Expires = YJ.Utility.DateTimeNew.Now.AddDays(30) });
             System.Web.HttpContext.Current.Session.Add(YJ.Utility.Keys.SessionKeys.UserID.ToString(), user.ID.ToString());
 
             var lastURLCookie = Request.Cookies.Get("LastURL");

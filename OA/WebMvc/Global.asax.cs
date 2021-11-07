@@ -20,13 +20,20 @@ namespace WebMvc
         Thread server_thread;
         protected void Application_Start()
         {
+            AreaRegistration.RegisterAllAreas();
+            WebApiConfig.Register(GlobalConfiguration.Configuration);
+            FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
+            RouteConfig.RegisterRoutes(RouteTable.Routes);
+            BundleConfig.RegisterBundles(BundleTable.Bundles);
+
+      
+
             //每一分钟检查需要自动提交的任务
             System.Timers.Timer timer = new System.Timers.Timer(60000);
             timer.Elapsed += Common.Tools.ExpiredAutoSubmit;
             timer.AutoReset = true;
             timer.Start();
             //每天检查车辆年检时间是否到期
-
 
             System.Timers.Timer timers = new System.Timers.Timer(43100000);
             timers.Elapsed += Common.Tools.ExpiredSelectCarYrar;
@@ -44,23 +51,26 @@ namespace WebMvc
             timerI.AutoReset = true;
             timerI.Start();
 
-            AreaRegistration.RegisterAllAreas();
-            WebApiConfig.Register(GlobalConfiguration.Configuration);
-            FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
-            RouteConfig.RegisterRoutes(RouteTable.Routes);
-            BundleConfig.RegisterBundles(BundleTable.Bundles);
+ 
 
             //BundleTable.EnableOptimizations = true;
 
-            server_thread = new System.Threading.Thread(
-                new System.Threading.ThreadStart(new TemperatureServer().start_server)
-                );//开辟一个新线程
-            server_thread.Start();
+            //server_thread = new System.Threading.Thread(
+            //    new System.Threading.ThreadStart(new TemperatureServer().start_server)
+            //    );//开辟一个新线程
+            //server_thread.Start();
         }
         protected void Application_end()
         {
+            AreaRegistration.RegisterAllAreas();
+            WebApiConfig.Register(GlobalConfiguration.Configuration);
+            FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
+            RouteConfig.RegisterRoutes(RouteTable.Routes);
+            BundleConfig.RegisterBundles(BundleTable.Bundles);
+
+    
             //每一分钟检查需要自动提交的任务
-            System.Timers.Timer timer = new System.Timers.Timer(60000);
+            System.Timers.Timer timer = new System.Timers.Timer(600000);
             timer.Elapsed += Common.Tools.ExpiredAutoSubmit;
             timer.AutoReset = true;
             timer.Start();
@@ -83,13 +93,7 @@ namespace WebMvc
             timerI.AutoReset = true;
             timerI.Start();
 
-            AreaRegistration.RegisterAllAreas();
-            WebApiConfig.Register(GlobalConfiguration.Configuration);
-            FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
-            RouteConfig.RegisterRoutes(RouteTable.Routes);
-            BundleConfig.RegisterBundles(BundleTable.Bundles);
-
-            server_thread.Abort();
+            //server_thread.Abort();
         }
 
     }

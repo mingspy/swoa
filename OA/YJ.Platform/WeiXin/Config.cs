@@ -45,6 +45,22 @@ namespace YJ.Platform.WeiXin
             }
         }
 
+        public static string MsgToken
+        {
+            get
+            {
+                return ConfigurationManager.AppSettings["wxqy_msg_token"];
+            }
+        }
+
+        public static string MsgAESKey
+        {
+            get
+            {
+                return ConfigurationManager.AppSettings["wxqy_msg_encodingAESKey"];
+            }
+        }
+
         /// <summary>
         /// 微信secret
         /// </summary>

@@ -1,0 +1,215 @@
+﻿@{
+	ViewBag.Title = "样品领取";
+	Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<head>
+	<link rel="stylesheet" href="~/Content/css/css_insam.css">
+	<script src="~/Scripts/jquery-1.11.3.min.js"></script>
+	<!--[if lt IE 9]>
+	<script src="https:// oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js">
+	</script>
+	<script src="https:// oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js">
+	</script>
+	<![endif]-->
+</head>
+<style>
+	#opDiv {
+		width: 40%;
+		float: left;
+		margin: 0px;
+	}
+
+	#selTable {
+		width: auto;
+		float: left;
+		margin: 0px;
+		min-width: 40%;
+	}
+
+	#bag_link {
+		text-align: left;
+		height: 40px;
+		;
+		font-size: 18px;
+		color: #3499F0;
+	}
+
+	#qr_div {
+		align-items: center;
+		align-self: center;
+	}
+</style>
+
+
+
+<div class="M">
+	<div class="man">
+		<div class="k1">
+			<form action="#">
+				<div class="k1-1">
+					<h4>数据列表</h4>
+				</div>
+				<div class="k1-2">
+					<table width="100%" class="table3" id="tb_samples">
+						<tbody>
+							<tr>
+								<td>序号</td>
+								<td>选择</td>
+								<td>报告编号</td>
+								<td>分样号</td>
+								<td>名称</td>
+								<td>打包码</td>
+								<td>操作列</td>
+
+							</tr>
+
+						</tbody>
+					</table>
+				</div>
+
+				<div style="margin:20px;">
+					<a id="bag_link" href=""></a>
+					<div id="qr_div"></div>
+				</div>
+
+				<div class="k1-3" >
+					<a href="javascript:outSam();" class="active">确定</a>
+					<a href="javascript:window.opener=null;window.open('','_self');window.close();">取消</a>
+				</div>
+			</form>
+		</div>
+
+	</div>
+
+</div>
+
+
+<script type="text/javascript">
+	//alert('@ViewBag.data');
+	let samples = [];
+
+	function getSam(bag) {
+		if (!bag) {
+			return;
+		}
+		url = "/AssetManage/AmSample/getSams?bag_code=" + bag;
+		//RoadUI.Core.showWait();
+		$.ajax({
+			//headers: { "__RequestVerificationToken": $("input[name='__RequestVerificationToken']").val() },
+			url: url, contentType: RoadUI.Core.ajaxContentType, type: "Post", dataType: "json", cache: false, async: false,
+			success: function (json) {
+				//alert(json.msg);
+				if (json.status == 0) {
+					alert("录入错误：" + json.msg);
+				}
+				else {
+					for (var i = 0; i < json.data.length; i++) {
+						addSam(json.data[i]);
+					}
+					//clearCode();
+				}
+
+				//new RoadUI.Window().close();
+			},
+			error: function (json) {
+				//RoadUI.Core.showError(json);
+				//new RoadUI.Window().close();
+				alert(json.msg);
+			}
+		});
+	}
+
+	let bag = '@ViewBag.bag_code';
+	//alert(bag);
+	getSam(bag);
+
+
+	function clearSam() {
+		$("#tb_samples tr:not(:first)").empty()
+		samples = [];
+	}
+
+	function outSam() {
+		if (samples.length < 1) { return; }
+		var sels = [];
+		var idxs = [];
+
+	    //alert(bg);
+		for (var i = 0; i < samples.length; i++) {
+			var idx = i + 1;
+			if ($("#chk_" + idx).prop("checked")) {
+				sels.push(samples[i]);
+				idxs.push(i);
+			}
+		}
+
+		idxs.reverse();
+
+		url = "/AssetManage/AmSample/outSams";
+		//RoadUI.Core.showWait();
+		$.ajax({
+			//headers: { "__RequestVerificationToken": $("input[name='__RequestVerificationToken']").val() },
+			url: url, contentType: RoadUI.Core.ajaxContentType, type: "Post", dataType: "json", cache: false, async: false,
+			data: JSON.stringify(sels),
+			success: function (json) {
+				if (json.status == 0) {
+					alert("发生错误：" + json.msg);
+				}
+				else {
+					alert("领取成功");
+					clearSam();
+					window.opener = null; window.open('', '_self'); window.close();
+
+				}
+
+				//new RoadUI.Window().close();
+			},
+			error: function (json) {
+				alert("发生错误：" + json)
+				//RoadUI.Core.showError(json);
+				//new RoadUI.Window().close();
+			}
+		});
+	}
+
+	function make_qr(bg) {
+		var url = '@Url.Content(YJ.Utility.Config.WebUrl + "/AssetManage/AmSample/outSam?bag_code=")'+ bg;
+		$("#bag_link").attr("href", url);
+		$("#bag_link").text("打包码：" + bg);
+		$("#qr_div").empty();
+		var qrcode = new QRCode(document.getElementById("qr_div"), {
+				width: 240,
+				height: 240
+		});
+		qrcode.makeCode(url);
+	}
+
+
+	function addSam(data) {
+		uuid = data.ID;
+		var tr = '<tr id="tr_{0}"><td id="td_{0}">{0}</td><td><label class="lab2"><input type="checkbox" name="checkbox2" id="chk_{0}"checked /><em></em></label></td>\
+					<td>{2}</td><td>{3}</td><td>{4}</td><td>{5}</td><td><a id="a_{0}" href="javascript:delSam({0});" class="hov7 p5">删除</a></td></tr>'.format(
+			samples.length + 1, uuid, data.bgbh, data.no, data.ypmc, data.bag_code);
+		samples.push(data);
+		addTr('tb_samples', -1, tr);
+	}
+	function delSam(idx) {
+		$("#tr_" + idx).remove();
+		var fd = idx - 1;
+
+		for (var i = fd; i < samples.length; i++) {
+			idx = i + 1;
+			$("#td_" + (i + 2)).text(i + 1);
+			$("#tr_" + (i + 2)).attr('id', "tr_"+idx);
+			$("#td_" + (i + 2)).attr('id', "td_"+idx);
+			$("#chk_" + (i + 2)).attr('id', "chk_" + idx);
+			$("#a_" + (i + 2)).attr('href', "javascript:delSam({0});".format(idx));
+			$("#a_" + (i + 2)).attr('id', "a_" + idx);
+
+		}
+
+		samples.remove(fd);
+	}
+
+</script>

@@ -7,6 +7,9 @@ using System.Text;
 using System.Web;
 using System.Web.Mvc;
 using System.Data.SqlClient;
+using LitJson;
+using System.IO;
+
 namespace WebMvc.Areas.AssetManage.Controllers
 {
     public class AmSampleController : MyController
@@ -32,13 +35,22 @@ namespace WebMvc.Areas.AssetManage.Controllers
 
 
             string bgbh = Request.QueryString.Get("bgbh");
-            ViewBag.index_bgbh = bgbh != null? bgbh : "";
+            ViewBag.index_bgbh = bgbh != null ? bgbh : "";
             return View();
         }
 
         public ActionResult GetBatchQrCode()
         {
-            ;
+            return View();
+        }
+
+        public ActionResult GetSingleQrCode()
+        {
+            return View();
+        }
+
+        public ActionResult PrintQrCodes()
+        {
             return View();
         }
 
@@ -49,6 +61,509 @@ namespace WebMvc.Areas.AssetManage.Controllers
             ViewBag.index_bgbh = AssetsID;
             return View();
 
+        }
+
+        [HttpPost]
+        [MyAttribute(CheckApp = false, CheckUrl = false, CheckLogin = false)]
+        public string getSamples(string from_date, string print_neq)
+        {
+            YJ.Data.MSSQL.DBHelper myDb = new YJ.Data.MSSQL.DBHelper();
+            string sql = string.Format("select * from AmSample where yp_ddrq >='{0}' and (has_print is null or has_print !={1})",
+                from_date, print_neq);
+            DataTable dt = myDb.GetDataTable(sql);
+
+            var r = "{\"data\":" + dt.ToJsonString() + ",\"status\":1,\"msg\":\"正常\"}";
+            //System.Diagnostics.Debug.WriteLine(r);
+            return r;
+        }
+
+
+        public ActionResult PrintZBQrCodes()
+        {
+            return View();
+        }
+
+        public ActionResult inSam()
+        {
+            return View();
+        }
+
+        public JsonData getSamsByID(string uuid, string bag_code)
+        {
+            JsonData jdarr = new JsonData();
+            if (string.IsNullOrEmpty(uuid) && string.IsNullOrEmpty(bag_code))
+            {
+                return jdarr;
+            }
+
+            var uuids = "";
+            if (!string.IsNullOrEmpty(uuid))
+            {
+                var ss = uuid.Split(' ');
+                foreach (var u in ss)
+                {
+                    var uu = u.Trim();
+                    if (uu.Length < 1)
+                    {
+                        continue;
+                    }
+
+                    if (uuids.Length > 0)
+                    {
+                        uuids += ",";
+                    }
+                    uuids += string.Format("'{0}'", uu);
+                }
+            }
+
+            YJ.Data.MSSQL.DBHelper myDb = new YJ.Data.MSSQL.DBHelper();
+            string sql = "select * from AmSampleDetail where ";
+            string w = "";
+            if (!string.IsNullOrEmpty(uuids))
+            {
+                w = string.Format("ID in ({0})", uuids);
+            }
+
+            if (!string.IsNullOrEmpty(bag_code))
+            {
+                bag_code = bag_code.Trim();
+                w = string.Format("bag_code = '{0}' and owner is null;", bag_code);
+            }
+            sql += w;
+            DataTable dt = myDb.GetDataTable(sql);
+            Dictionary<string, JsonData> rets = new Dictionary<string, JsonData>();
+
+            HashSet<string> sets = new HashSet<string>();
+            foreach (DataRow row in dt.Rows)
+            {
+                var sid = row["ID"].ToString();
+                var bgbh = row["bgbh"].ToString();
+                var tp = row["type"].ToString();
+                sets.Add(bgbh);
+                if (rets.ContainsKey(sid))
+                {
+                    continue;
+                }
+                else
+                {
+                    JsonData jd = new JsonData();
+                    jd["type"] = tp;
+                    jd["bgbh"] = bgbh;
+                    jd["ID"] = sid;
+                    jd["bag_code"] = row["bag_code"].ToString();
+                    jd["no"] = row["no"].ToString();
+                    jd["sl"] = row["sl"].ToString();
+                    jdarr.Add((object)jd);
+                    rets[sid] = jd;
+                }
+            }
+
+            if(rets.Count==0 || sets.Count == 0)
+            {
+                throw new Exception("样品记录不存在");
+            }
+            var bgbhs = "";
+            foreach (var bgbh in sets)
+            {
+                if (bgbhs.Length > 0)
+                {
+                    bgbhs += ",";
+                }
+                bgbhs += "'" + bgbh + "'";
+            }
+
+
+            sql = string.Format("select [ypmc],[bgbh] from [AmSample] where bgbh in ({0});", bgbhs);
+            System.Diagnostics.Debug.WriteLine("sql is: " + sql);
+            DataTable dt2 = myDb.GetDataTable(sql);
+            foreach (DataRow row in dt2.Rows)
+            {
+                var bgbh = row["bgbh"].ToString();
+                var ypmc = row["ypmc"].ToString();
+                for (int i = 0; i < jdarr.Count; i++)
+                {
+                    JsonData jd = (JsonData)jdarr[i];
+                    if (bgbh.Equals(jd["bgbh"].ToString()))
+                    {
+                        jd["ypmc"] = ypmc;
+                    }
+                }
+
+            }
+
+            return jdarr;
+        }
+
+        [MyAttribute(CheckApp = false, CheckUrl = false, CheckLogin = false)]
+        public ActionResult outSam(string bag_code)
+        {
+            ViewBag.bag_code = bag_code;
+            return View();
+        }
+
+        [MyAttribute(CheckApp = false, CheckUrl = false, CheckLogin = false)]
+        public string getSams(string uuid, string bag_code)
+        {
+            try
+            {
+                var jdarr = getSamsByID(uuid, bag_code);
+                var r = "{\"data\":" + jdarr.ToJson() + ",\"status\":1,\"msg\":\"ok\"}";
+                return r;
+            }
+            catch (Exception e)
+            {
+                return "{\"status\":0,\"msg\":\"样品信息不存在，原因：" + e.Message + "\"}";
+            }
+
+        }
+
+        [HttpPost]
+        [MyAttribute(CheckApp = false, CheckUrl = false, CheckLogin = false)]
+        public string inSams()
+        {
+            var sr = new StreamReader(Request.InputStream);
+            var stream = sr.ReadToEnd();
+            JsonData jsonData2 = JsonMapper.ToObject(stream);
+            var bgbhs = new HashSet<string>();
+            YJ.Data.MSSQL.DBHelper myDb = new YJ.Data.MSSQL.DBHelper();
+            for (int i = 0; i < jsonData2.Count; i++)
+            {
+                JsonData r = jsonData2[i];
+                string bgbh = r["bgbh"].ToString();
+
+                try
+                {
+                    using (System.Transactions.TransactionScope scope = new System.Transactions.TransactionScope())
+                    {
+                        string sql2 = string.Format("MERGE INTO [AmSampleDetail] as T"
+                        + " USING(SELECT '{0}' AS bgbh, '{1}' AS no, '{2}' as type,'{3}'as address,'{4}' as ID, '{5}' as in_time, '{6}' as in_operator, '{7}' as remark) AS S"
+                        + " ON T.ID = S.ID "
+                        + " WHEN MATCHED THEN"
+                        + " UPDATE SET T.address = S.address,T.in_time = S.in_time, T.in_operator = S.in_operator, T.remark = S.remark"
+                        + " WHEN NOT MATCHED THEN"
+                        + " INSERT([ID],[bgbh], [no], [type], [address],[remark]) VALUES(S.ID, S.bgbh, S.no, S.type, S.address, S.remark); ", r["bgbh"].ToString(), r["no"].ToString(),
+                            r["type"].ToString(), r["address"].ToString(), r["ID"].ToString(), DateTime.Now, CurrentUser.ID, r["remark"].ToString());
+                        myDb.Execute(sql2);
+                        bgbhs.Add(bgbh);
+                        myDb.Execute(string.Format("INSERT INTO [AmSampleInOut]([AmsAampleId],[UseUId],[Address1],[Remark])VALUES('{0}','u_{1}','{2}', '样品入库')",
+                             r["ID"].ToString(), CurrentUser.ID, r["address"].ToString()));
+                        scope.Complete();
+                    }
+                }
+                catch (Exception e)
+                {
+                    return "{\"status\":0,\"msg\":\"" + e.Message + "\"}";
+                }
+            }
+            return "{\"status\":1,\"msg\":\"ok\"}";
+        }
+
+        [HttpPost]
+        [MyAttribute(CheckApp = false, CheckUrl = false, CheckLogin = false)]
+        public string outSams()
+        {
+            var sr = new StreamReader(Request.InputStream);
+            var stream = sr.ReadToEnd();
+            JsonData jsonData2 = JsonMapper.ToObject(stream);
+            var bgbhs = new HashSet<string>();
+            YJ.Data.MSSQL.DBHelper myDb = new YJ.Data.MSSQL.DBHelper();
+            for (int i = 0; i < jsonData2.Count; i++)
+            {
+                JsonData r = jsonData2[i];
+                string bgbh = r["bgbh"].ToString();
+
+                try
+                {
+                    using (System.Transactions.TransactionScope scope = new System.Transactions.TransactionScope())
+                    {
+                        string sql2 = string.Format("MERGE INTO [AmSampleDetail] as T"
+                        + " USING(SELECT '{0}' AS bgbh, '{1}' AS no, '{2}' as type,'{3}'as address,'{4}' as ID, '{5}' as out_time, '{6}' as owner) AS S"
+                        + " ON T.ID = S.ID "
+                        + " WHEN MATCHED THEN"
+                        + " UPDATE SET T.address = S.address,T.out_time = S.out_time, T.owner = S.owner"
+                        + " WHEN NOT MATCHED THEN"
+                        + " INSERT([ID],[bgbh], [no], [type], [address]) VALUES(S.ID, S.bgbh, S.no, S.type, S.address); ", r["bgbh"].ToString(), r["no"].ToString(),
+                            r["type"].ToString(), CurrentUser.ID, r["ID"].ToString(), DateTime.Now, CurrentUser.ID);
+                        myDb.Execute(sql2);
+                        bgbhs.Add(bgbh);
+                        myDb.Execute(string.Format("INSERT INTO [AmSampleInOut]([AmsAampleId],[UseUId],[Address1],[Remark])VALUES('{0}','u_{1}','{2}', '样品出库')",
+                             r["ID"].ToString(), CurrentUser.ID, CurrentUser.ID));
+                        scope.Complete();
+                    }
+                }
+                catch (Exception e)
+                {
+                    return "{\"status\":0,\"msg\":\"" + e.Message + "\"}";
+                }
+            }
+            return "{\"status\":1,\"msg\":\"ok\"}";
+        }
+
+        [HttpPost]
+        [MyAttribute(CheckApp = false, CheckUrl = false, CheckLogin = false)]
+        public string bagSams()
+        {
+            var sr = new StreamReader(Request.InputStream);
+            var stream = sr.ReadToEnd();
+            JsonData jsonData2 = JsonMapper.ToObject(stream);
+            var bgbhs = new HashSet<string>();
+            YJ.Data.MSSQL.DBHelper myDb = new YJ.Data.MSSQL.DBHelper();
+            for (int i = 0; i < jsonData2.Count; i++)
+            {
+                JsonData r = jsonData2[i];
+                string bgbh = r["bgbh"].ToString();
+
+                try
+                {
+                    using (System.Transactions.TransactionScope scope = new System.Transactions.TransactionScope())
+                    {
+                        string sql2 = string.Format("MERGE INTO [AmSampleDetail] as T"
+                        + " USING(SELECT '{0}' AS bgbh, '{1}' AS no, '{2}' as type,'{3}'as bag_code,'{4}' as ID, '{5}' as bag_time, '{6}' as operator) AS S"
+                        + " ON T.ID = S.ID "
+                        + " WHEN MATCHED THEN"
+                        + " UPDATE SET T.operator = S.operator,T.bag_time = S.bag_time, T.bag_code = S.bag_code;", r["bgbh"].ToString(), r["no"].ToString(),
+                            r["type"].ToString(), r["bag_code"].ToString(), r["ID"].ToString(), DateTime.Now, CurrentUser.ID);
+                        myDb.Execute(sql2);
+                        bgbhs.Add(bgbh);
+                        myDb.Execute(string.Format("INSERT INTO [AmSampleInOut]([AmsAampleId],[UseUId],[Address1],[Remark])VALUES('{0}','u_{1}','{2}', '样品打包 {3}')",
+                             r["ID"].ToString(), CurrentUser.ID, "", r["bag_code"].ToString()));
+                        scope.Complete();
+                    }
+                }
+                catch (Exception e)
+                {
+                    return "{\"status\":0,\"msg\":\"" + e.Message + "\"}";
+                }
+            }
+            return "{\"status\":1,\"msg\":\"ok\"}";
+        }
+
+
+        [MyAttribute(CheckApp = false, CheckUrl = false, CheckLogin = false)]
+        public string getSampleDetail(string from_date, string ly_date)
+        {
+            YJ.Data.MSSQL.DBHelper myDb = new YJ.Data.MSSQL.DBHelper();
+            string sql = "select TOP (100) * from AmSampleDetail where has_zy = 0 ";
+            string w = "";
+            if (!string.IsNullOrEmpty(from_date))
+            {
+                w += " and [print_time] >= '" + from_date + "' ";
+            }
+
+            if (!string.IsNullOrEmpty(ly_date))
+            {
+                w += " and [in_time] >= '" + ly_date + "' ";
+            }
+            sql += w;
+            sql += " ORDER BY no asc;";
+            DataTable dt = myDb.GetDataTable(sql);
+            Dictionary<string, JsonData> rets = new Dictionary<string, JsonData>();
+            JsonData jdarr = new JsonData();
+            HashSet<string> sets = new HashSet<string>();
+            foreach (DataRow row in dt.Rows)
+            {
+                var bgbh = row["bgbh"].ToString();
+                var tp = row["type"].ToString();
+                var kk = bgbh + "-" + tp;
+                sets.Add(bgbh);
+                if (rets.ContainsKey(kk))
+                {
+                    JsonData jd = (JsonData)rets[kk];
+                    jd["ids"].Add((object)row["ID"]);
+                    jd["nos"].Add((object)row["no"]);
+                }
+                else
+                {
+                    JsonData jd = new JsonData();
+                    JsonData jd2 = new JsonData();
+                    JsonData jd_ids = new JsonData();
+                    jd_ids.Add((object)row["ID"]);
+                    jd2.Add((object)row["no"].ToString());
+                    jd["nos"] = jd2;
+                    jd["bgbh"] = bgbh;
+                    jd["ids"] = jd_ids;
+                    jd["type"] = row["type"].ToString();
+                    jdarr.Add((object)jd);
+                    rets[kk] = jd;
+                }
+            }
+
+            var bgbhs = "";
+            foreach (var bgbh in sets)
+            {
+                if (bgbhs.Length > 0)
+                {
+                    bgbhs += ",";
+                }
+                bgbhs += "'" + bgbh + "'";
+            }
+
+            try
+            {
+                sql = string.Format("select [ypmc],[bgbh] from [AmSample] where bgbh in ({0});", bgbhs);
+                System.Diagnostics.Debug.WriteLine("sql is: " + sql);
+                DataTable dt2 = myDb.GetDataTable(sql);
+                foreach (DataRow row in dt2.Rows)
+                {
+                    var bgbh = row["bgbh"].ToString();
+                    var ypmc = row["ypmc"].ToString();
+                    for (int i = 0; i < jdarr.Count; i++)
+                    {
+                        JsonData jd = (JsonData)jdarr[i];
+                        if (bgbh.Equals(jd["bgbh"].ToString()))
+                        {
+                            jd["ypmc"] = ypmc;
+                        }
+                    }
+
+                }
+            }
+            catch (Exception e)
+            {
+                System.Diagnostics.Debug.WriteLine("Exception: " + e.Message);
+            }
+            var r = "{\"data\":" + jdarr.ToJson() + ",\"status\":1,\"msg\":\"正常\"}";
+            System.Diagnostics.Debug.WriteLine(r);
+            return r;
+        }
+
+
+        [HttpPost]
+        [MyAttribute(CheckApp = false, CheckUrl = false, CheckLogin = false)]
+        public string printDetail()
+        {
+            var sr = new StreamReader(Request.InputStream);
+            var stream = sr.ReadToEnd();
+            JsonData jsonData2 = JsonMapper.ToObject(stream);
+            var bgbhs = new HashSet<string>();
+            YJ.Data.MSSQL.DBHelper myDb = new YJ.Data.MSSQL.DBHelper();
+            for (int i = 0; i < jsonData2.Count; i++)
+            {
+                JsonData r = jsonData2[i];
+                string bgbh = r["bgbh"].ToString();
+
+                try
+                {
+                    string sql2 = string.Format("MERGE INTO [AmSampleDetail] as T"
+                        + " USING(SELECT '{0}' AS bgbh, '{1}' AS no, '{2}' as type,'{3}'as is_share,'{4}' as ID, '{5}' as sl) AS S"
+                        + " ON T.ID = S.ID "
+                        + " WHEN MATCHED THEN"
+                        + " UPDATE SET T.is_share = S.is_share"
+                        + " WHEN NOT MATCHED THEN"
+                        + " INSERT([ID],[bgbh], [no], [type], [is_share], [sl]) VALUES(S.ID, S.bgbh, S.no, S.type, S.is_share, S.sl); ", r["bgbh"].ToString(), r["no"].ToString(),
+                            r["type"].ToString(), r["is_share"].ToString(), r["ID"].ToString(), r["sl"].ToString());
+                    myDb.Execute(sql2);
+                    bgbhs.Add(bgbh);
+                }
+                catch (Exception e)
+                {
+                    return "{\"status\":0,\"msg\":\"" + e.Message + "\"}";
+                }
+            }
+
+            foreach (var bg in bgbhs)
+            {
+                try
+                {
+                    string sql2 = string.Format("update [AmSample] set has_print = 1 where bgbh = '{0}'", bg);
+                    myDb.Execute(sql2);
+                }
+                catch (Exception e)
+                {
+                    return "{\"status\":0,\"msg\":\"" + e.Message + "\"}";
+                }
+            }
+            return "{\"status\":1,\"msg\":\"ok\"}";
+        }
+
+        [HttpPost]
+        [MyAttribute(CheckApp = false, CheckUrl = false, CheckLogin = false)]
+        public string printZBDetail()
+        {
+            var sr = new StreamReader(Request.InputStream);
+            var stream = sr.ReadToEnd();
+            JsonData jsonData2 = JsonMapper.ToObject(stream);
+            var bgbhs = new HashSet<string>();
+
+            var ids = "";
+            for (int i = 0; i < jsonData2.Count; i++)
+            {
+                JsonData r = jsonData2[i];
+
+                for (int j = 0; j < r["used"].Count; j++)
+                {
+                    if (ids.Length > 0)
+                    {
+                        ids += ",";
+                    }
+                    ids += string.Format("'{0}'", r["used"][j].ToString());
+
+                }
+            }
+
+            var sql = string.Format("update AmSampleDetail set has_zy = 1 where ID in ({0})", ids);
+
+            var dt = new DataTable();
+            dt.Columns.AddRange(new DataColumn[]{
+                new DataColumn("ID",typeof(string)),
+                new DataColumn("bgbh",typeof(string)),
+                new DataColumn("no",typeof(int)),new DataColumn("type",typeof(int))});
+
+            for (int i = 0; i < jsonData2.Count; i++)
+            {
+                JsonData jd = jsonData2[i];
+                for (int j = 0; j < jd["new"].Count; j++)
+                {
+                    JsonData jdc = jd["new"][j];
+                    DataRow r = dt.NewRow();
+                    r[0] = jdc["ID"].ToString();
+                    r[1] = jdc["bgbh"].ToString();
+                    r[2] = jdc["no"].ToString().ToInt();
+                    r[3] = jdc["type"].ToString().ToInt();
+                    dt.Rows.Add(r);
+                }
+            }
+
+            using (var conn = new SqlConnection(YJ.Utility.Config.PlatformConnectionStringMSSQL))
+            {
+                try
+                {
+                    conn.Open();
+
+
+                    //使用SqlBulkCopy 加载数据到临时表中
+                    using (var bulkCopy = new SqlBulkCopy(conn))
+                    {
+                        foreach (DataColumn dcPrepped in dt.Columns)
+                        {
+                            bulkCopy.ColumnMappings.Add(dcPrepped.ColumnName, dcPrepped.ColumnName);
+                        }
+
+                        bulkCopy.BulkCopyTimeout = 660;
+                        bulkCopy.DestinationTableName = "AmSampleDetail";
+                        bulkCopy.WriteToServer(dt);
+                        bulkCopy.Close();
+                    }
+
+                    using (var command = new SqlCommand("", conn))
+                    {
+                        command.CommandTimeout = 300;
+                        command.CommandText = sql;
+                        command.ExecuteNonQuery();
+                    }
+                }
+                catch (Exception e)
+                {
+                    return "{\"status\":0,\"msg\":\"" + e.Message + "\"}";
+                }
+                finally
+                {
+                    conn.Close();
+                }
+            }
+
+
+            return "{\"status\":1,\"msg\":\"ok\"}";
         }
 
         [HttpPost]

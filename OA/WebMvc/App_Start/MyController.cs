@@ -73,7 +73,7 @@ namespace WebMvc
         /// <returns></returns>
         protected virtual bool CheckLogin(out string msg)
         {
-            return WebMvc.Common.Tools.CheckLogin(out msg);
+            return WebMvc.Common.Tools.CheckLogin(out msg)|| YJ.Platform.WeiXin.Organize.CheckLogin();
         }
 
         /// <summary>

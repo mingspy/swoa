@@ -311,7 +311,121 @@ namespace WebMvc.Common
         /// </summary>
         public static void ImportSampleResult(object source, System.Timers.ElapsedEventArgs e)
         {
-            ImportSampleResultAuto();
+            DateTime now = DateTime.Now;
+            // 21点以后不导入
+            if (now.Hour > 20)
+            {
+                return;
+            }
+            //ImportSampleResultAuto();
+            ImportSampleData();
+        }
+
+        public static void ImportSampleData()
+        {
+            DateTime now = DateTime.Now;
+            System.Diagnostics.Debug.WriteLine($"start import sample from lms | {(now)}");
+            YJ.Data.MSSQL.DBHelper db = new YJ.Data.MSSQL.DBHelper(System.Configuration.ConfigurationManager.ConnectionStrings["SampleConnection"].ConnectionString);
+            //YJ.Data.MSSQL.DBHelper myDb = new YJ.Data.MSSQL.DBHelper();
+            string UpdateSql = @"Merge into AmSample AS T 
+    Using #TmpTable_sample AS S 
+    ON T.bgbh = S.bgbh and T.pz_bz = 0
+    WHEN MATCHED 
+    THEN UPDATE SET T.[rest]=S.[rest],T.[unit]=S.[unit],T.[expire]=S.[expire],T.[pz_bz]=S.[pz_bz],T.[pz_time]=S.[pz_time],T.[panding]=S.[panding];";
+            string InsertSql = @"INSERT INTO AmSample SELECT * from #TmpTable_sample where bgbh not in (select bgbh from AmSample);";
+
+            try
+            {
+                string oneMonth = now.AddDays(-7).ToString("yyyy-MM-dd");
+                string sql = string.Format("select * from OA_SampleView where yp_ddrq > '{0}'", oneMonth);
+                DataTable dt = db.GetDataTable(sql);
+                System.Diagnostics.Debug.WriteLine($" {(now)}| got {(dt.Rows.Count)} recodes ");
+                dt.Columns.Add("rest", typeof(Double));
+                dt.Columns.Add("unit", typeof(String));
+                dt.Columns.Add("expire", typeof(DateTime));
+                //dt.Columns.Remove("ID");
+                foreach (DataRow item in dt.Rows)
+                {
+                    var yp_sl = item["yp_sl"].ToString();
+                    var pz_time = item["pz_time"].ToString().IsNullOrEmpty() ? DateTime.Now : item["pz_time"].ToString().ToDateTime();
+                    var pz_bz = item["pz_bz"].ToString().ToInt32();
+                    var panding = item["yp_sl"].ToString();
+                    
+
+                    // 转换数量
+                    if (yp_sl != null)
+                    { 
+                        var m = yp_sl.ToNumUnit();
+                        item["rest"] = m.Num;
+                        item["unit"] = m.Unit;
+                    }
+
+                    if (pz_bz != 0)
+                    {
+                        // 合格三个月，不合格保留6个月
+                        var expire = pz_time.AddMonths(6);
+                        if (panding.Equals("符合"))
+                        {
+                            expire = pz_time.AddMonths(3);
+                        }
+                        item["expire"] = expire;
+                    }
+                }
+
+                //System.Configuration.ConfigurationManager.OpenExeConfiguration(System.Configuration.ConfigurationUserLevel.PerUserRoamingAndLocal);
+                using (var conn = new SqlConnection(YJ.Utility.Config.PlatformConnectionStringMSSQL))
+                {
+                    using (var command = new SqlCommand("", conn))
+                    {
+                        try
+                        {
+                            conn.Open();
+                            //数据库并创建一个临时表来保存数据表的数据
+                            command.CommandText = "select * into #TmpTable_sample from AmSample where 1=2;";
+                            command.ExecuteNonQuery();
+
+                            //使用SqlBulkCopy 加载数据到临时表中
+                            using (var bulkCopy = new SqlBulkCopy(conn))
+                            {
+                                foreach (DataColumn dcPrepped in dt.Columns)
+                                {
+                                    if (dcPrepped.ColumnName.Equals("ID"))
+                                    {
+                                        continue;
+                                    }
+                                    bulkCopy.ColumnMappings.Add(dcPrepped.ColumnName, dcPrepped.ColumnName);
+                                }
+
+                                bulkCopy.BulkCopyTimeout = 660;
+                                bulkCopy.DestinationTableName = "#TmpTable_sample";
+                                bulkCopy.WriteToServer(dt);
+                                bulkCopy.Close();
+                            }
+
+                            // 执行Command命令 使用临时表的数据去更新目标表中的数据  然后删除临时表
+                            command.CommandTimeout = 300;
+                            command.CommandText = "alter table #TmpTable_sample drop column ID;";
+                            command.ExecuteNonQuery();
+
+                            command.CommandText = UpdateSql;
+                            command.ExecuteNonQuery();
+
+                            command.CommandText = InsertSql;
+                            command.ExecuteNonQuery();
+                        }
+                        finally
+                        {
+                            conn.Close();
+                        }
+                    }
+                }
+
+                YJ.Platform.Log.Add("样品信息自动同步", string.Format("共同步{0}条记录", dt.Rows.Count), YJ.Platform.Log.Types.信息管理);
+            }
+            catch (Exception e)
+            {
+                YJ.Platform.Log.Add("样品信息自动同步失败，失败原因" + e + "", "", YJ.Platform.Log.Types.信息管理);
+            }
         }
 
         public static void ImportSampleResultAuto()
@@ -319,11 +433,6 @@ namespace WebMvc.Common
             try
             {
                 DateTime now = DateTime.Now;
-                // 21点以后不导入
-                if(now.Hour > 20)
-                {
-                    //return;
-                }
                 int count = 0;
                 string oneMonth = now.AddDays(-30).ToString("yyyy-MM-dd");
                 YJ.Data.MSSQL.DBHelper db = new YJ.Data.MSSQL.DBHelper();

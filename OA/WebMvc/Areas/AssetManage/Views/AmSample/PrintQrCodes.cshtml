@@ -1,0 +1,285 @@
+﻿@{
+	ViewBag.Title = "二维码打印";
+	Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<head>
+
+
+	<style media=print>
+
+		.Noprint {
+			display: none;
+		}
+
+		.PageNext {
+			page-break-after: always;
+		}
+
+	</style>
+
+	<style>
+		.QrStyle {
+			width: 256px;
+			height: 256px;
+			float: left;
+			margin-left: 0px;
+		}
+	</style>
+
+	<link rel="stylesheet" href="~/Content/css/css.css">
+	<script src="~/Scripts/jquery-1.11.3.min.js"></script>
+	<!--[if lt IE 9]>
+	<script src="https:// oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js">
+	</script>
+	<script src="https:// oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js">
+	</script>
+	<![endif]-->
+</head>
+
+<div class="Noprint" style="padding: 20px; font-size:20px;">
+	<table cellpadding="5" cellspacing="5" border="0">
+		<tbody>
+			<tr>
+				<td style="margin-right:8px;">
+					<span>到样时间：</span>
+				</td>
+				<td>
+					<input type="date" id="from_date"/>
+				</td>
+				<td style="margin-left:8px;">
+					是否已打印：
+				</td>
+				<td>
+					<select id="neq_sel">
+						<option value="1" selected>未打印</option>
+						<option value="0">已打印</option>
+						<option value="2">全部</option>
+					</select>
+				</td>
+				<td><input type="button" name="searchbutton" value=" 查 询 " class="mybutton" onclick="query_samples()"/></td>
+			</tr>
+		</tbody>
+	</table>
+</div>
+<div class="M">
+	<div class="man">
+		<table width="100%" class="table1">
+			<tbody>
+				<tr>
+					<td width="49.3%" class="td1 Noprint">
+						<h3>数据列表</h3>
+						<table width="100%" class="table2 mgt20" id="tb_samples">
+							<tbody>
+								<tr>
+									<td>序号</td>
+									<td>选择</td>
+									<td>报告编号</td>
+									<td>分样数</td>
+									<td>是否共样</td>
+									<td>列修改</td>
+								</tr>
+								<tr></tr>
+							</tbody>
+						</table>
+					</td>
+					<td width="1.4%" class="td2 Noprint"></td>
+					<td width="49.3%" class="td3">
+						<div class="dv8 Noprint">
+							<p class="ewm hov7" onclick="make_qrs()">生成二维码</p>
+							<p class="ewm hov7" onclick="print1()">打印</p>
+						</div>
+						<div id="qr_divs">
+
+						</div>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+
+</div>
+
+
+
+<script type="text/javascript">
+	var start = document.getElementById("from_date");
+	var Dates = new Date();
+	var Y = Dates.getFullYear();
+	var M = Dates.getMonth() + 1;
+	var D = Dates.getDate();
+	var times = Y + (M < 10 ? "-0" : "-") + M + (D < 10 ? "-0" : "-") + D;
+
+	start.value = times;
+
+	var samples_data = null;
+	function query_samples() {
+		var fd = $("#from_date").val();
+		var neq = $("#neq_sel").val();
+		var url = "/assetmanage/amsample/getSamples?from_date=" + fd + "&print_neq=" + neq;
+		RoadUI.Core.showWait();
+		$.ajax({
+			//headers: { "__RequestVerificationToken": $("input[name='__RequestVerificationToken']").val() },
+			url: url, contentType: RoadUI.Core.ajaxContentType, type: "Post", dataType: "json", cache: false, async: true,
+			success: function (json) {
+				if (json.status == 0) {
+					alert("录入错误：" + json.msg);
+					return;
+				}
+				
+				samples_data = json.data;
+				$("#tb_samples tr:not(:first)").empty()
+				for (j = 0, len = samples_data.length; j < len; j++) {
+					var tr = '<tr><td>{0}</td ><td><input type="checkbox" id="schk_{0}" /></td><td>{1}</td><td>\
+						<input class="ipt1" type = "text" placeholder = "1" id="fys_{0}" ></td><td><input type="checkbox" id="gy_{0}" /></td>\
+						<td><a href="javascript:modify_qr({0});" class="hov7 p5">修改</a></td></tr>'.format(j, samples_data[j].bgbh);
+					addTr('tb_samples', j + 1, tr);
+				}
+
+				new RoadUI.Window().close();
+			},
+			error: function (json) {
+				RoadUI.Core.showError(json);
+				new RoadUI.Window().close();
+			}
+		});
+	}
+
+	function make_qrs() {
+		for (j = 0, len = samples_data.length; j < len; j++) {
+			var qr_div_id = "qr_div_" + j;
+			if ($("#" + qr_div_id).length == 0) {
+				$("#qr_divs").append('<div id="{0}"></div>'.format(qr_div_id));
+			} else {
+				$("#" + qr_div_id).empty();
+			}
+
+			if ($("#schk_" + j).prop("checked")) {
+				modify_qr(j);
+			}
+		}
+	}
+
+	function modify_qr(sno) {
+	
+		if (!$("#schk_" + sno).prop("checked")) {
+			alert(sno+ " no checked");
+			return;
+		}
+		var isPage = true;
+		var fys = $("#fys_" + sno).val();
+		if (!fys) {
+			fys=1;
+		}
+		fys = parseInt(fys);
+
+		var is_gy = $("#gy_"+sno).prop("checked");
+		if (is_gy) {
+			is_gy = 'checked';
+		} else {
+			is_gy = '';
+		}
+		var qr_div_id = "qr_div_" + sno;
+		if ($("#" + qr_div_id).length == 0) {
+			$("#qr_divs").append('<div id="{0}"></div>'.format(qr_div_id));
+		} else {
+			$("#" + qr_div_id).empty();
+		}
+		var sid = samples_data[sno].ID;
+		var bgbh = samples_data[sno].bgbh;
+		var ypmc = samples_data[sno].ypmc;
+		var ddrq = samples_data[sno].yp_ddrq;
+		var sl = samples_data[sno].yp_sl;
+		var total = fys + 1;
+		for (var i = 0; i < total; i++) {
+			qr_id = qr_div_id + '_' + i;
+			var tp = i == fys?1:0;
+			var tp_name = i == fys ? "复检样" : "检验样";
+			var uuid = randNow();
+			dt = '<ul class="ul01"><li >\
+				<div class="QrStyle" id = "{0}" ></div > <div class="dvr">\
+				<p class="p1">编号：{1} 分号：{2}</p>\
+				<p class="p2" > 名称：{3}</p>\
+				<p class="p3">到样：<span>{4}</span>样品总量：{5}</p>\
+				<div class="dv3">\
+				  <input id="sl_{0}" type="text"></input>\
+				  <p >{7}</p>\
+				  <p ><label class="lab2"><input type="checkbox" id="gy_{0}" {6}><em></em><span>共样</span></label></p>\
+				</div><div class="dv4"><p><label class="lab2"><input type="checkbox" name="checkbox2"><em></em><span>待检</span></label></p><p><label class="lab2"><input type="checkbox" name="checkbox2"><em></em><span>在检</span></label></p><p><label class="lab2"><input type="checkbox" name="checkbox2"><em></em><span>检毕</span></label></p></div></div></li>\
+                </ul><input type="text" id="id_{0}" value="{8}" style="display:none;"/><div name=\"page_div\" class=\"PageNext\"></div>'.format(qr_id, bgbh, i + 1, ypmc, ddrq, sl, is_gy, tp_name, uuid);
+			var url = '@Url.Content(YJ.Utility.Config.WebUrl + "/AssetManage/AmSample/getSams?uuid=")'+ uuid;
+
+
+			$("#" + qr_div_id).append(dt);
+			var qrcode = new QRCode(document.getElementById(qr_id), {
+					width: 240,
+					height: 240
+			});
+			qrcode.makeCode(url);
+		}
+	}
+
+	function sync2db() {
+		var jsonObj = [];
+		for (j = 0, len = samples_data.length; j < len; j++) {
+			if (!$("#schk_" + j).prop("checked")) {
+				continue;
+			}
+			var fys = $("#fys_" + j).val();
+			if (!fys) {
+				fys = 1;
+			}
+			fys = parseInt(fys);
+			var total = fys + 1;
+			var qr_div_id = "qr_div_" + j;
+			var bgbh = samples_data[j].bgbh;
+			for (var i = 0; i < total; i++) {
+				qr_id = qr_div_id + '_' + i;
+				var tp = i == fys ? 1 : 0;
+				var is_share = $("#gy_" + qr_id).prop("checked");
+				var uuid = $("#id_" + qr_id).val();
+				is_share = is_share ? 1 : 0;
+				var sl = $("#sl_" + qr_id).val();
+				jsonObj.push({ "bgbh": bgbh, "no": i + 1, "type": tp, "is_share": is_share, "ID": uuid, "sl":sl});
+			}
+			
+		}
+		url = '/AssetManage/AmSample/printDetail?';
+		RoadUI.Core.showWait();
+		$.ajax({
+			url: url, contentType: RoadUI.Core.ajaxContentType, type: "Post", dataType: "json", cache: false, async: true,
+			data: JSON.stringify(jsonObj),
+			success: function (json) {
+				alert(json.msg);
+				new RoadUI.Window().close();
+				for (j = 0, len = samples_data.length; j < len; j++) {
+					var qr_div_id = "qr_div_" + j;
+					$("#" + qr_div_id).empty();
+				}
+			},
+			error: function (json) {
+				//alert(XMLHttpRequest.status);
+				//alert(XMLHttpRequest.readyState);
+				RoadUI.Core.showError(json);
+				new RoadUI.Window().close();
+			}
+		});
+	}
+
+    function print1() {
+		//var newstr = document.getElementById("qr_divs").innerHTML;
+		//var oldstr = document.body.innerHTML;
+		//document.body.innerHTML = '<div class="M">'+newstr+'</div>';
+		var dayObj = $('div[name="page_next"]');
+		if (dayObj.length > 0) {
+			dayObj[-1].setAttribute("class", "");
+		}
+		window.print();
+		//document.body.innerHTML = oldstr; 
+
+		sync2db();
+	}
+
+	query_samples();
+
+</script>

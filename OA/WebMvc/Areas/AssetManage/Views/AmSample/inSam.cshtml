@@ -1,0 +1,383 @@
+﻿@{
+	ViewBag.Title = "样品入库";
+	Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<head>
+
+	<link rel="stylesheet" href="~/Content/css/css_insam.css">
+	<script src="~/Scripts/jquery-1.11.3.min.js"></script>
+	<!--[if lt IE 9]>
+	<script src="https:// oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js">
+	</script>
+	<script src="https:// oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js">
+	</script>
+	<![endif]-->
+</head>
+<style>
+	#opDiv {
+		width: 40%;
+		float: left;
+		margin: 0px;
+	}
+
+	#selTable {
+		width: auto;
+		float: left;
+		margin: 0px;
+		min-width: 40%;
+	}
+	#bag_link {
+		text-align: left;height: 40px;;font-size: 18px;color: #3499F0;
+	}
+	#qr_div {
+		align-items:center;
+		align-self:center;
+	}
+	#file_selector {
+	}
+</style>
+
+<script type="text/javascript" src="~/Content/qrcodejs/reqrcode.js"></script>
+
+
+<div class="M">
+	<div id="opDiv">
+		<div class="man">
+			<div class="k2">
+				<form action="#">
+					<div class="k2-1">
+						<textarea rows="9" class="textarea1" placeholder="请用扫码枪扫码..." id="Code"></textarea>
+					</div>
+					<div class="k2-2">
+						<div>
+							<a href="javascript:;query()" class="hov7">查询</a>
+						</div>
+						<div>
+							<a href="javascript:;inSam()" class="hov7">样品入库</a>
+						</div>
+						<div>
+							<input type="file" id="file_selector" title="扫一扫">
+						</div>
+						
+					</div>
+					
+					<div class="k2-4">
+						<h6>样品信息</h6>
+					</div>
+
+					<div class="k2-1">
+						<div>
+							<p class="p6">储存位置</p>
+							<textarea rows="3" class="textarea2" placeholder="仓库" id="address"></textarea>
+						</div>
+						<div>
+							<p class="p6">备注</p>
+							<textarea rows="3" class="textarea2" placeholder="" id="remark"></textarea>
+						</div>
+					</div>
+
+				</form>
+			</div>
+
+		</div>
+	</div>
+
+	<div id="selTable">
+		<div class="man">
+			<div class="k1">
+				<form action="#">
+					<div class="k1-1">
+						<h4>数据列表</h4>
+						<a href="javascript:clearSam();" class="hov7">清空样品</a>
+						<a href="javascript:bagSam();" class="hov7">打包</a>
+					</div>
+					<div class="k1-2">
+						<table width="100%" class="table3" id="tb_samples">
+							<tbody>
+								<tr>
+									<td>序号</td>
+									<td>选择</td>
+									<td>报告编号</td>
+									<td>分样号</td>
+									<td>名称</td>
+									<td>打包码</td>
+									<td>操作列</td>
+
+								</tr>
+
+							</tbody>
+						</table>
+					</div>
+
+					<div style="margin:20px;">
+						<a id="bag_link" href=""></a>
+						<div id="qr_div"></div>
+					</div>
+
+					<div class="k1-3" style="display:none;">
+						<a href="javascript:;" class="active">确定</a>
+						<a href="javascript:;">取消</a>
+					</div>
+				</form>
+			</div>
+
+		</div>
+	</div>
+
+</div>
+
+
+<script type="text/javascript">
+	//event
+	$('.meu1>li.ic0').click(function (event) {
+		$(this).toggleClass('curr');
+		$(this).find('.meu2').slideToggle();
+		event.stopPropagation();
+	});
+	$('.meu2>li.ic0').click(function (event) {
+		$(this).toggleClass('curr');
+		$(this).find('.meu3').slideToggle();
+		event.stopPropagation();
+	});
+	$('.meu3>li.ic0').click(function (event) {
+		$(this).toggleClass('curr');
+		$(this).find('.meu4').slideToggle();
+		event.stopPropagation();
+	});
+
+	let samples = [];
+
+	function clearSam() {
+		$("#tb_samples tr:not(:first)").empty()
+		samples = [];
+	}
+
+	function query() {
+		var uuid = $("#Code").val();
+		getSam(uuid);
+	}
+
+	function inSam() {
+		if (samples.length < 1) { return;}
+		for (var i = 0; i < samples.length; i++) {
+			samples[i].address = $("#address").val();
+			samples[i].remark = $("#remark").val();
+		}
+
+		url = "/AssetManage/AmSample/inSams";
+		RoadUI.Core.showWait();
+		$.ajax({
+			//headers: { "__RequestVerificationToken": $("input[name='__RequestVerificationToken']").val() },
+			url: url, contentType: RoadUI.Core.ajaxContentType, type: "Post", dataType: "json", cache: false, async: true,
+			data: JSON.stringify(sels),
+			success: function (json) {
+				if (json.status == 0) {
+					alert("录入错误：" + json.msg);
+				}
+				else {
+					clearSam();
+				}
+
+				new RoadUI.Window().close();
+			},
+			error: function (json) {
+				RoadUI.Core.showError(json);
+				new RoadUI.Window().close();
+			}
+		});
+	}
+
+
+	function bagSam() {
+		if (samples.length < 1) { return; }
+		var sels = [];
+		var idxs = [];
+		var bg = randNow();
+	    //alert(bg);
+		for (var i = 0; i < samples.length; i++) {
+			var idx = i + 1;
+			if ($("#chk_" + idx).prop("checked")) {
+				samples[i].bag_code = bg;
+				sels.push(samples[i]);
+				idxs.push(i);
+			}
+		}
+
+		idxs.reverse();
+
+		url = "/AssetManage/AmSample/bagSams";
+		RoadUI.Core.showWait();
+		$.ajax({
+			//headers: { "__RequestVerificationToken": $("input[name='__RequestVerificationToken']").val() },
+			url: url, contentType: RoadUI.Core.ajaxContentType, type: "Post", dataType: "json", cache: false, async: true,
+			data: JSON.stringify(samples),
+			success: function (json) {
+				if (json.status == 0) {
+					alert("录入错误：" + json.msg);
+				}
+				else {
+					//clearSam();modify_qr
+					make_qr(bg);
+				}
+
+				new RoadUI.Window().close();
+			},
+			error: function (json) {
+				RoadUI.Core.showError(json);
+				new RoadUI.Window().close();
+			}
+		});
+	}
+
+	function make_qr(bg) {
+	
+		var url = '@Url.Content(YJ.Utility.Config.WebUrl + "/AssetManage/AmSample/outSam?bag_code=")'+ bg;
+		$("#bag_link").attr("href", url);
+		$("#bag_link").text("打包码：" + bg);
+		$("#qr_div").empty();
+		var qrcode = new QRCode(document.getElementById("qr_div"), {
+				width: 240,
+				height: 240
+		});
+		qrcode.makeCode(url);
+	}
+
+	function parseQRCode(code) {
+		var reg = new RegExp("uuid=([^&]*)(&|$)");
+		res = code.match(reg);
+		if (res) {
+			uuid = res[1];
+		} else {
+			uuid = code;
+		}
+		$("#Code").val(uuid);
+
+		getSam(uuid);
+	}
+
+
+	function addSam(data) {
+		uuid = data.ID;
+		var tr = '<tr id="tr_{0}"><td id="td_{0}">{0}</td><td><label class="lab2"><input type="checkbox" name="checkbox2" id="chk_{0}"checked /><em></em></label></td>\
+					<td>{2}</td><td>{3}</td><td>{4}</td><td>{5}</td><td><a id="a_{0}" href="javascript:delSam({0});" class="hov7 p5">删除</a></td></tr>'.format(
+			samples.length + 1, uuid, data.bgbh, data.no, data.ypmc, data.bag_code);
+		samples.push(data);
+		addTr('tb_samples', -1, tr);
+	}
+	function delSam(idx) {
+		$("#tr_" + idx).remove();
+		var fd = idx - 1;
+
+		for (var i = fd; i < samples.length; i++) {
+			idx = i + 1;
+			$("#td_" + (i + 2)).text(i + 1);
+			$("#tr_" + (i + 2)).attr('id', "tr_"+idx);
+			$("#td_" + (i + 2)).attr('id', "td_"+idx);
+			$("#chk_" + (i + 2)).attr('id', "chk_" + idx);
+			$("#a_" + (i + 2)).attr('href', "javascript:delSam({0});".format(idx));
+			$("#a_" + (i + 2)).attr('id', "a_" + idx);
+			
+		}
+
+		samples.remove(fd);
+	}
+	function getSam(uuid) {
+		if (!uuid) {
+			return;
+		}
+		url = "/AssetManage/AmSample/getSams?uuid=" + uuid;
+		RoadUI.Core.showWait();
+		$.ajax({
+			//headers: { "__RequestVerificationToken": $("input[name='__RequestVerificationToken']").val() },
+			url: url, contentType: RoadUI.Core.ajaxContentType, type: "Post", dataType: "json", cache: false, async: true,
+			success: function (json) {
+				if (json.status == 0) {
+					alert("录入错误：" + json.msg);
+				}
+				else {
+					for (var i = 0; i < json.data.length; i++) {
+						addSam(json.data[i]);
+					}
+					//clearCode();
+				}
+
+				new RoadUI.Window().close();
+			},
+			error: function (json) {
+				RoadUI.Core.showError(json);
+				new RoadUI.Window().close();
+			}
+		});
+	}
+
+	// 手机扫码
+	var getObjectURL = function (file) {
+		var url = null;
+
+		if (window.createObjectURL != undefined) { // basic
+			url = window.createObjectURL(file);
+		} else if (window.URL != undefined) { // mozilla(firefox)
+			url = window.URL.createObjectURL(file);
+		} else if (window.webkitURL != undefined) { // webkit or chrome
+			url = window.webkitURL.createObjectURL(file);
+		}
+
+		return url;
+
+	}
+	const fileSelector = document.getElementById('file_selector');
+	fileSelector.addEventListener('change', event => {
+		const file = fileSelector.files[0];
+		if (!file) {
+			return;
+		}
+
+		qrcode.decode(getObjectURL(file));
+		qrcode.callback = function (code) {
+			parseQRCode(code);
+		}
+
+	});
+
+	// 扫码枪，功能未测试
+	this.start = new Date().getTime()
+	let code = ''
+	let lastTime, nextTime
+	let lastCode, nextCode
+	let that = this
+	window.document.onkeypress = function (e) {
+		if (window.event) { // IE
+			nextCode = e.keyCode
+		} else if (e.which) { // Netscape/Firefox/Opera
+			nextCode = e.which
+		}
+		console.time()
+		console.log('nextCode', nextCode)
+		if (e.which === 13) {
+			if (code.length < 3) return // 手动输入的时间不会让code的长度大于2，所以这里只会对扫码枪有
+			console.log(code)
+			console.log('扫码结束')
+			console.timeEnd()
+			that.parseQRCode(code) // 获取到扫码枪输入的内容，做别的操作
+			code = ''
+			lastCode = ''
+			lastTime = ''
+			return
+		}
+		nextTime = new Date().getTime()
+		if (!lastTime && !lastCode) {
+			console.log('扫码开始。。。')
+			code += e.key
+		}
+		if (lastCode && lastTime && nextTime - lastTime > 500) { // 当扫码前有keypress事件时,防止首字缺失
+			console.log('防止首字缺失。。。')
+			code = e.key
+		} else if (lastCode && lastTime) {
+			console.log('扫码中。。。')
+			code += e.key
+		}
+		lastCode = nextCode
+		lastTime = nextTime
+	}
+</script>
